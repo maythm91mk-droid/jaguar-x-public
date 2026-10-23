@@ -1,0 +1,12 @@
+{
+  "servers": [
+    { "name": "السيرفر الأول", "url": "http://amlive.cc:80" }
+  ],
+  "support": "07701076606",
+  "message": "",
+  "latest": {
+    "versionCode": 14,
+    "versionName": "1.1.4",
+    "notes": ""
+  }
+}
