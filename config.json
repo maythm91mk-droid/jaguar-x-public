@@ -2,13 +2,13 @@
   "servers": [
     {
       "name": "سيرفر 1",
-      "admin": "AM",
-      "url": "http://amlive.cc:80"
+      "admin": "enc:YsJGnqgEAfDHnaNo/8rEbD6ySdpSwj1myuUF8uij",
+      "url": "enc:tU+tzAm2B4IqxF6nccMxh+6q0Bc7u/gTkJLyfubv3PJpmbI+pIxmvnIIs9+xRGE="
     },
     {
       "name": "سيرفر 2",
-      "admin": "DANA",
-      "url": "http://dana-speed.com:8080"
+      "admin": "enc:+Gy4UhPsoefCXopHa7yaZ7j16//Dq2BWvLQe8ky8Dmk=",
+      "url": "enc:F6BW8TWfqdhq/VxPmRZmydjGbahMTpUKsuXW+aQy7eOZKZeqkCWWPLVvEUh3WT/ifPuzFOjJ"
     }
   ],
   "support": "07701076606",
