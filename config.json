@@ -1,6 +1,15 @@
 {
   "servers": [
-    { "name": "السيرفر الأول", "url": "http://amlive.cc:80" }
+    {
+      "name": "سيرفر 1",
+      "admin": "AM",
+      "url": "http://amlive.cc:80"
+    },
+    {
+      "name": "سيرفر 2",
+      "admin": "DANA",
+      "url": "http://dana-speed.com:8080"
+    }
   ],
   "support": "07701076606",
   "message": "",
