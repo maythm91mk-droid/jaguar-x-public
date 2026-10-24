@@ -28,6 +28,11 @@ ol{margin:0;padding-inline-start:22px}
 li{margin:4px 0}
 code{direction:ltr;unicode-bidi:isolate;background:var(--card);border-radius:8px;padding:2px 8px;font-size:15px;color:var(--y);font-family:ui-monospace,Menlo,monospace;white-space:nowrap;display:inline-block}
 .sup{text-align:center;color:var(--sub)}
+.tg{display:flex;align-items:center;justify-content:center;gap:8px;border:2px solid var(--y);color:var(--y);text-decoration:none;font-weight:700;font-size:17px;border-radius:16px;padding:12px;margin-top:-8px}
+.tg:focus-visible,.agents a:focus-visible{outline:3px solid #fff;outline-offset:3px}
+code.big{font-size:26px;letter-spacing:3px;padding:4px 14px}
+.agents{text-align:center;color:var(--sub);font-size:14px;margin-top:-12px}
+.agents a{color:var(--y)}
 .sup b{color:var(--fg);direction:ltr;unicode-bidi:isolate}
 </style>
 </head>
@@ -39,14 +44,16 @@ code{direction:ltr;unicode-bidi:isolate;background:var(--card);border-radius:8px
   </div>
 
   <a class="dl" href="download/JaguarX.apk">⬇ تحميل التطبيق</a>
+  <a class="tg" href="https://t.me/jaguarx_iq" target="_blank" rel="noopener">✈ تابع قناة المشتركين على تلگرام</a>
   <div class="ver" id="ver">أندرويد 10 أو أحدث</div>
 
   <section>
     <h2>على التلفزيون أو الرسيفر</h2>
     <ol>
       <li>نزّل تطبيق <b>Downloader</b> من متجر التلفزيون (أيقونة برتقالية).</li>
-      <li>افتحه واكتب هذا الرابط واضغط <b>Go</b>:<br><code id="tvlink">jaguarxiq.com</code></li>
-      <li>بالصفحة اللي تنفتح اضغط زر <b>تحميل التطبيق</b>، وبعد التحميل اضغط <b>Install</b>.</li>
+      <li>افتحه واكتب هذا الكود واضغط <b>Go</b>:<br><code class="big" id="dlcode">2312093</code></li>
+      <li>التطبيق ينزل لحاله، وبعد التحميل اضغط <b>Install</b>.</li>
+      <li>أو اكتب الرابط <code>jaguarxiq.com</code> واضغط زر <b>تحميل التطبيق</b>.</li>
       <li>إذا طلب إذن «تثبيت تطبيقات غير معروفة»، فعّله لـ Downloader وارجع اضغط Install.</li>
     </ol>
   </section>
@@ -65,7 +72,8 @@ code{direction:ltr;unicode-bidi:isolate;background:var(--card);border-radius:8px
     <p style="margin:0">اكتب اسم المستخدم وكلمة المرور اللي استلمتها من جاكوار، والتطبيق يتعرف على حسابك تلقائياً.</p>
   </section>
 
-  <p class="sup">للاشتراك والدعم: <b id="sup">07701076606</b></p>
+  <p class="sup">للاشتراك والدعم: <b id="sup">07851700800</b></p>
+  <p class="agents">هل أنت وكيل؟ <a href="https://t.me/jaguarx_agents" target="_blank" rel="noopener">تواصل ويانا على تلگرام @jaguarx_agents</a></p>
 </main>
 <script>
 fetch("config.json",{cache:"no-store"}).then(r=>r.json()).then(c=>{
