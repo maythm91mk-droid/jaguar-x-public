@@ -39,7 +39,7 @@ code{direction:ltr;unicode-bidi:isolate;background:var(--card);border-radius:8px
   </div>
 
   <a class="dl" href="download/JaguarX.apk">⬇ تحميل التطبيق</a>
-  <div class="ver" id="ver">أندرويد 5 أو أحدث</div>
+  <div class="ver" id="ver">أندرويد 7 أو أحدث</div>
 
   <section>
     <h2>على التلفزيون أو الرسيفر</h2>
@@ -70,7 +70,7 @@ code{direction:ltr;unicode-bidi:isolate;background:var(--card);border-radius:8px
 <script>
 fetch("config.json",{cache:"no-store"}).then(r=>r.json()).then(c=>{
   if(c.support) document.getElementById("sup").textContent=c.support;
-  if(c.latest&&c.latest.versionName) document.getElementById("ver").textContent="النسخة "+c.latest.versionName+"  •  أندرويد 5 أو أحدث";
+  if(c.latest&&c.latest.versionName) document.getElementById("ver").textContent="النسخة "+c.latest.versionName+"  •  أندرويد 7 أو أحدث";
 }).catch(()=>{});
 </script>
 </body>
