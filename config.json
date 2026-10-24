@@ -19,9 +19,10 @@
   "support": "07701076606",
   "message": "",
   "latest": {
-    "versionCode": 25,
-    "versionName": "1.5.0",
+    "versionCode": 26,
+    "versionName": "1.5.1",
     "notes": "",
-    "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX.apk"
+    "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX.apk",
+    "minVersionCode": 26
   }
 }
