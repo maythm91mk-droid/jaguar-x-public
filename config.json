@@ -16,13 +16,16 @@
       "url": "enc:dccw02Zvgmvn9zrs8+xqpChl9FMmsk2afPuOpyWh0K7bJCPGB24S2b4E12ZTPfEhYfnWeAHHv9w="
     }
   ],
-  "support": "07701076606",
+  "support": "07851700800",
   "message": "",
   "latest": {
-    "versionCode": 26,
-    "versionName": "1.5.1",
+    "versionCode": 27,
+    "versionName": "1.6.0",
     "notes": "",
     "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX.apk",
     "minVersionCode": 26
-  }
+  },
+  "telegram": "https://t.me/jaguarx_iq",
+  "agents": "https://t.me/jaguarx_agents",
+  "downloaderCode": "2312093"
 }
