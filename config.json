@@ -14,18 +14,23 @@
       "name": "سيرفر 3",
       "admin": "enc:7ogyLQDrlP6NRSraKVKCMPHYISkAGLU03TdcSDzm6RA68A==",
       "url": "enc:dccw02Zvgmvn9zrs8+xqpChl9FMmsk2afPuOpyWh0K7bJCPGB24S2b4E12ZTPfEhYfnWeAHHv9w="
+    },
+    {
+      "name": "سيرفر 4",
+      "admin": "enc:IN06aDReFi2u3KlSvsRBxgc4zeLcTSnzYHfLoV5iBGk=",
+      "url": "enc:3n1sf77rACtvZr58UBVplyKrLpJDOGOiWb60SIK9Oig+U3DvmxQ2gNB5pw7sMtR5rvCyOIIZlLxE0GtV"
     }
   ],
   "support": "07851700800",
-  "message": "رسالة تجريبية: هذا النص تغيّر من ملف الإعدادات بدون تحديث",
+  "message": "",
   "latest": {
-    "versionCode": 27,
-    "versionName": "1.6.0",
+    "versionCode": 28,
+    "versionName": "1.6.1",
     "notes": "",
     "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX.apk",
-    "minVersionCode": 26
+    "minVersionCode": 0
   },
   "telegram": "https://t.me/jaguarx_iq",
-  "agents": "https://t.me/jaguarx_agents",
+  "agents": "https://t.me/jaguarx_dev",
   "downloaderCode": "2312093"
 }
