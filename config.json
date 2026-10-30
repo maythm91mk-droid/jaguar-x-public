@@ -42,5 +42,6 @@
     "versionCode": 100126,
     "versionName": "تجربة 126",
     "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX-beta.apk"
-  }
+  },
+  "subsUrl": "https://jaguar-subs.maythm91-mk.workers.dev"
 }
