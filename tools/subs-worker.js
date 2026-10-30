@@ -1,7 +1,7 @@
 // Jaguar X subtitles server (Cloudflare Worker).
 // Keeps the Subdl key (secret SUBDL_API_KEY) away from the app.
 //   /search?...   -> api.subdl.com/api/v1/subtitles (only the allowed fields, the key added here)
-//   /dl?u=/subtitle/xxx.zip -> dl.subdl.com (subtitle zips only)
+//   /dl/xxx.zip (or /dl?u=/subtitle/xxx.zip) -> dl.subdl.com (subtitle zips only)
 const ALLOWED = ["languages", "subs_per_page", "type", "tmdb_id", "imdb_id", "film_name", "year", "season_number", "episode_number"];
 
 export default {
@@ -18,8 +18,8 @@ export default {
       q.set("api_key", env.SUBDL_API_KEY);
       const r = await fetch("https://api.subdl.com/api/v1/subtitles?" + q.toString());
       res = new Response(r.body, { status: r.status, headers: { "content-type": "application/json; charset=utf-8", "cache-control": "public, max-age=86400" } });
-    } else if (url.pathname === "/dl") {
-      const u = url.searchParams.get("u") || "";
+    } else if (url.pathname === "/dl" || url.pathname.startsWith("/dl/")) {
+      const u = url.pathname.startsWith("/dl/") ? "/subtitle/" + url.pathname.slice(4) : (url.searchParams.get("u") || "");
       if (!/^\/subtitle\/[\w\-.]+\.zip$/.test(u)) return new Response("bad", { status: 400 });
       const r = await fetch("https://dl.subdl.com" + u);
       res = new Response(r.body, { status: r.status, headers: { "content-type": "application/zip", "cache-control": "public, max-age=604800" } });
