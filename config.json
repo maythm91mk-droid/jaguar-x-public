@@ -25,7 +25,11 @@
       "admin": "enc:a4qPyjC12rDFmXMlQBtOk0ganOQzWt9a+8X2F1R1IZcpPA==",
       "url": "enc:ozKp28ldoJsr6BPTXgPL7E9h6MI8z2lNiG0pogYpCuo5VCEaJ3p7nTeF/mFK8/ay16j56YQt3cFe/VKlJ4ll7jXFM5kY"
     },
-    {"name": "سيرفر 6", "admin": "enc:kZ0JBopZ8L14XaCXhM9hbsJtdLu3/AeCjkZ9Vry5LY4=", "url": "enc:3yVSZA+1rVvSu+PaomkB0FRBeEbxidrogkA4LefQ2a5Eodjf1jNWC4rJahHJqffz1BBd5QEWiw=="}
+    {
+      "name": "سيرفر 6",
+      "admin": "enc:kZ0JBopZ8L14XaCXhM9hbsJtdLu3/AeCjkZ9Vry5LY4=",
+      "url": "enc:3yVSZA+1rVvSu+PaomkB0FRBeEbxidrogkA4LefQ2a5Eodjf1jNWC4rJahHJqffz1BBd5QEWiw=="
+    }
   ],
   "support": "07851700800",
   "message": "",
@@ -40,8 +44,8 @@
   "agents": "https://t.me/jaguarx_dev",
   "downloaderCode": "2312093",
   "beta": {
-    "versionCode": 100157,
-    "versionName": "تجربة 157",
+    "versionCode": 100159,
+    "versionName": "تجربة 159",
     "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX-beta.apk"
   },
   "subsUrl": "https://jaguar-subs.maythm91-mk.workers.dev"
