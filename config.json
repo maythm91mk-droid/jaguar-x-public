@@ -44,8 +44,8 @@
   "agents": "https://t.me/jaguarx_dev",
   "downloaderCode": "2312093",
   "beta": {
-    "versionCode": 100164,
-    "versionName": "تجربة 164",
+    "versionCode": 100167,
+    "versionName": "تجربة 167",
     "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX-beta.apk"
   },
   "subsUrl": "https://jaguar-subs.maythm91-mk.workers.dev",
@@ -116,9 +116,36 @@
       "u": "http://dreamsiteradiocp4.com:8046/stream"
     },
     {
+      "n": "راديو هوا دجلة",
+      "g": "عراقية",
+      "u": "https://listen.radioking.com/radio/96766/stream/136030",
+      "l": "https://cdn.onlineradiobox.com/img/l/9/124829.v7.png"
+    },
+    {
+      "n": "راديو المربد",
+      "g": "عراقية",
+      "u": "mixlr:almirbad",
+      "l": "https://imagescdn.mixlr.com/afe82c2be1c5891bb1343fa56991ae9a.png?w=256&h=256&fit=cover&format=auto&q=80&dpr=1&bg=ffffff"
+    },
+    {
+      "n": "بابل FM",
+      "g": "عراقية",
+      "u": "https://eu7.fastcast4u.com/proxy/babylonarabia?mp=/1"
+    },
+    {
       "n": "مونت كارلو الدولية",
       "g": "عربية",
       "u": "https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3"
+    },
+    {
+      "n": "MBC FM",
+      "g": "عربية",
+      "u": "https://dbbv9umqcd7cs.cloudfront.net/out/v1/db15b75c3cc0400c91961468d6a232ac/index_5.m3u8"
+    },
+    {
+      "n": "بانوراما FM",
+      "g": "عربية",
+      "u": "https://d6izdil55uftn.cloudfront.net/out/v1/0a06d1d6377c47edbd48721ed724bd08/index_5.m3u8"
     },
     {
       "n": "روتانا FM",
@@ -179,11 +206,6 @@
       "n": "العربية FM",
       "g": "أخبار",
       "u": "https://fm.alarabiya.net/fm/myStream/playlist.m3u8"
-    },
-    {
-      "n": "بي بي سي عربي",
-      "g": "أخبار",
-      "u": "http://a.files.bbci.co.uk/media/live/manifesto/audio/simulcast/hls/nonuk/sbr_low/ak/bbc_arabic_radio.m3u8"
     },
     {
       "n": "إذاعة القرآن الكريم من القاهرة",
