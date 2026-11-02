@@ -1,2 +1,0 @@
-ds_status.json https://public.radio.co/stations/s0975ec186/status
-ds_sample.mp3 https://streams.radio.co/s0975ec186/listen
