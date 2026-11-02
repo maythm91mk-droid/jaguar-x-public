@@ -1,0 +1,30 @@
+name: fetch-logos
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download station logos
+        run: |
+          mkdir -p branding/radio/src
+          python3 - <<'PY'
+          import json, subprocess
+          c = json.load(open('config.json'))
+          seen = {}
+          for i, s in enumerate(c['radio']):
+              u = s.get('l', '')
+              if not u or 'raw.githubusercontent' in u: continue
+              out = 'branding/radio/src/%02d' % i
+              r = subprocess.run(['curl', '-sSL', '-m', '30', '-A', 'Mozilla/5.0', '-o', out, '-w', '%{http_code}', u], capture_output=True, text=True)
+              print(i, s['n'], r.stdout, u)
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add branding/radio/src
+          git commit -m "Radio logos: original copies [skip ci]" || true
+          git push
