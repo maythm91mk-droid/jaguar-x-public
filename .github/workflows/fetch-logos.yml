@@ -7,24 +7,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Download station logos
+      - name: Download candidate logos
         run: |
-          mkdir -p branding/radio/src
-          python3 - <<'PY'
-          import json, subprocess
-          c = json.load(open('config.json'))
-          seen = {}
-          for i, s in enumerate(c['radio']):
-              u = s.get('l', '')
-              if not u or 'raw.githubusercontent' in u: continue
-              out = 'branding/radio/src/%02d' % i
-              r = subprocess.run(['curl', '-sSL', '-m', '30', '-A', 'Mozilla/5.0', '-o', out, '-w', '%{http_code}', u], capture_output=True, text=True)
-              print(i, s['n'], r.stdout, u)
-          PY
+          sudo apt-get install -y -qq librsvg2-bin >/dev/null
+          mkdir -p branding/radio/cand
+          while read -r key url; do
+            [ -z "$key" ] && continue
+            code=$(curl -sSL -m 30 -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" -o "branding/radio/cand/$key" -w '%{http_code}' "$url")
+            echo "$key $code $(file -b branding/radio/cand/$key | cut -c1-60)"
+            if file -b "branding/radio/cand/$key" | grep -qi svg; then
+              rsvg-convert -w 1024 "branding/radio/cand/$key" -o "branding/radio/cand/$key.png" && rm "branding/radio/cand/$key"
+            fi
+          done < branding/radio/fetch.txt
       - name: Commit
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add branding/radio/src
-          git commit -m "Radio logos: original copies [skip ci]" || true
+          git add branding/radio/cand
+          git commit -m "Radio logos: candidates [skip ci]" || true
           git push
