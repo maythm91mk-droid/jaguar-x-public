@@ -291,19 +291,122 @@
       "n": "مشاري العفاسي",
       "g": "قرآن",
       "u": "https://qurango.net/radio/mishary_alafasi",
-      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mp3quran.png?v=3"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_afasy.png?v=3"
     },
     {
       "n": "محمود خليل الحصري",
       "g": "قرآن",
-      "u": "https://qurango.net/radio/mahmoud_khalil_alhussary_warsh",
-      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mp3quran.png?v=3"
+      "u": "https://qurango.net/radio/mahmoud_khalil_alhussary",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_husary.png?v=3"
     },
     {
       "n": "مصطفى إسماعيل",
       "g": "قرآن",
       "u": "https://qurango.net/radio/mustafa_ismail",
-      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mp3quran.png?v=3"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_mismail.png?v=3"
+    },
+    {
+      "n": "عبدالباسط عبدالصمد (مرتل)",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/abdulbasit_abdulsamad",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_abdulbasit.png?v=3",
+      "f": "مرتل"
+    },
+    {
+      "n": "عبدالباسط عبدالصمد (مجود)",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/abdulbasit_abdulsamad_mojawwad",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_abdulbasit.png?v=3",
+      "f": "مجود"
+    },
+    {
+      "n": "محمد صديق المنشاوي (مرتل)",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/mohammed_siddiq_alminshawi",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_minshawi.png?v=3",
+      "f": "مرتل"
+    },
+    {
+      "n": "محمد صديق المنشاوي (مجود)",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/mohammed_siddiq_alminshawi_mojawwad",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_minshawi.png?v=3",
+      "f": "مجود"
+    },
+    {
+      "n": "ماهر المعيقلي",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/maher",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_maher.png?v=3"
+    },
+    {
+      "n": "عبدالرحمن السديس",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/abdulrahman_alsudaes",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_sudais.png?v=3"
+    },
+    {
+      "n": "سعود الشريم",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/saud_alshuraim",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_shuraim.png?v=3"
+    },
+    {
+      "n": "سعد الغامدي",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/saad_alghamdi",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_ghamdi.png?v=3"
+    },
+    {
+      "n": "ياسر الدوسري",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/yasser_aldosari",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_dosari.png?v=3"
+    },
+    {
+      "n": "أحمد العجمي",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/ahmad_alajmy",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_ajmy.png?v=3"
+    },
+    {
+      "n": "ناصر القطامي",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/nasser_alqatami",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_qatami.png?v=3"
+    },
+    {
+      "n": "إدريس أبكر",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/idrees_abkr",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_idrees.png?v=3"
+    },
+    {
+      "n": "محمد أيوب",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/mohammed_ayyub",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_ayyub.png?v=3"
+    },
+    {
+      "n": "مصطفى رعد العزاوي",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/mustafa_raad_alazawy",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_azzawi.png?v=3",
+      "f": "العراق"
+    },
+    {
+      "n": "إسلام صبحي",
+      "g": "قرآن",
+      "u": "list:https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/radio/islam-sobhi.json",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_islam.png?v=3",
+      "f": "تلاوات متواصلة"
+    },
+    {
+      "n": "بلال الدربالي",
+      "g": "قرآن",
+      "u": "list:https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/radio/bilal-darbali.json",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_bilal.png?v=3",
+      "f": "تلاوات متواصلة"
     },
     {
       "n": "تراتيل قصيرة",

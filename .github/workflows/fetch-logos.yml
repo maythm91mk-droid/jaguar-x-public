@@ -20,6 +20,15 @@ jobs:
               rsvg-convert -w 1024 "branding/radio/cand/$key" -o "branding/radio/cand/$key.png" && rm "branding/radio/cand/$key"
             fi
           done < branding/radio/fetch.txt
+      - name: Check stream urls
+        run: |
+          set +e
+          [ -f branding/radio/check.txt ] || exit 0
+          while read -r u; do
+            [ -z "$u" ] && continue
+            r=$(curl -sSL -m 15 -r 0-4000 -o /dev/null -A "Mozilla/5.0" -w '%{http_code} %{content_type}' "$u" 2>&1 | head -c 80)
+            echo "CHK $r $u"
+          done < branding/radio/check.txt
       - name: Commit
         run: |
           git config user.name "github-actions"

@@ -1,9 +1,0 @@
-p_afasy_wiki https://upload.wikimedia.org/wikipedia/commons/2/24/%D0%9C%D0%B8%D1%88%D0%B0%D1%80%D0%B8_%D0%A0%D0%B0%D1%88%D0%B8%D0%B4.jpg
-p_afasy_sp https://i.scdn.co/image/ab6761610000e5ebac381d07bb60d7bfd3be1fe0
-p_idrees_w2q https://media.way2quran.com/imgs/idris-abkar.jpg
-p_mismail_wiki https://upload.wikimedia.org/wikipedia/commons/a/a8/Mustafa_Ismail_%281%29.jpg
-p_mismail_w2q https://media.way2quran.com/imgs/mustafa-ismail.jpg
-p_islam_yt https://yt3.googleusercontent.com/IwaChvyP-I20Aapy0qN0CG1YQhKNU1q-6q6Ff2Tfn1CmkFyqmFDZ6CfgKMGRAJESWzo4tD2Pqg=s900-c-k-c0x00ffffff-no-rj
-p_islam_w2q https://media.way2quran.com/imgs/islam-sobhi.jpg
-p_bilal_play2 https://play-lh.googleusercontent.com/Ns0b4adbJExVo-C20Y9mE8W9N0kYDkmNNQRMTiYhgZIoZsRuOLhdTZdASjOj5hNaHOMuFRRzHYk6z-23oqKhi1A=s512
-p_bilal_yt https://i.ytimg.com/vi/hL-40pKUWpY/sddefault.jpg
