@@ -10,6 +10,7 @@ jobs:
       - name: Download candidate logos
         run: |
           sudo apt-get install -y -qq librsvg2-bin >/dev/null
+          set +e
           mkdir -p branding/radio/cand
           while read -r key url; do
             [ -z "$key" ] && continue
