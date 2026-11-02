@@ -54,80 +54,80 @@
       "n": "سومر FM",
       "g": "عراقية",
       "u": "https://l3.itworkscdn.net/itwaudio/9012/stream",
-      "l": "https://cdn.onlineradiobox.com/img/l/1/32161.v6.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/sumer.png",
       "f": "بغداد"
     },
     {
       "n": "الرشيد FM",
       "g": "عراقية",
       "u": "https://streaming.shoutcast.com/alrasheed-fm",
-      "l": "https://cdn.onlineradiobox.com/img/l/6/31906.v6.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/rasheed.png",
       "f": "FM 91.5 بغداد"
     },
     {
       "n": "الرشيد FM كركوك",
       "g": "عراقية",
       "u": "https://streaming.shoutcast.com/alrasheed-kirkuk",
-      "l": "https://cdn.onlineradiobox.com/img/l/6/31906.v6.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/rasheed.png",
       "f": "FM 92.1 كركوك"
     },
     {
       "n": "راديو شفق",
       "g": "عراقية",
       "u": "https://radio.shafaq.com/radio",
-      "l": "https://cdn.onlineradiobox.com/img/l/9/102709.v1.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/shafaq.png",
       "f": "أربيل"
     },
     {
       "n": "راديو الغد",
       "g": "عراقية",
       "u": "http://s10.voscast.com:9410/",
-      "l": "https://alghad.fm/wp-content/uploads/2025/07/cropped-logo2-270x270.png"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/alghad.png"
     },
     {
       "n": "المستقبل FM",
       "g": "عراقية",
       "u": "https://edge.mixlr.com/channel/vnvcj",
-      "l": "https://mustaqbal-fm.com/wp-content/uploads/2024/01/cropped-4274d4cc-61a2-4552-bb85-f8798d4bbf65-270x270.jpeg"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mustaqbal.png"
     },
     {
       "n": "راديو شناشيل",
       "g": "عراقية",
       "u": "https://stream-152.zeno.fm/a33ka0d94p8uv",
-      "l": "https://proxy.zeno.fm/content/stations/agxzfnplbm8tc3RhdHNyMgsSCkF1dGhDbGllbnQYgICw0PuA-woMCxIOU3RhdGlvblByb2ZpbGUYgICw8M7zhAsMogEEemVubw/image/?u=1661653159000",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/shanasheel.png",
       "f": "FM 90.5 البصرة"
     },
     {
       "n": "راديو البلاد",
       "g": "عراقية",
       "u": "https://streamer.radio.co/sb38bf6e66/listen",
-      "l": "https://cdn.onlineradiobox.com/img/l/9/31959.v6.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/bilad.png",
       "f": "AM 999 بغداد"
     },
     {
       "n": "إذاعة دار السلام",
       "g": "عراقية",
       "u": "https://streams.radio.co/s0975ec186/listen",
-      "l": "https://images.radio.co/station_logos/s0975ec186.20220716110749.jpg",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/darsalam.png",
       "f": "بغداد"
     },
     {
       "n": "إذاعة السراج",
       "g": "عراقية",
       "u": "https://eu4.fastcast4u.com/proxy/aabdul00?mp=/1",
-      "l": "https://cdn.onlineradiobox.com/img/l/4/146444.v1.png"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/seraj.png"
     },
     {
       "n": "تركمان FM",
       "g": "عراقية",
       "u": "https://radyo1.radyo-dinle.tc/8284/stream;",
-      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/turkmen-fm.jpg"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/turkmen.png"
     },
     {
       "n": "راديو عنكاوا",
       "g": "عراقية",
       "u": "http://178.32.146.187/proxy/radioankawa?mp=/1/",
-      "l": "https://media.radiodeck.com/stations/5f74f737664ee8400841f493/profile/60796ee4917537311202577e/xl.jpg",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/ankawa.png",
       "f": "FM 97.7 عنكاوا"
     },
     {
@@ -135,41 +135,41 @@
       "g": "عراقية",
       "u": "http://dreamsiteradiocp4.com:8046/stream",
       "f": "أربيل",
-      "l": "https://static2.mytuner.mobi/media/tvos_radios/bm8wzs4cnrkx.jpg"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/maria.png"
     },
     {
       "n": "راديو هوا دجلة",
       "g": "عراقية",
       "u": "https://listen.radioking.com/radio/96766/stream/136030",
-      "l": "https://cdn.onlineradiobox.com/img/l/9/124829.v7.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/hawa.png",
       "f": "بغداد"
     },
     {
       "n": "راديو المربد",
       "g": "عراقية",
       "u": "mixlr:almirbad",
-      "l": "https://cdn.onlineradiobox.com/img/l/1/32101.v12.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mirbad.png",
       "f": "البصرة"
     },
     {
       "n": "بابل FM",
       "g": "عراقية",
       "u": "https://eu7.fastcast4u.com/proxy/babylonarabia?mp=/1",
-      "l": "https://cdn.onlineradiobox.com/img/l/0/31910.v8.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/babylon.png",
       "f": "FM 99.3 أربيل"
     },
     {
       "n": "مونت كارلو الدولية",
       "g": "عربية",
       "u": "https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3",
-      "l": "https://cdn.onlineradiobox.com/img/l/8/31898.v4.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mcd.png",
       "f": "FM 88.0 الموصل"
     },
     {
       "n": "MBC FM",
       "g": "عربية",
       "u": "https://dbbv9umqcd7cs.cloudfront.net/out/v1/db15b75c3cc0400c91961468d6a232ac/index_5.m3u8",
-      "l": "https://cdn.onlineradiobox.com/img/l/1/30001.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mbcfm.png",
       "f": "السعودية"
     },
     {
@@ -177,139 +177,139 @@
       "g": "عربية",
       "u": "https://d6izdil55uftn.cloudfront.net/out/v1/0a06d1d6377c47edbd48721ed724bd08/index_5.m3u8",
       "f": "FM 96.0 الرياض",
-      "l": "https://static2.mytuner.mobi/media/tvos_radios/432/panorama-fm-saudi-arabia.af3286b0.jpg"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/panorama.png"
     },
     {
       "n": "روتانا FM",
       "g": "عربية",
       "u": "http://philae.shoutca.st:8250/stream",
-      "l": "https://cdn.onlineradiobox.com/img/l/3/43283.v17.png"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/rotana.png"
     },
     {
       "n": "MBC Mood",
       "g": "عربية",
       "u": "https://radio-mbc-mood.mbc.net/radio-mbc-mood.m3u8",
       "f": "السعودية",
-      "l": "https://play-lh.googleusercontent.com/YT9i4lkLWND4dxAxJ9RD7RblE9_3w0VXMbMnEqAHUnn9-ekGRyDbDy71TGGeKSbJ55zkGp-ZA-Vk39M3k7jONw=s0-br30"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mbcmood.png"
     },
     {
       "n": "مكس FM السعودية",
       "g": "عربية",
       "u": "https://s1.voscast.com:11377/live.mp3",
-      "l": "https://cdn.onlineradiobox.com/img/l/3/29663.v4.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mix.png",
       "f": "السعودية"
     },
     {
       "n": "ألف ألف FM",
       "g": "عربية",
       "u": "https://alifalifjobs.com/radio/8000/AlifAlifLive.mp3",
-      "l": "https://cdn.onlineradiobox.com/img/l/2/29532.v4.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/alifalif.png",
       "f": "السعودية"
     },
     {
       "n": "نجوم FM",
       "g": "عربية",
       "u": "https://stream.zeno.fm/qb1zvsykm98uv",
-      "l": "https://cdn.onlineradiobox.com/img/l/0/27750.v16.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/nogoum.png",
       "f": "FM 100.6 القاهرة"
     },
     {
       "n": "راديو 9090",
       "g": "عربية",
       "u": "https://9090streaming.mobtada.com/9090FMEGYPT",
-      "l": "https://cdn.onlineradiobox.com/img/l/6/28516.v7.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/r9090.png",
       "f": "مصر"
     },
     {
       "n": "شام FM",
       "g": "عربية",
       "u": "http://66.248.205.220:8400/stream",
-      "l": "https://cdn.onlineradiobox.com/img/l/4/91984.v5.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/shamfm.png",
       "f": "سوريا"
     },
     {
       "n": "فرح FM",
       "g": "عربية",
       "u": "https://radio.farah.fm/",
-      "l": "https://static2.mytuner.mobi/media/tvos_radios/laqswjpkeupb.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/farah.png",
       "f": "سوريا"
     },
     {
       "n": "صوت لبنان",
       "g": "عربية",
       "u": "https://l3.itworkscdn.net/itwaudio/9054/stream",
-      "l": "https://cdn.onlineradiobox.com/img/l/8/39368.v4.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/vdl.png",
       "f": "لبنان"
     },
     {
       "n": "Fame FM لبنان",
       "g": "عربية",
       "u": "https://l3.itworkscdn.net/itwaudio/9044/stream",
-      "l": "https://cdn.onlineradiobox.com/img/l/0/40990.v4.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/fame.png",
       "f": "FM 99.9 بيروت"
     },
     {
       "n": "موزاييك FM",
       "g": "عربية",
       "u": "https://radio.mosaiquefm.net/mosalive",
-      "l": "https://cdn.onlineradiobox.com/img/l/0/26920.v8.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mosaique.png",
       "f": "تونس"
     },
     {
       "n": "العربية FM",
       "g": "أخبار",
       "u": "https://fm.alarabiya.net/fm/myStream/playlist.m3u8",
-      "l": "https://cdn.onlineradiobox.com/img/l/7/100397.v3.png"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/arabiya.png"
     },
     {
       "n": "إذاعة القرآن الكريم من القاهرة",
       "g": "قرآن",
       "u": "https://n12.radiojar.com/8s5u5tpdtwzuv",
       "f": "FM 98.2 القاهرة",
-      "l": "https://static2.mytuner.mobi/media/tvos_radios/494/dh-lqran-lkrym-mn-lqhr.0e7de0be.jpg"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/qcairo.png"
     },
     {
       "n": "إذاعة القرآن الكريم السعودية",
       "g": "قرآن",
       "u": "https://n01.radiojar.com/0tpy1h0kxtzuv",
-      "l": "https://cdn.onlineradiobox.com/img/l/2/29942.v2.png",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/quransa.png",
       "f": "السعودية"
     },
     {
       "n": "إذاعة السراج للقرآن",
       "g": "قرآن",
       "u": "http://192.99.170.8:5550/stream",
-      "l": "https://cdn.raddio.net/storage/photos/229793/dd4r5adb3503ef462370861608_100x100.webp"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/seraj.png"
     },
     {
       "n": "القرآن الكريم (منوّع)",
       "g": "قرآن",
       "u": "https://qurango.net/radio/mix",
-      "l": "https://mp3quran.net/img/logo2.png"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mp3quran.png"
     },
     {
       "n": "مشاري العفاسي",
       "g": "قرآن",
       "u": "https://qurango.net/radio/mishary_alafasi",
-      "l": "https://mp3quran.net/img/logo2.png"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mp3quran.png"
     },
     {
       "n": "محمود خليل الحصري",
       "g": "قرآن",
       "u": "https://qurango.net/radio/mahmoud_khalil_alhussary_warsh",
-      "l": "https://mp3quran.net/img/logo2.png"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mp3quran.png"
     },
     {
       "n": "مصطفى إسماعيل",
       "g": "قرآن",
       "u": "https://qurango.net/radio/mustafa_ismail",
-      "l": "https://mp3quran.net/img/logo2.png"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mp3quran.png"
     },
     {
       "n": "تراتيل قصيرة",
       "g": "قرآن",
       "u": "https://qurango.net/radio/tarateel",
-      "l": "https://mp3quran.net/img/logo2.png"
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mp3quran.png"
     }
   ]
 }
