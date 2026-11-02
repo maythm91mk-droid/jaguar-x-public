@@ -415,5 +415,36 @@
       "u": "https://qurango.net/radio/tarateel",
       "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/mp3quran.png?v=3"
     }
-  ]
+  ],
+  "whatsNewBeta": {
+    "versionCode": 100172,
+    "title": "تجربة 172",
+    "items": [
+      {
+        "icon": "radio",
+        "title": "الراديو صار داخل التطبيق",
+        "text": "أكثر من 50 محطة عراقية وعربية وأخبار وقرآن، وتبقى شغّالة حتى لو طلعت من التطبيق.",
+        "where": "الرئيسية ← بطاقة الراديو"
+      },
+      {
+        "icon": "quran",
+        "title": "قرّاء القرآن بدون توقف",
+        "text": "محطات لقرّاء مشهورين، تقرا سورة ورا سورة بصوت صافي.",
+        "where": "الراديو ← قسم قرآن"
+      },
+      {
+        "icon": "fullscreen",
+        "title": "الموبايل صار شاشة كاملة",
+        "text": "من تقلب الموبايل بالعرض، الصورة تاخذ الشاشة كلها بدون شريط الساعة.",
+        "where": "أي قناة أو فلم ← اقلب الموبايل",
+        "tv": false
+      },
+      {
+        "icon": "settings",
+        "title": "ترجع لهذي الصفحة وكت ما تريد",
+        "text": "كل تحديث نكتبلك هنا شنو انضاف ومنين تلكاه.",
+        "where": "الإعدادات ← شنو الجديد"
+      }
+    ]
+  }
 }
