@@ -354,8 +354,9 @@
     {
       "n": "سعد الغامدي",
       "g": "قرآن",
-      "u": "https://qurango.net/radio/saad_alghamdi",
-      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_ghamdi.png?v=3"
+      "u": "list:https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/radio/saad-ghamdi.json",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_ghamdi.png?v=3",
+      "f": "تلاوات متواصلة"
     },
     {
       "n": "ياسر الدوسري",
