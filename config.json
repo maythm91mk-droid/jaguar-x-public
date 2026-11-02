@@ -81,17 +81,21 @@
     {
       "n": "راديو الغد",
       "g": "عراقية",
-      "u": "http://s10.voscast.com:9410/"
+      "u": "http://s10.voscast.com:9410/",
+      "l": "https://alghad.fm/wp-content/uploads/2025/07/cropped-logo2-270x270.png"
     },
     {
       "n": "المستقبل FM",
       "g": "عراقية",
-      "u": "https://edge.mixlr.com/channel/vnvcj"
+      "u": "https://edge.mixlr.com/channel/vnvcj",
+      "l": "https://mustaqbal-fm.com/wp-content/uploads/2024/01/cropped-4274d4cc-61a2-4552-bb85-f8798d4bbf65-270x270.jpeg"
     },
     {
       "n": "راديو شناشيل",
       "g": "عراقية",
-      "u": "https://stream-152.zeno.fm/a33ka0d94p8uv"
+      "u": "https://stream-152.zeno.fm/a33ka0d94p8uv",
+      "l": "https://proxy.zeno.fm/content/stations/agxzfnplbm8tc3RhdHNyMgsSCkF1dGhDbGllbnQYgICw0PuA-woMCxIOU3RhdGlvblByb2ZpbGUYgICw8M7zhAsMogEEemVubw/image/?u=1661653159000",
+      "f": "FM 90.5 البصرة"
     },
     {
       "n": "راديو البلاد",
@@ -121,13 +125,16 @@
     {
       "n": "راديو عنكاوا",
       "g": "عراقية",
-      "u": "http://178.32.146.187/proxy/radioankawa?mp=/1/"
+      "u": "http://178.32.146.187/proxy/radioankawa?mp=/1/",
+      "l": "https://media.radiodeck.com/stations/5f74f737664ee8400841f493/profile/60796ee4917537311202577e/xl.jpg",
+      "f": "FM 97.7 عنكاوا"
     },
     {
       "n": "راديو ماريا العراق",
       "g": "عراقية",
       "u": "http://dreamsiteradiocp4.com:8046/stream",
-      "f": "أربيل"
+      "f": "أربيل",
+      "l": "https://static2.mytuner.mobi/media/tvos_radios/bm8wzs4cnrkx.jpg"
     },
     {
       "n": "راديو هوا دجلة",
@@ -168,7 +175,8 @@
       "n": "بانوراما FM",
       "g": "عربية",
       "u": "https://d6izdil55uftn.cloudfront.net/out/v1/0a06d1d6377c47edbd48721ed724bd08/index_5.m3u8",
-      "f": "السعودية"
+      "f": "FM 96.0 الرياض",
+      "l": "https://static2.mytuner.mobi/media/tvos_radios/432/panorama-fm-saudi-arabia.af3286b0.jpg"
     },
     {
       "n": "روتانا FM",
@@ -180,7 +188,8 @@
       "n": "MBC Mood",
       "g": "عربية",
       "u": "https://radio-mbc-mood.mbc.net/radio-mbc-mood.m3u8",
-      "f": "السعودية"
+      "f": "السعودية",
+      "l": "https://play-lh.googleusercontent.com/YT9i4lkLWND4dxAxJ9RD7RblE9_3w0VXMbMnEqAHUnn9-ekGRyDbDy71TGGeKSbJ55zkGp-ZA-Vk39M3k7jONw=s0-br30"
     },
     {
       "n": "مكس FM السعودية",
@@ -220,7 +229,9 @@
     {
       "n": "فرح FM",
       "g": "عربية",
-      "u": "https://radio.farah.fm/"
+      "u": "https://radio.farah.fm/",
+      "l": "https://static2.mytuner.mobi/media/tvos_radios/laqswjpkeupb.png",
+      "f": "سوريا"
     },
     {
       "n": "صوت لبنان",
@@ -253,7 +264,8 @@
       "n": "إذاعة القرآن الكريم من القاهرة",
       "g": "قرآن",
       "u": "https://n12.radiojar.com/8s5u5tpdtwzuv",
-      "f": "مصر"
+      "f": "FM 98.2 القاهرة",
+      "l": "https://static2.mytuner.mobi/media/tvos_radios/494/dh-lqran-lkrym-mn-lqhr.0e7de0be.jpg"
     },
     {
       "n": "إذاعة القرآن الكريم السعودية",
