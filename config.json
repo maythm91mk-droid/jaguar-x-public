@@ -44,8 +44,8 @@
   "agents": "https://t.me/jaguarx_dev",
   "downloaderCode": "2312093",
   "beta": {
-    "versionCode": 100168,
-    "versionName": "تجربة 168",
+    "versionCode": 100169,
+    "versionName": "تجربة 169",
     "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX-beta.apk"
   },
   "subsUrl": "https://jaguar-subs.maythm91-mk.workers.dev",
@@ -53,22 +53,30 @@
     {
       "n": "سومر FM",
       "g": "عراقية",
-      "u": "https://l3.itworkscdn.net/itwaudio/9012/stream"
+      "u": "https://l3.itworkscdn.net/itwaudio/9012/stream",
+      "l": "https://cdn.onlineradiobox.com/img/l/1/32161.v6.png",
+      "f": "بغداد"
     },
     {
       "n": "الرشيد FM",
       "g": "عراقية",
-      "u": "https://streaming.shoutcast.com/alrasheed-fm"
+      "u": "https://streaming.shoutcast.com/alrasheed-fm",
+      "l": "https://cdn.onlineradiobox.com/img/l/6/31906.v6.png",
+      "f": "FM 91.5 بغداد"
     },
     {
       "n": "الرشيد FM كركوك",
       "g": "عراقية",
-      "u": "https://streaming.shoutcast.com/alrasheed-kirkuk"
+      "u": "https://streaming.shoutcast.com/alrasheed-kirkuk",
+      "l": "https://cdn.onlineradiobox.com/img/l/6/31906.v6.png",
+      "f": "FM 92.1 كركوك"
     },
     {
       "n": "راديو شفق",
       "g": "عراقية",
-      "u": "https://radio.shafaq.com/radio"
+      "u": "https://radio.shafaq.com/radio",
+      "l": "https://cdn.onlineradiobox.com/img/l/9/102709.v1.png",
+      "f": "أربيل"
     },
     {
       "n": "راديو الغد",
@@ -88,17 +96,22 @@
     {
       "n": "راديو البلاد",
       "g": "عراقية",
-      "u": "https://streamer.radio.co/sb38bf6e66/listen"
+      "u": "https://streamer.radio.co/sb38bf6e66/listen",
+      "l": "https://cdn.onlineradiobox.com/img/l/9/31959.v6.png",
+      "f": "AM 999 بغداد"
     },
     {
       "n": "إذاعة دار السلام",
       "g": "عراقية",
-      "u": "https://streams.radio.co/s0975ec186/listen"
+      "u": "https://streams.radio.co/s0975ec186/listen",
+      "l": "https://images.radio.co/station_logos/s0975ec186.20220716110749.jpg",
+      "f": "بغداد"
     },
     {
       "n": "إذاعة السراج",
       "g": "عراقية",
-      "u": "https://eu4.fastcast4u.com/proxy/aabdul00?mp=/1"
+      "u": "https://eu4.fastcast4u.com/proxy/aabdul00?mp=/1",
+      "l": "https://cdn.onlineradiobox.com/img/l/4/146444.v1.png"
     },
     {
       "n": "تركمان FM",
@@ -113,74 +126,96 @@
     {
       "n": "راديو ماريا العراق",
       "g": "عراقية",
-      "u": "http://dreamsiteradiocp4.com:8046/stream"
+      "u": "http://dreamsiteradiocp4.com:8046/stream",
+      "f": "أربيل"
     },
     {
       "n": "راديو هوا دجلة",
       "g": "عراقية",
       "u": "https://listen.radioking.com/radio/96766/stream/136030",
-      "l": "https://cdn.onlineradiobox.com/img/l/9/124829.v7.png"
+      "l": "https://cdn.onlineradiobox.com/img/l/9/124829.v7.png",
+      "f": "بغداد"
     },
     {
       "n": "راديو المربد",
       "g": "عراقية",
       "u": "mixlr:almirbad",
-      "l": "https://imagescdn.mixlr.com/afe82c2be1c5891bb1343fa56991ae9a.png?w=256&h=256&fit=cover&format=auto&q=80&dpr=1&bg=ffffff"
+      "l": "https://cdn.onlineradiobox.com/img/l/1/32101.v12.png",
+      "f": "البصرة"
     },
     {
       "n": "بابل FM",
       "g": "عراقية",
-      "u": "https://eu7.fastcast4u.com/proxy/babylonarabia?mp=/1"
+      "u": "https://eu7.fastcast4u.com/proxy/babylonarabia?mp=/1",
+      "l": "https://cdn.onlineradiobox.com/img/l/0/31910.v8.png",
+      "f": "FM 99.3 أربيل"
     },
     {
       "n": "مونت كارلو الدولية",
       "g": "عربية",
-      "u": "https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3"
+      "u": "https://montecarlodoualiya128k.ice.infomaniak.ch/mc-doualiya.mp3",
+      "l": "https://cdn.onlineradiobox.com/img/l/8/31898.v4.png",
+      "f": "FM 88.0 الموصل"
     },
     {
       "n": "MBC FM",
       "g": "عربية",
-      "u": "https://dbbv9umqcd7cs.cloudfront.net/out/v1/db15b75c3cc0400c91961468d6a232ac/index_5.m3u8"
+      "u": "https://dbbv9umqcd7cs.cloudfront.net/out/v1/db15b75c3cc0400c91961468d6a232ac/index_5.m3u8",
+      "l": "https://cdn.onlineradiobox.com/img/l/1/30001.png",
+      "f": "السعودية"
     },
     {
       "n": "بانوراما FM",
       "g": "عربية",
-      "u": "https://d6izdil55uftn.cloudfront.net/out/v1/0a06d1d6377c47edbd48721ed724bd08/index_5.m3u8"
+      "u": "https://d6izdil55uftn.cloudfront.net/out/v1/0a06d1d6377c47edbd48721ed724bd08/index_5.m3u8",
+      "f": "السعودية"
     },
     {
       "n": "روتانا FM",
       "g": "عربية",
-      "u": "http://philae.shoutca.st:8250/stream"
+      "u": "http://philae.shoutca.st:8250/stream",
+      "l": "https://cdn.onlineradiobox.com/img/l/3/43283.v17.png"
     },
     {
       "n": "MBC Mood",
       "g": "عربية",
-      "u": "https://radio-mbc-mood.mbc.net/radio-mbc-mood.m3u8"
+      "u": "https://radio-mbc-mood.mbc.net/radio-mbc-mood.m3u8",
+      "f": "السعودية"
     },
     {
       "n": "مكس FM السعودية",
       "g": "عربية",
-      "u": "https://s1.voscast.com:11377/live.mp3"
+      "u": "https://s1.voscast.com:11377/live.mp3",
+      "l": "https://cdn.onlineradiobox.com/img/l/3/29663.v4.png",
+      "f": "السعودية"
     },
     {
       "n": "ألف ألف FM",
       "g": "عربية",
-      "u": "https://alifalifjobs.com/radio/8000/AlifAlifLive.mp3"
+      "u": "https://alifalifjobs.com/radio/8000/AlifAlifLive.mp3",
+      "l": "https://cdn.onlineradiobox.com/img/l/2/29532.v4.png",
+      "f": "السعودية"
     },
     {
       "n": "نجوم FM",
       "g": "عربية",
-      "u": "https://stream.zeno.fm/qb1zvsykm98uv"
+      "u": "https://stream.zeno.fm/qb1zvsykm98uv",
+      "l": "https://cdn.onlineradiobox.com/img/l/0/27750.v16.png",
+      "f": "FM 100.6 القاهرة"
     },
     {
       "n": "راديو 9090",
       "g": "عربية",
-      "u": "https://9090streaming.mobtada.com/9090FMEGYPT"
+      "u": "https://9090streaming.mobtada.com/9090FMEGYPT",
+      "l": "https://cdn.onlineradiobox.com/img/l/6/28516.v7.png",
+      "f": "مصر"
     },
     {
       "n": "شام FM",
       "g": "عربية",
-      "u": "http://66.248.205.220:8400/stream"
+      "u": "http://66.248.205.220:8400/stream",
+      "l": "https://cdn.onlineradiobox.com/img/l/4/91984.v5.png",
+      "f": "سوريا"
     },
     {
       "n": "فرح FM",
@@ -190,62 +225,78 @@
     {
       "n": "صوت لبنان",
       "g": "عربية",
-      "u": "https://l3.itworkscdn.net/itwaudio/9054/stream"
+      "u": "https://l3.itworkscdn.net/itwaudio/9054/stream",
+      "l": "https://cdn.onlineradiobox.com/img/l/8/39368.v4.png",
+      "f": "لبنان"
     },
     {
       "n": "Fame FM لبنان",
       "g": "عربية",
-      "u": "https://l3.itworkscdn.net/itwaudio/9044/stream"
+      "u": "https://l3.itworkscdn.net/itwaudio/9044/stream",
+      "l": "https://cdn.onlineradiobox.com/img/l/0/40990.v4.png",
+      "f": "FM 99.9 بيروت"
     },
     {
       "n": "موزاييك FM",
       "g": "عربية",
-      "u": "https://radio.mosaiquefm.net/mosalive"
+      "u": "https://radio.mosaiquefm.net/mosalive",
+      "l": "https://cdn.onlineradiobox.com/img/l/0/26920.v8.png",
+      "f": "تونس"
     },
     {
       "n": "العربية FM",
       "g": "أخبار",
-      "u": "https://fm.alarabiya.net/fm/myStream/playlist.m3u8"
+      "u": "https://fm.alarabiya.net/fm/myStream/playlist.m3u8",
+      "l": "https://cdn.onlineradiobox.com/img/l/7/100397.v3.png"
     },
     {
       "n": "إذاعة القرآن الكريم من القاهرة",
       "g": "قرآن",
-      "u": "https://n12.radiojar.com/8s5u5tpdtwzuv"
+      "u": "https://n12.radiojar.com/8s5u5tpdtwzuv",
+      "f": "مصر"
     },
     {
       "n": "إذاعة القرآن الكريم السعودية",
       "g": "قرآن",
-      "u": "https://n01.radiojar.com/0tpy1h0kxtzuv"
+      "u": "https://n01.radiojar.com/0tpy1h0kxtzuv",
+      "l": "https://cdn.onlineradiobox.com/img/l/2/29942.v2.png",
+      "f": "السعودية"
     },
     {
       "n": "إذاعة السراج للقرآن",
       "g": "قرآن",
-      "u": "http://192.99.170.8:5550/stream"
+      "u": "http://192.99.170.8:5550/stream",
+      "l": "https://cdn.raddio.net/storage/photos/229793/dd4r5adb3503ef462370861608_100x100.webp"
     },
     {
       "n": "القرآن الكريم (منوّع)",
       "g": "قرآن",
-      "u": "https://qurango.net/radio/mix"
+      "u": "https://qurango.net/radio/mix",
+      "l": "https://mp3quran.net/img/logo2.png"
     },
     {
       "n": "مشاري العفاسي",
       "g": "قرآن",
-      "u": "https://qurango.net/radio/mishary_alafasi"
+      "u": "https://qurango.net/radio/mishary_alafasi",
+      "l": "https://mp3quran.net/img/logo2.png"
     },
     {
       "n": "محمود خليل الحصري",
       "g": "قرآن",
-      "u": "https://qurango.net/radio/mahmoud_khalil_alhussary_warsh"
+      "u": "https://qurango.net/radio/mahmoud_khalil_alhussary_warsh",
+      "l": "https://mp3quran.net/img/logo2.png"
     },
     {
       "n": "مصطفى إسماعيل",
       "g": "قرآن",
-      "u": "https://qurango.net/radio/mustafa_ismail"
+      "u": "https://qurango.net/radio/mustafa_ismail",
+      "l": "https://mp3quran.net/img/logo2.png"
     },
     {
       "n": "تراتيل قصيرة",
       "g": "قرآن",
-      "u": "https://qurango.net/radio/tarateel"
+      "u": "https://qurango.net/radio/tarateel",
+      "l": "https://mp3quran.net/img/logo2.png"
     }
   ]
 }
