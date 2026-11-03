@@ -34,8 +34,8 @@
   "support": "07851700800",
   "message": "",
   "latest": {
-    "versionCode": 42,
-    "versionName": "1.9.5",
+    "versionCode": 43,
+    "versionName": "1.9.6",
     "notes": "",
     "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX.apk",
     "minVersionCode": 0
@@ -438,6 +438,30 @@
         "text": "من تقلب الموبايل بالعرض، الصورة تاخذ الشاشة كلها بدون شريط الساعة.",
         "where": "أي قناة أو فلم ← اقلب الموبايل",
         "tv": false
+      },
+      {
+        "icon": "settings",
+        "title": "ترجع لهذي الصفحة وكت ما تريد",
+        "text": "كل تحديث نكتبلك هنا شنو انضاف ومنين تلكاه.",
+        "where": "الإعدادات ← شنو الجديد"
+      }
+    ]
+  },
+  "whatsNew": {
+    "versionCode": 43,
+    "title": "تحديث 1.9.6",
+    "items": [
+      {
+        "icon": "radio",
+        "title": "الراديو صار داخل التطبيق",
+        "text": "أكثر من 50 محطة عراقية وعربية وأخبار وقرآن، وتبقى شغّالة حتى لو طلعت من التطبيق.",
+        "where": "الرئيسية ← بطاقة الراديو"
+      },
+      {
+        "icon": "quran",
+        "title": "قرّاء القرآن بدون توقف",
+        "text": "محطات لقرّاء مشهورين، تقرا سورة ورا سورة بصوت صافي.",
+        "where": "الراديو ← قسم قرآن"
       },
       {
         "icon": "settings",
