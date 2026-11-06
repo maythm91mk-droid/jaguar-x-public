@@ -1709,16 +1709,32 @@
   "youtubeBeta": {
     "rows": [
       {
-        "n": "قرآن وأدعية",
+        "n": "قرآن كريم وأدعية",
         "ch": [
-          "UCmMcOjsVehVlEOteyrhjI2Q"
+          "UCmMcOjsVehVlEOteyrhjI2Q",
+          "UCfimgqx1TcWuLkgcrm2Rkdw"
         ]
       },
       {
-        "n": "ملخصات المباريات",
+        "n": "ملخصات ورياضة",
         "ch": [
           "UCJUCcJUeh0Cz2xyKwkw5Q1w",
           "UCdWP6ebWm71hPoCjh81wVeg"
+        ]
+      },
+      {
+        "n": "منوعات",
+        "ch": [
+          "@AlbasheerShow",
+          "UC_hoQDD6zKcIqpIYLsFbBeA",
+          "UCzSqROu25a6MOUov2YAv7OQ"
+        ]
+      },
+      {
+        "n": "ألعاب",
+        "ch": [
+          "UCqq5n-Oe-r1EEHI3yvhVJcA",
+          "UCxEGVXh6fi-XYo58NZrbIHQ"
         ]
       },
       {
@@ -1733,7 +1749,8 @@
         "n": "طبخ",
         "ch": [
           "UCMM7pqZRzJIWk-YZiH5eKIg",
-          "UCU8vqcbu1R04Wt9_sz8Fh3g"
+          "UCU8vqcbu1R04Wt9_sz8Fh3g",
+          "UClQOgrdTOOFqWF4oEy1a4ng"
         ]
       },
       {
