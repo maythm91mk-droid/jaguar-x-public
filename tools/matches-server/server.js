@@ -92,8 +92,12 @@ function left() {
 // kind: 'live' may use the last requests; everything else stops 10 before the end.
 function canSpend(kind) { return left() > (kind === 'live' ? 3 : 10); }
 
+// A kind the plan refuses (e.g. free plan + current season) is not asked again that day.
+const planBlocked = {};
 async function api(pathAndQuery, kind) {
   if (!API_KEY) throw new Error('no API_KEY in .env');
+  const today = new Date().toISOString().slice(0, 10);
+  if (planBlocked[kind] === today) return null;
   if (!canSpend(kind)) { log('budget: skipped', kind, pathAndQuery); return null; }
   rollDay();
   budget.used++;
@@ -105,7 +109,10 @@ async function api(pathAndQuery, kind) {
   writeJson('budget.json', budget);
   if (!r.ok) { log('api', r.status, pathAndQuery); return null; }
   const j = await r.json();
-  if (j.errors && Object.keys(j.errors).length) log('api errors', pathAndQuery, JSON.stringify(j.errors));
+  if (j.errors && Object.keys(j.errors).length) {
+    log('api errors', pathAndQuery, JSON.stringify(j.errors));
+    if (j.errors.plan) { planBlocked[kind] = today; log('plan refuses', kind, '- not asked again today'); }
+  }
   return j;
 }
 
