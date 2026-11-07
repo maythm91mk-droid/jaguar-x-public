@@ -855,5 +855,32 @@
   "UD Logrones": "لوغرونيس",
   "Logrones": "لوغرونيس"
  },
- "people": {}
+ "people": {},
+ "logos": {
+  "_note": "English team name (as the data source writes it, loose match) → a better badge picture, served from our server.",
+  "Al-Shorta SC": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Al-Shorta_SC_logo.svg/500px-Al-Shorta_SC_logo.svg.png",
+  "Al Shorta": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Al-Shorta_SC_logo.svg/500px-Al-Shorta_SC_logo.svg.png",
+  "Al-Shorta": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Al-Shorta_SC_logo.svg/500px-Al-Shorta_SC_logo.svg.png",
+  "Police": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Al-Shorta_SC_logo.svg/500px-Al-Shorta_SC_logo.svg.png",
+  "Ghaz Al-Shamal SC": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Ghaz_Al-Shamal_SC_logo.svg/500px-Ghaz_Al-Shamal_SC_logo.svg.png",
+  "Ghaz Al Shamal": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Ghaz_Al-Shamal_SC_logo.svg/500px-Ghaz_Al-Shamal_SC_logo.svg.png",
+  "Gas Al Shamal": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Ghaz_Al-Shamal_SC_logo.svg/500px-Ghaz_Al-Shamal_SC_logo.svg.png",
+  "Al Shamal Gas": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Ghaz_Al-Shamal_SC_logo.svg/500px-Ghaz_Al-Shamal_SC_logo.svg.png",
+  "Gaz Al Shamal": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Ghaz_Al-Shamal_SC_logo.svg/500px-Ghaz_Al-Shamal_SC_logo.svg.png",
+  "Al-Naft SC": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Al-Naft_SC_logo.svg/500px-Al-Naft_SC_logo.svg.png",
+  "Al Naft": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Al-Naft_SC_logo.svg/500px-Al-Naft_SC_logo.svg.png",
+  "Naft Baghdad": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4e/Al-Naft_SC_logo.svg/500px-Al-Naft_SC_logo.svg.png",
+  "Erbil SC": "https://upload.wikimedia.org/wikipedia/en/thumb/1/15/Erbil_SC_logo.svg/500px-Erbil_SC_logo.svg.png",
+  "Erbil": "https://upload.wikimedia.org/wikipedia/en/thumb/1/15/Erbil_SC_logo.svg/500px-Erbil_SC_logo.svg.png",
+  "Arbil": "https://upload.wikimedia.org/wikipedia/en/thumb/1/15/Erbil_SC_logo.svg/500px-Erbil_SC_logo.svg.png",
+  "Al-Talaba SC": "https://upload.wikimedia.org/wikipedia/en/thumb/3/34/Al-Talaba_SC_logo.svg/500px-Al-Talaba_SC_logo.svg.png",
+  "Al Talaba": "https://upload.wikimedia.org/wikipedia/en/thumb/3/34/Al-Talaba_SC_logo.svg/500px-Al-Talaba_SC_logo.svg.png",
+  "Al-Talaba": "https://upload.wikimedia.org/wikipedia/en/thumb/3/34/Al-Talaba_SC_logo.svg/500px-Al-Talaba_SC_logo.svg.png",
+  "Al-Karkh SC": "https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Al-Karkh_SC_logo.svg/500px-Al-Karkh_SC_logo.svg.png",
+  "Al Karkh": "https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Al-Karkh_SC_logo.svg/500px-Al-Karkh_SC_logo.svg.png",
+  "Al-Karkh": "https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Al-Karkh_SC_logo.svg/500px-Al-Karkh_SC_logo.svg.png",
+  "Naft Maysan SC": "https://upload.wikimedia.org/wikipedia/en/thumb/f/fe/Naft_Maysan_SC_logo.svg/500px-Naft_Maysan_SC_logo.svg.png",
+  "Naft Maysan": "https://upload.wikimedia.org/wikipedia/en/thumb/f/fe/Naft_Maysan_SC_logo.svg/500px-Naft_Maysan_SC_logo.svg.png",
+  "Naft Misan": "https://upload.wikimedia.org/wikipedia/en/thumb/f/fe/Naft_Maysan_SC_logo.svg/500px-Naft_Maysan_SC_logo.svg.png"
+ }
 }

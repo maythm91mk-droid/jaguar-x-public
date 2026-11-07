@@ -53,6 +53,7 @@ function writeJson(name, v) {
 // ---------- names ----------
 const ar = require('./arabic');
 const PUBLIC_URL = (process.env.PUBLIC_URL || 'https://api.jaguarxiq.com').replace(/\/$/, '');
+let teamLogo = {}, teamLogoId = {};
 let leagues = [], leagueAr = {}, leagueLogo = {}, order = {}, byId = {}, byName = {}, byKey = {}, people = {};
 function loadNames() {
   try {
@@ -64,6 +65,8 @@ function loadNames() {
   } catch (e) { log('leagues.json:', e.message); }
   try {
     const n = JSON.parse(fs.readFileSync(path.join(DIR, 'names.json'), 'utf8'));
+    // «logos»: English team name → a better picture (his ask: Iraqi clubs on white squares or with none).
+    teamLogo = {}; for (const [k, v] of Object.entries(n.logos || {})) if (!k.startsWith('_')) teamLogo[ar.key(k)] = v;
     byId = n.byId || {};
     byName = {};
     for (const [k, v] of Object.entries(n.byName || {})) byName[k.trim().toLowerCase()] = v;
@@ -395,7 +398,13 @@ function tooMany(ip) {
 }
 
 // Names are put in Arabic when sent (not only when kept), so a fix in names.json shows at once on kept days too.
-function locSide(sd) { return sd && typeof sd === 'object' ? { ...sd, name: teamAr({ id: sd.id, name: sd.en || sd.name }) } : sd; }
+function locSide(sd) {
+  if (!sd || typeof sd !== 'object') return sd;
+  const o = { ...sd, name: teamAr({ id: sd.id, name: sd.en || sd.name }) };
+  const src = teamLogo[ar.key(sd.en || '')];
+  if (src && sd.id) { teamLogoId[sd.id] = src; o.logo = PUBLIC_URL + '/logo/team/' + sd.id + '.png'; }
+  return o;
+}
 function locMatch(m) {
   if (!m || typeof m !== 'object') return m;
   const o = { ...m, home: locSide(m.home), away: locSide(m.away) };
@@ -437,14 +446,14 @@ const server = http.createServer(async (req, res) => {
     }
     if (tooMany(ip)) return send(res, 429, { error: 'slow down' });
     // Our own copy of a league picture set by hand in leagues.json «logo» (fetched once with a proper name, kept on disk).
-    const lm = url.pathname.match(/^\/logo\/league\/(\d+)\.png$/);
+    const lm = url.pathname.match(/^\/logo\/(league|team)\/(\d+)\.png$/);
     if (lm) {
-      const src = (leagues.find(x => x.id === +lm[1]) || {}).logo;
+      const src = lm[1] === 'team' ? teamLogoId[lm[2]] : (leagues.find(x => x.id === +lm[2]) || {}).logo;
       if (!src) { res.writeHead(404); return res.end(); }
-      const dir = path.join(DIR, 'logos'); const file = path.join(dir, 'league-' + lm[1] + '-' + crypto.createHash('sha1').update(src).digest('hex').slice(0, 8) + '.png');
+      const dir = path.join(DIR, 'logos'); const file = path.join(dir, lm[1] + '-' + lm[2] + '-' + crypto.createHash('sha1').update(src).digest('hex').slice(0, 8) + '.png');
       if (!fs.existsSync(file)) {
         const r = await fetch(src, { headers: { 'User-Agent': 'JaguarXMatches/1.0 (https://api.jaguarxiq.com; league logos for the Jaguar X app)' } });
-        if (!r.ok) { log('logo', lm[1], r.status); res.writeHead(502); return res.end(); }
+        if (!r.ok) { log('logo', lm[1], lm[2], r.status); res.writeHead(502); return res.end(); }
         fs.mkdirSync(dir, { recursive: true }); fs.writeFileSync(file, Buffer.from(await r.arrayBuffer()));
       }
       res.writeHead(200, { 'Content-Type': 'image/png', 'Cache-Control': 'public, max-age=604800' });

@@ -19,11 +19,13 @@
   },
   {
    "id": 78,
-   "ar": "الدوري الألماني"
+   "ar": "الدوري الألماني",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Bundesliga_logo_%282017%29.svg/500px-Bundesliga_logo_%282017%29.svg.png"
   },
   {
    "id": 61,
-   "ar": "الدوري الفرنسي"
+   "ar": "الدوري الفرنسي",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Logo_Ligue_1_McDonald%27s_2024.svg/500px-Logo_Ligue_1_McDonald%27s_2024.svg.png"
   },
   {
    "id": 307,
@@ -60,7 +62,8 @@
   },
   {
    "id": 30,
-   "ar": "تصفيات كأس العالم - آسيا"
+   "ar": "تصفيات كأس العالم - آسيا",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/500px-2026_FIFA_World_Cup_emblem.svg.png"
   },
   {
    "id": 7,
@@ -72,23 +75,28 @@
   },
   {
    "id": 32,
-   "ar": "تصفيات كأس العالم - أوروبا"
+   "ar": "تصفيات كأس العالم - أوروبا",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/500px-2026_FIFA_World_Cup_emblem.svg.png"
   },
   {
    "id": 34,
-   "ar": "تصفيات كأس العالم - أمريكا الجنوبية"
+   "ar": "تصفيات كأس العالم - أمريكا الجنوبية",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/500px-2026_FIFA_World_Cup_emblem.svg.png"
   },
   {
    "id": 29,
-   "ar": "تصفيات كأس العالم - أفريقيا"
+   "ar": "تصفيات كأس العالم - أفريقيا",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/1/17/2026_FIFA_World_Cup_emblem.svg/500px-2026_FIFA_World_Cup_emblem.svg.png"
   },
   {
    "id": 6,
-   "ar": "كأس أمم أفريقيا"
+   "ar": "كأس أمم أفريقيا",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/Africa_Cup_of_Nation_official_logo.png/500px-Africa_Cup_of_Nation_official_logo.png"
   },
   {
    "id": 15,
-   "ar": "كأس العالم للأندية"
+   "ar": "كأس العالم للأندية",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/FIFA_Club_World_Cup_logo.svg/500px-FIFA_Club_World_Cup_logo.svg.png"
   },
   {
    "id": 45,
@@ -100,7 +108,8 @@
   },
   {
    "id": 137,
-   "ar": "كأس إيطاليا"
+   "ar": "كأس إيطاليا",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Coccarda_Coppa_Italia.svg/500px-Coccarda_Coppa_Italia.svg.png"
   },
   {
    "id": 81,
@@ -112,7 +121,8 @@
   },
   {
    "id": 547,
-   "ar": "كأس السوبر الإيطالي"
+   "ar": "كأس السوبر الإيطالي",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Supercoppa_Italiana_logo.svg/500px-Supercoppa_Italiana_logo.svg.png"
   },
   {
    "id": 233,
@@ -120,7 +130,8 @@
   },
   {
    "id": 305,
-   "ar": "دوري نجوم قطر"
+   "ar": "دوري نجوم قطر",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/a/a2/Qatar_Stars_League_logo.png"
   },
   {
    "id": 301,
@@ -152,7 +163,8 @@
   },
   {
    "id": 12,
-   "ar": "دوري أبطال أفريقيا"
+   "ar": "دوري أبطال أفريقيا",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/CAF_Champions_League.png/500px-CAF_Champions_League.png"
   },
   {
    "id": 13,
@@ -172,7 +184,8 @@
   },
   {
    "id": 10,
-   "ar": "مباريات ودية دولية"
+   "ar": "مباريات ودية دولية",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/FIFA_logo_without_slogan.svg/500px-FIFA_logo_without_slogan.svg.png"
   }
  ]
 }
