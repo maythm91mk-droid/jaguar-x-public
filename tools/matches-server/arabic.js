@@ -33,7 +33,7 @@ const ONE = {
 
 // Arabic names written in Latin letters: back to their own spelling (letters by sound can't tell ح from ه, ص from س).
 const KNOWN = {
-  mohamed: 'محمد', mohammed: 'محمد', muhammad: 'محمد', mohammad: 'محمد', mohamad: 'محمد', ahmed: 'أحمد', ahmad: 'أحمد',
+  franso: 'فرانسو', hariri: 'حريري', mohamed: 'محمد', mohammed: 'محمد', muhammad: 'محمد', mohammad: 'محمد', mohamad: 'محمد', ahmed: 'أحمد', ahmad: 'أحمد',
   ali: 'علي', salah: 'صلاح', abdullah: 'عبدالله', abdallah: 'عبدالله', hassan: 'حسن', hasan: 'حسن', hussein: 'حسين',
   hussain: 'حسين', husain: 'حسين', omar: 'عمر', umar: 'عمر', khalid: 'خالد', khaled: 'خالد', saud: 'سعود', salem: 'سالم',
   faisal: 'فيصل', yasser: 'ياسر', yaser: 'ياسر', saleh: 'صالح', salih: 'صالح', nasser: 'ناصر', naser: 'ناصر',
