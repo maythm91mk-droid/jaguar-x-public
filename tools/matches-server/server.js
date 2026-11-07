@@ -156,8 +156,9 @@ function full(f) {
   for (const l of f.lineups || []) {
     b.lineups[sideOf(l.team?.id)] = {
       formation: l.formation || '', coach: l.coach?.name || '',
-      start: (l.startXI || []).map(p => ({ n: p.player?.name || '', num: p.player?.number ?? '', pos: p.player?.pos || '' })),
-      subs: (l.substitutes || []).map(p => ({ n: p.player?.name || '', num: p.player?.number ?? '', pos: p.player?.pos || '' })),
+      // grid "row:col" (row 1 = goalkeeper) places each starter on the drawn pitch; id gives the player's photo.
+      start: (l.startXI || []).map(p => ({ id: p.player?.id || 0, n: p.player?.name || '', num: p.player?.number ?? '', pos: p.player?.pos || '', grid: p.player?.grid || '' })),
+      subs: (l.substitutes || []).map(p => ({ id: p.player?.id || 0, n: p.player?.name || '', num: p.player?.number ?? '', pos: p.player?.pos || '' })),
     };
   }
   b.stats = {};
@@ -225,6 +226,7 @@ async function fetchFull(ids, kind) {
 
 // The season a league is playing now: from a match we keep, else asked once a week.
 const seasons = readJson('seasons.json', {});
+const leagueGames = {}, scorers = {};
 async function currentSeason(lg) {
   for (const d of Object.values(days)) { const m = d.matches.find(x => x.league === lg); if (m?.season) return m.season; }
   const k = seasons[lg];
@@ -241,6 +243,8 @@ async function fetchStandings(league, season) {
   const j = await api(`/standings?league=${league}&season=${season}`, 'standings');
   if (!j) return;
   const groups = j.response?.[0]?.league?.standings || [];
+  // An empty answer (a refusal, or the free plan before Pro) is not kept: it would hide the table for hours.
+  if (!groups.length) return;
   standings[league] = {
     at: Date.now(), season,
     groups: groups.map(g => g.map(r => ({
@@ -386,12 +390,45 @@ const server = http.createServer(async (req, res) => {
     if (url.pathname === '/v1/leagues') {
       return send(res, 200, { leagues: leagues.map(l => ({ id: l.id, name: l.ar, logo: `https://media.api-sports.io/football/leagues/${l.id}.png` })) });
     }
+    // A league's page: its next and last matches, and its top scorers.
+    if (url.pathname === '/v1/leaguegames') {
+      const lg = +url.searchParams.get('league');
+      if (!lg) return send(res, 400, { error: 'league' });
+      let g = leagueGames[lg];
+      if ((!g || Date.now() - g.at > 30 * 60000) && canSpend('detail')) {
+        const season = await currentSeason(lg);
+        if (season) {
+          const nx = await api(`/fixtures?league=${lg}&season=${season}&next=15&timezone=${encodeURIComponent(TZ)}`, 'league');
+          const ls = await api(`/fixtures?league=${lg}&season=${season}&last=15&timezone=${encodeURIComponent(TZ)}`, 'league');
+          if (nx || ls) { g = leagueGames[lg] = { at: Date.now(), next: (nx?.response || []).map(brief), last: (ls?.response || []).map(brief) }; }
+        }
+      }
+      if (!g) return send(res, 404, { error: 'none' });
+      return send(res, 200, g);
+    }
+    if (url.pathname === '/v1/scorers') {
+      const lg = +url.searchParams.get('league');
+      if (!lg) return send(res, 400, { error: 'league' });
+      let sc = scorers[lg];
+      if ((!sc || Date.now() - sc.at > 6 * 3600000) && canSpend('detail')) {
+        const season = await currentSeason(lg);
+        const j = season ? await api(`/players/topscorers?league=${lg}&season=${season}`, 'scorers') : null;
+        const list = (j?.response || []).slice(0, 20).map(x => ({
+          id: x.player?.id || 0, n: x.player?.name || '', photo: x.player?.photo || '',
+          team: side(x.statistics?.[0]?.team || {}, null), goals: x.statistics?.[0]?.goals?.total ?? 0,
+          assists: x.statistics?.[0]?.goals?.assists ?? 0, games: x.statistics?.[0]?.games?.appearences ?? 0,
+        }));
+        if (list.length) sc = scorers[lg] = { at: Date.now(), list };
+      }
+      if (!sc) return send(res, 404, { error: 'none' });
+      return send(res, 200, sc);
+    }
     if (url.pathname === '/v1/standings') {
       const lg = +url.searchParams.get('league');
       if (!lg) return send(res, 400, { error: 'league' });
       let s = standings[lg];
       // Any league from the leagues page: fetched when asked, kept 6 hours (the daily loop refreshes those that played).
-      if ((!s || Date.now() - s.at > 6 * 3600000) && canSpend('detail')) {
+      if ((!s || !s.groups?.length || Date.now() - s.at > 6 * 3600000) && canSpend('detail')) {
         const season = await currentSeason(lg);
         if (season) { await fetchStandings(lg, season); s = standings[lg]; }
       }
