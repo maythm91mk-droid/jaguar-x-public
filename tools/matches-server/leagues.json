@@ -1,5 +1,5 @@
 {
-  "_note": "API-Football league ids, in page order (most important first). ar = Arabic name shown in the app. The Iraqi league id is filled after the coverage check (node server.js --coverage).",
+  "_note": "API-Football league ids, in page order (most important first). ar = Arabic name shown in the app.",
   "leagues": [
     {"id": 2,   "ar": "دوري أبطال أوروبا"},
     {"id": 39,  "ar": "الدوري الإنجليزي"},
@@ -7,6 +7,7 @@
     {"id": 135, "ar": "الدوري الإيطالي"},
     {"id": 78,  "ar": "الدوري الألماني"},
     {"id": 61,  "ar": "الدوري الفرنسي"},
+    {"id": 542, "ar": "دوري نجوم العراق"},
     {"id": 307, "ar": "دوري روشن السعودي"},
     {"id": 3,   "ar": "الدوري الأوروبي"},
     {"id": 848, "ar": "دوري المؤتمر الأوروبي"},
