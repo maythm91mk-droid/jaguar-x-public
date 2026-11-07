@@ -3,19 +3,23 @@
  "leagues": [
   {
    "id": 2,
-   "ar": "دوري أبطال أوروبا"
+   "ar": "دوري أبطال أوروبا",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/UEFA_Champions_League.svg/500px-UEFA_Champions_League.svg.png"
   },
   {
    "id": 39,
-   "ar": "الدوري الإنجليزي"
+   "ar": "الدوري الإنجليزي",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Premier_League_Logo.svg/500px-Premier_League_Logo.svg.png"
   },
   {
    "id": 140,
-   "ar": "الدوري الإسباني"
+   "ar": "الدوري الإسباني",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/LaLiga_2023_Vertical_Logo.svg/500px-LaLiga_2023_Vertical_Logo.svg.png"
   },
   {
    "id": 135,
-   "ar": "الدوري الإيطالي"
+   "ar": "الدوري الإيطالي",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Serie_A.svg/500px-Serie_A.svg.png"
   },
   {
    "id": 78,
@@ -25,31 +29,37 @@
   {
    "id": 61,
    "ar": "الدوري الفرنسي",
-   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Logo_Ligue_1_McDonald%27s_2024.svg/500px-Logo_Ligue_1_McDonald%27s_2024.svg.png"
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Ligue_1_2024_Logo.png/500px-Ligue_1_2024_Logo.png"
   },
   {
    "id": 307,
-   "ar": "دوري روشن السعودي"
+   "ar": "دوري روشن السعودي",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/7/75/Roshn_Saudi_League_Logo.svg/500px-Roshn_Saudi_League_Logo.svg.png"
   },
   {
    "id": 3,
-   "ar": "الدوري الأوروبي"
+   "ar": "الدوري الأوروبي",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/UEFA_Europa_League_logo_%282024_version%29.svg/500px-UEFA_Europa_League_logo_%282024_version%29.svg.png"
   },
   {
    "id": 848,
-   "ar": "دوري المؤتمر الأوروبي"
+   "ar": "دوري المؤتمر الأوروبي",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/UEFA_Conference_League_full_logo_%282024_version%29.svg/500px-UEFA_Conference_League_full_logo_%282024_version%29.svg.png"
   },
   {
    "id": 17,
-   "ar": "دوري أبطال آسيا للنخبة"
+   "ar": "دوري أبطال آسيا للنخبة",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d7/AFC_Champions_League_Elite_logo.svg/500px-AFC_Champions_League_Elite_logo.svg.png"
   },
   {
    "id": 143,
-   "ar": "كأس ملك إسبانيا"
+   "ar": "كأس ملك إسبانيا",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Copa_del_Rey_logo_%282021%29.svg/500px-Copa_del_Rey_logo_%282021%29.svg.png"
   },
   {
    "id": 556,
-   "ar": "كأس السوبر الإسباني"
+   "ar": "كأس السوبر الإسباني",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/fa/Supercopa-de-Espa%C3%B1a-RFEF.svg/500px-Supercopa-de-Espa%C3%B1a-RFEF.svg.png"
   },
   {
    "id": 542,
@@ -58,15 +68,18 @@
   },
   {
    "id": 18,
-   "ar": "دوري أبطال آسيا 2"
+   "ar": "دوري أبطال آسيا 2",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/8/81/AFC_Champions_League_Two.svg/500px-AFC_Champions_League_Two.svg.png"
   },
   {
    "id": 7,
-   "ar": "كأس آسيا"
+   "ar": "كأس آسيا",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/4/4d/AFC_Asian_Cup.png/500px-AFC_Asian_Cup.png"
   },
   {
    "id": 5,
-   "ar": "دوري الأمم الأوروبية"
+   "ar": "دوري الأمم الأوروبية",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/8/80/UEFA_Nations_League.svg/500px-UEFA_Nations_League.svg.png"
   },
   {
    "id": 6,
@@ -80,24 +93,28 @@
   },
   {
    "id": 45,
-   "ar": "كأس الاتحاد الإنجليزي"
+   "ar": "كأس الاتحاد الإنجليزي",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/FA_Cup_logo_%282020%29.svg/500px-FA_Cup_logo_%282020%29.svg.png"
   },
   {
    "id": 48,
-   "ar": "كأس الرابطة الإنجليزية"
+   "ar": "كأس الرابطة الإنجليزية",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cb/English_Football_League_Logo.svg/500px-English_Football_League_Logo.svg.png"
   },
   {
    "id": 137,
    "ar": "كأس إيطاليا",
-   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Coccarda_Coppa_Italia.svg/500px-Coccarda_Coppa_Italia.svg.png"
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Coppa_Italia_logo.svg/500px-Coppa_Italia_logo.svg.png"
   },
   {
    "id": 81,
-   "ar": "كأس ألمانيا"
+   "ar": "كأس ألمانيا",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/7/76/DFB-Pokal_Logo_2026.svg/500px-DFB-Pokal_Logo_2026.svg.png"
   },
   {
    "id": 531,
-   "ar": "كأس السوبر الأوروبي"
+   "ar": "كأس السوبر الأوروبي",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/0b/UEFA_Super_Cup_logo.svg/500px-UEFA_Super_Cup_logo.svg.png"
   },
   {
    "id": 547,
@@ -106,61 +123,73 @@
   },
   {
    "id": 233,
-   "ar": "الدوري المصري"
+   "ar": "الدوري المصري",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/ORA_League.png/500px-ORA_League.png"
   },
   {
    "id": 305,
    "ar": "دوري نجوم قطر",
-   "logo": "https://upload.wikimedia.org/wikipedia/en/a/a2/Qatar_Stars_League_logo.png"
+   "logo": "https://upload.wikimedia.org/wikipedia/ar/thumb/b/b1/Doha_Bank_Stars_League_%282026%29.svg/500px-Doha_Bank_Stars_League_%282026%29.svg.png"
   },
   {
    "id": 301,
-   "ar": "دوري أدنوك الإماراتي"
+   "ar": "دوري أدنوك الإماراتي",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/0/07/UAE_Pro_League_logo.svg/500px-UAE_Pro_League_logo.svg.png"
   },
   {
    "id": 94,
-   "ar": "الدوري البرتغالي"
+   "ar": "الدوري البرتغالي",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5a/S%C3%ADmbolo_da_Liga_Portuguesa_de_Futebol_Profissional.png"
   },
   {
    "id": 88,
-   "ar": "الدوري الهولندي"
+   "ar": "الدوري الهولندي",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Eredivisie_nieuw_logo_2017-.svg/500px-Eredivisie_nieuw_logo_2017-.svg.png"
   },
   {
    "id": 203,
-   "ar": "الدوري التركي"
+   "ar": "الدوري التركي",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/S%C3%BCper_Lig_logo.svg/500px-S%C3%BCper_Lig_logo.svg.png"
   },
   {
    "id": 40,
-   "ar": "دوري التشامبيونشيب"
+   "ar": "دوري التشامبيونشيب",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/EFL_Championship_Wordmark.svg/500px-EFL_Championship_Wordmark.svg.png"
   },
   {
    "id": 179,
-   "ar": "الدوري الاسكتلندي"
+   "ar": "الدوري الاسكتلندي",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Scottish_Professional_Football_League_logo_svg.svg/500px-Scottish_Professional_Football_League_logo_svg.svg.png"
   },
   {
    "id": 144,
-   "ar": "الدوري البلجيكي"
+   "ar": "الدوري البلجيكي",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Belgian_Pro_League_logo_%282020%2C_boxed%29.svg/500px-Belgian_Pro_League_logo_%282020%2C_boxed%29.svg.png"
   },
   {
    "id": 12,
    "ar": "دوري أبطال أفريقيا",
-   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/CAF_Champions_League.png/500px-CAF_Champions_League.png"
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Logo_CAF.svg/500px-Logo_CAF.svg.png"
   },
   {
    "id": 13,
-   "ar": "كأس ليبرتادوريس"
+   "ar": "كأس ليبرتادوريس",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Copa_Libertadores_logo.svg/500px-Copa_Libertadores_logo.svg.png"
   },
   {
    "id": 71,
-   "ar": "الدوري البرازيلي"
+   "ar": "الدوري البرازيلي",
+   "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Campeonato_Brasileiro_S%C3%A9rie_A_logo_%282026%29.svg/500px-Campeonato_Brasileiro_S%C3%A9rie_A_logo_%282026%29.svg.png"
   },
   {
    "id": 128,
-   "ar": "الدوري الأرجنتيني"
+   "ar": "الدوري الأرجنتيني",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/6/64/Liga_Profesional_de_F%C3%BAtbol_%28Argentina%29_logo.svg/500px-Liga_Profesional_de_F%C3%BAtbol_%28Argentina%29_logo.svg.png"
   },
   {
    "id": 253,
-   "ar": "الدوري الأمريكي"
+   "ar": "الدوري الأمريكي",
+   "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/c7/Major_League_Soccer_logo.svg/500px-Major_League_Soccer_logo.svg.png"
   },
   {
    "id": 10,
