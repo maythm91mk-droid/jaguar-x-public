@@ -52,13 +52,15 @@ function writeJson(name, v) {
 
 // ---------- names ----------
 const ar = require('./arabic');
-let leagues = [], leagueAr = {}, order = {}, byId = {}, byName = {}, byKey = {}, people = {};
+const PUBLIC_URL = (process.env.PUBLIC_URL || 'https://api.jaguarxiq.com').replace(/\/$/, '');
+let leagues = [], leagueAr = {}, leagueLogo = {}, order = {}, byId = {}, byName = {}, byKey = {}, people = {};
 function loadNames() {
   try {
     const l = JSON.parse(fs.readFileSync(path.join(DIR, 'leagues.json'), 'utf8')).leagues || [];
     leagues = l.filter(x => Number.isInteger(x.id));
-    leagueAr = {}; order = {};
-    leagues.forEach((x, i) => { leagueAr[x.id] = x.ar; order[x.id] = i; });
+    leagueAr = {}; order = {}; leagueLogo = {};
+    // «logo» in leagues.json replaces the data source's picture (his ask: the Iraq Stars League showed the old one).
+    leagues.forEach((x, i) => { leagueAr[x.id] = x.ar; order[x.id] = i; if (x.logo) leagueLogo[x.id] = PUBLIC_URL + '/logo/league/' + x.id + '.png'; });
   } catch (e) { log('leagues.json:', e.message); }
   try {
     const n = JSON.parse(fs.readFileSync(path.join(DIR, 'names.json'), 'utf8'));
@@ -185,7 +187,7 @@ function side(t, goals) {
 function brief(f) {
   const s = f.fixture.status || {};
   return {
-    id: f.fixture.id, league: f.league.id, leagueName: leagueAr[f.league.id] || f.league.name, leagueLogo: f.league.logo || '',
+    id: f.fixture.id, league: f.league.id, leagueName: leagueAr[f.league.id] || f.league.name, leagueLogo: leagueLogo[f.league.id] || f.league.logo || '',
     season: f.league.season, round: f.league.round || '',
     start: (f.fixture.timestamp || 0) * 1000, state: state(s.short), short: s.short || '',
     status: statusAr[s.short] ?? '', minute: s.elapsed ?? null, extra: s.extra ?? null,
@@ -434,6 +436,20 @@ const server = http.createServer(async (req, res) => {
         days: Object.fromEntries(Object.entries(days).map(([k, v]) => [k, v.matches.length])), leagues: seen, requests: budget.log });
     }
     if (tooMany(ip)) return send(res, 429, { error: 'slow down' });
+    // Our own copy of a league picture set by hand in leagues.json «logo» (fetched once with a proper name, kept on disk).
+    const lm = url.pathname.match(/^\/logo\/league\/(\d+)\.png$/);
+    if (lm) {
+      const src = (leagues.find(x => x.id === +lm[1]) || {}).logo;
+      if (!src) { res.writeHead(404); return res.end(); }
+      const dir = path.join(DIR, 'logos'); const file = path.join(dir, 'league-' + lm[1] + '-' + crypto.createHash('sha1').update(src).digest('hex').slice(0, 8) + '.png');
+      if (!fs.existsSync(file)) {
+        const r = await fetch(src, { headers: { 'User-Agent': 'JaguarXMatches/1.0 (https://api.jaguarxiq.com; league logos for the Jaguar X app)' } });
+        if (!r.ok) { log('logo', lm[1], r.status); res.writeHead(502); return res.end(); }
+        fs.mkdirSync(dir, { recursive: true }); fs.writeFileSync(file, Buffer.from(await r.arrayBuffer()));
+      }
+      res.writeHead(200, { 'Content-Type': 'image/png', 'Cache-Control': 'public, max-age=604800' });
+      return res.end(fs.readFileSync(file));
+    }
     if (!signed(req, url)) return send(res, 403, { error: 'app only' });
 
     if (url.pathname === '/v1/day') {
@@ -463,7 +479,7 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { at: d?.at || 0, match: locMatch(m), h2h: (hh?.list || []).filter(x => x.id !== id).map(locMatch) });
     }
     if (url.pathname === '/v1/leagues') {
-      return send(res, 200, { leagues: leagues.map(l => ({ id: l.id, name: l.ar, logo: `https://media.api-sports.io/football/leagues/${l.id}.png` })) });
+      return send(res, 200, { leagues: leagues.map(l => ({ id: l.id, name: l.ar, logo: leagueLogo[l.id] || `https://media.api-sports.io/football/leagues/${l.id}.png` })) });
     }
     // A league's page: its next and last matches, and its top scorers.
     if (url.pathname === '/v1/leaguegames') {
