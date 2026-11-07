@@ -186,9 +186,12 @@ function baghdadHour() {
 }
 
 // One request = every match in the world that day; we keep our leagues.
+const seen = {};
 async function fetchDay(date) {
   const j = await api(`/fixtures?date=${date}&timezone=${encodeURIComponent(TZ)}`, 'day');
   if (!j) return false;
+  // The English name of each of our leagues as the API calls it (on /status), to check the ids in leagues.json.
+  for (const f of j.response || []) if (f.league && order[f.league.id] != null) seen[f.league.id] = f.league.name + ' / ' + (f.league.country || '');
   const ours = (j.response || []).filter(f => f.league && order[f.league.id] != null).map(brief)
     .sort((a, b) => (order[a.league] - order[b.league]) || (a.start - b.start));
   days[date] = { at: Date.now(), matches: ours };
@@ -335,7 +338,7 @@ const server = http.createServer(async (req, res) => {
       if (url.pathname === '/missing') return send(res, 200, missing);
       rollDay();
       return send(res, 200, { day: budget.day, used: budget.used, left: left(), limit: DAILY_LIMIT, liveEveryMin: LIVE_EVERY_MIN,
-        days: Object.fromEntries(Object.entries(days).map(([k, v]) => [k, v.matches.length])), requests: budget.log });
+        days: Object.fromEntries(Object.entries(days).map(([k, v]) => [k, v.matches.length])), leagues: seen, requests: budget.log });
     }
     if (tooMany(ip)) return send(res, 429, { error: 'slow down' });
     if (!signed(req, url)) return send(res, 403, { error: 'app only' });
