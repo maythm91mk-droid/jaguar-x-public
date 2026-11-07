@@ -137,9 +137,15 @@ function team(en) {
 function person(en, full = false) {
   const ps = plain(en).split(/\s+/).filter(p => p && !/^[A-Za-z]\.$/.test(p));
   if (!ps.length) return en || '';
-  return words(full ? ps.join(' ') : (ps.length > 1 && /^(van|de|da|di|del|der|dos|le|la|ben|bin|abu|el|al)$/i.test(ps[ps.length - 2])
-    ? ps.slice(-2).join(' ') : ps[ps.length - 1]));
+  // The surname with the little words before it: «De Zerbi» → «دي زيربي», «van de Ven» → «فان دي فين».
+  const PART = /^(van|von|de|da|di|del|della|der|den|dos|du|le|la|ten|ter|ben|bin|abu|el|al)$/i;
+  let from = ps.length - 1;
+  if (!full) while (from > 0 && PART.test(ps[from - 1])) from--;
+  const pick = full ? ps : ps.slice(from);
+  return pick.map(p => PARTICLE[p.toLowerCase()] || words(p)).join(' ');
 }
+const PARTICLE = { van: 'فان', von: 'فون', de: 'دي', da: 'دا', di: 'دي', del: 'ديل', della: 'ديلا', der: 'دير', den: 'دين',
+  dos: 'دوس', du: 'دو', le: 'لو', la: 'لا', ten: 'تين', ter: 'تير', ben: 'بن', bin: 'بن', abu: 'أبو' };
 
 const PLACE = [
   [/\b(stadium|stadion|stadio|estadio|estadi|stade|stadyumu|arena|ground)\b/gi, ''],
