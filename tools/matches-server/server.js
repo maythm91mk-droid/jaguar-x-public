@@ -89,8 +89,9 @@ function left() {
   const mine = DAILY_LIMIT - budget.used;
   return budget.remaining == null ? mine : Math.min(mine, budget.remaining);
 }
-// kind: 'live' may use the last requests; everything else stops 10 before the end.
-function canSpend(kind) { return left() > (kind === 'live' ? 3 : 10); }
+// kind: live may use the last requests; the day lists stop 10 before the end.
+// What viewers open by hand (a match page, head to head) stops early, so the live scores never run out.
+function canSpend(kind) { return left() > (kind === 'live' ? 3 : kind === 'detail' || kind === 'h2h' ? 40 : 10); }
 
 // A kind the plan refuses (e.g. free plan + current season) is not asked again that day.
 const planBlocked = {};
@@ -354,7 +355,9 @@ const server = http.createServer(async (req, res) => {
       let d = details[id];
       const known = Object.values(days).flatMap(x => x.matches).find(m => m.id === id);
       // Nothing kept yet (e.g. a match days away): one request, kept 6 hours.
-      if ((!d || (Date.now() - d.at > 6 * 3600000 && known?.state !== 'post')) && canSpend('detail')) { await fetchFull([id], 'detail'); d = details[id]; }
+      // A match more than 70 minutes away has nothing more than the day list (line-ups come at T-60 by themselves).
+      const early = known && known.state === 'pre' && known.start - Date.now() > 70 * 60000;
+      if (!early && (!d || (Date.now() - d.at > 6 * 3600000 && known?.state !== 'post')) && canSpend('detail')) { await fetchFull([id], 'detail'); d = details[id]; }
       const m = d?.match || known;
       if (!m) return send(res, 404, { error: 'none' });
       // Head to head: only on demand, kept a week.
