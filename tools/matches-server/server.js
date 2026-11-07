@@ -51,7 +51,8 @@ function writeJson(name, v) {
 }
 
 // ---------- names ----------
-let leagues = [], leagueAr = {}, order = {}, byId = {}, byName = {};
+const ar = require('./arabic');
+let leagues = [], leagueAr = {}, order = {}, byId = {}, byName = {}, byKey = {}, people = {};
 function loadNames() {
   try {
     const l = JSON.parse(fs.readFileSync(path.join(DIR, 'leagues.json'), 'utf8')).leagues || [];
@@ -64,6 +65,12 @@ function loadNames() {
     byId = n.byId || {};
     byName = {};
     for (const [k, v] of Object.entries(n.byName || {})) byName[k.trim().toLowerCase()] = v;
+    // The same names by a loose key (no FC / SC, no accents, «Al-» = «Al »): the API writes one team several ways.
+    byKey = {};
+    for (const [k, v] of Object.entries(n.byName || {})) { const kk = ar.key(k); if (kk && !byKey[kk]) byKey[kk] = v; }
+    // Players / coaches / referees written by hand: "English name" → Arabic.
+    people = {};
+    for (const [k, v] of Object.entries(n.people || {})) people[ar.plain(k).trim().toLowerCase()] = v;
   } catch (e) { log('names.json:', e.message); }
 }
 loadNames();
@@ -71,12 +78,57 @@ fs.watchFile(path.join(DIR, 'names.json'), loadNames);
 fs.watchFile(path.join(DIR, 'leagues.json'), loadNames);
 
 const missing = readJson('missing.json', {});
+/** Levenshtein distance, stopping once it passes [max]. */
+function dist(a, b, max) {
+  if (Math.abs(a.length - b.length) > max) return max + 1;
+  let prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    const cur = [i];
+    let best = i;
+    for (let j = 1; j <= b.length; j++) {
+      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      best = Math.min(best, cur[j]);
+    }
+    if (best > max) return max + 1;
+    prev = cur;
+  }
+  return prev[b.length];
+}
+const nearCache = new Map();
+/** names.json's Arabic for a team: by id, exact name, loose key, then a near spelling («Al Taawon» = «Al Taawoun»). */
+function handName(t) {
+  const en = t.name || '';
+  const hit = byId[t.id] || byName[en.toLowerCase()];
+  if (hit) return hit;
+  const k = ar.key(en);
+  if (!k) return null;
+  if (byKey[k]) return byKey[k];
+  if (nearCache.has(k)) return nearCache.get(k);
+  let found = null;
+  if (k.length >= 6) {
+    const max = k.length >= 10 ? 2 : 1;
+    let best = max + 1, n = 0;
+    for (const [kk, v] of Object.entries(byKey)) {
+      const d = dist(k, kk, max);
+      if (d < best) { best = d; found = v; n = 1; } else if (d === best && v !== found) n++;
+    }
+    if (n !== 1) found = null;   // two names as near: neither is trusted
+  }
+  nearCache.set(k, found);
+  return found;
+}
+/** A team in Arabic: by hand (names.json), else written by how it sounds (never machine-translated). */
 function teamAr(t) {
   if (!t) return '';
-  const ar = byId[t.id] || byName[(t.name || '').toLowerCase()];
-  if (ar) return ar;
+  const hand = handName(t);
+  if (hand) return hand;
   if (t.name && !missing[t.id]) { missing[t.id] = t.name; writeJson('missing.json', missing); }
-  return t.name || '';
+  return ar.team(t.name || '');
+}
+/** A player: the name people know (his ask: «هالاند», not the full name). [full]: coaches / referees. */
+function personAr(en, full = false) {
+  if (!en) return '';
+  return people[ar.plain(en).trim().toLowerCase()] || ar.person(en, full);
 }
 
 // ---------- the daily budget ----------
@@ -340,6 +392,29 @@ function tooMany(ip) {
   return h.n > 60;
 }
 
+// Names are put in Arabic when sent (not only when kept), so a fix in names.json shows at once on kept days too.
+function locSide(sd) { return sd && typeof sd === 'object' ? { ...sd, name: teamAr({ id: sd.id, name: sd.en || sd.name }) } : sd; }
+function locMatch(m) {
+  if (!m || typeof m !== 'object') return m;
+  const o = { ...m, home: locSide(m.home), away: locSide(m.away) };
+  if (m.venue != null) {
+    const [place, city] = String(m.venue).split('، ');
+    o.venue = [ar.venue(place || ''), city ? ar.words(city) : ''].filter(Boolean).join('، ');
+    o.venueEn = m.venue;
+  }
+  if (m.referee) { o.referee = personAr(m.referee, true); o.refereeEn = m.referee; }
+  if (Array.isArray(m.events)) o.events = m.events.map(e => ({ ...e, player: personAr(e.player), assist: personAr(e.assist),
+    playerEn: e.player, assistEn: e.assist }));
+  if (m.lineups) {
+    o.lineups = {};
+    for (const [k, l] of Object.entries(m.lineups)) {
+      const pl = p => ({ ...p, n: personAr(p.n), ne: p.n });
+      o.lineups[k] = { ...l, coach: personAr(l.coach, true), coachEn: l.coach, start: (l.start || []).map(pl), subs: (l.subs || []).map(pl) };
+    }
+  }
+  return o;
+}
+
 function send(res, code, obj) {
   const body = JSON.stringify(obj);
   res.writeHead(code, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
@@ -368,7 +443,7 @@ const server = http.createServer(async (req, res) => {
       // Another day than today / tomorrow: fetched once when someone asks, then kept.
       if (!day && canSpend('day')) { await fetchDay(d); day = days[d]; }
       if (!day) return send(res, 503, { error: 'not ready', limit: left() <= 10 });
-      return send(res, 200, { date: d, at: day.at, leagues: leagues.map(l => ({ id: l.id, name: l.ar })), matches: day.matches });
+      return send(res, 200, { date: d, at: day.at, leagues: leagues.map(l => ({ id: l.id, name: l.ar })), matches: day.matches.map(locMatch) });
     }
     if (url.pathname === '/v1/match') {
       const id = +url.searchParams.get('id');
@@ -385,7 +460,7 @@ const server = http.createServer(async (req, res) => {
       const key = [m.home.id, m.away.id].sort().join('-');
       let hh = h2h[key];
       if ((!hh || Date.now() - hh.at > 7 * 86400000) && canSpend('h2h')) hh = await fetchH2h(m.home.id, m.away.id);
-      return send(res, 200, { at: d?.at || 0, match: m, h2h: (hh?.list || []).filter(x => x.id !== id) });
+      return send(res, 200, { at: d?.at || 0, match: locMatch(m), h2h: (hh?.list || []).filter(x => x.id !== id).map(locMatch) });
     }
     if (url.pathname === '/v1/leagues') {
       return send(res, 200, { leagues: leagues.map(l => ({ id: l.id, name: l.ar, logo: `https://media.api-sports.io/football/leagues/${l.id}.png` })) });
@@ -404,7 +479,7 @@ const server = http.createServer(async (req, res) => {
         }
       }
       if (!g) return send(res, 404, { error: 'none' });
-      return send(res, 200, g);
+      return send(res, 200, { ...g, next: (g.next || []).map(locMatch), last: (g.last || []).map(locMatch) });
     }
     if (url.pathname === '/v1/scorers') {
       const lg = +url.searchParams.get('league');
@@ -421,7 +496,7 @@ const server = http.createServer(async (req, res) => {
         if (list.length) sc = scorers[lg] = { at: Date.now(), list };
       }
       if (!sc) return send(res, 404, { error: 'none' });
-      return send(res, 200, sc);
+      return send(res, 200, { ...sc, list: (sc.list || []).map(x => ({ ...x, n: personAr(x.n), ne: x.n, team: locSide(x.team) })) });
     }
     if (url.pathname === '/v1/standings') {
       const lg = +url.searchParams.get('league');
@@ -433,7 +508,8 @@ const server = http.createServer(async (req, res) => {
         if (season) { await fetchStandings(lg, season); s = standings[lg]; }
       }
       if (!s) return send(res, 404, { error: 'none' });
-      return send(res, 200, { league: lg, name: leagueAr[lg] || '', ...s });
+      return send(res, 200, { league: lg, name: leagueAr[lg] || '', ...s,
+        groups: (s.groups || []).map(g => g.map(r => ({ ...r, team: locSide(r.team) }))) });
     }
     send(res, 404, { error: 'path' });
   } catch (e) {
