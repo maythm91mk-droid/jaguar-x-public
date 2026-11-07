@@ -223,6 +223,20 @@ async function fetchFull(ids, kind) {
   save();
 }
 
+// The season a league is playing now: from a match we keep, else asked once a week.
+const seasons = readJson('seasons.json', {});
+async function currentSeason(lg) {
+  for (const d of Object.values(days)) { const m = d.matches.find(x => x.league === lg); if (m?.season) return m.season; }
+  const k = seasons[lg];
+  if (k && Date.now() - k.at < 7 * 86400000) return k.year;
+  const j = await api(`/leagues?id=${lg}&current=true`, 'season');
+  const y = j?.response?.[0]?.seasons?.find(x => x.current)?.year || j?.response?.[0]?.seasons?.slice(-1)[0]?.year;
+  if (!y) return null;
+  seasons[lg] = { at: Date.now(), year: y };
+  writeJson('seasons.json', seasons);
+  return y;
+}
+
 async function fetchStandings(league, season) {
   const j = await api(`/standings?league=${league}&season=${season}`, 'standings');
   if (!j) return;
@@ -369,9 +383,18 @@ const server = http.createServer(async (req, res) => {
       if ((!hh || Date.now() - hh.at > 7 * 86400000) && canSpend('h2h')) hh = await fetchH2h(m.home.id, m.away.id);
       return send(res, 200, { at: d?.at || 0, match: m, h2h: (hh?.list || []).filter(x => x.id !== id) });
     }
+    if (url.pathname === '/v1/leagues') {
+      return send(res, 200, { leagues: leagues.map(l => ({ id: l.id, name: l.ar, logo: `https://media.api-sports.io/football/leagues/${l.id}.png` })) });
+    }
     if (url.pathname === '/v1/standings') {
       const lg = +url.searchParams.get('league');
-      const s = standings[lg];
+      if (!lg) return send(res, 400, { error: 'league' });
+      let s = standings[lg];
+      // Any league from the leagues page: fetched when asked, kept 6 hours (the daily loop refreshes those that played).
+      if ((!s || Date.now() - s.at > 6 * 3600000) && canSpend('detail')) {
+        const season = await currentSeason(lg);
+        if (season) { await fetchStandings(lg, season); s = standings[lg]; }
+      }
       if (!s) return send(res, 404, { error: 'none' });
       return send(res, 200, { league: lg, name: leagueAr[lg] || '', ...s });
     }
