@@ -391,7 +391,7 @@ async function coverage() {
 }
 
 if (process.argv.includes('--coverage')) {
-  coverage().catch(e => { console.log(e.message); process.exit(1); });
+  coverage().then(() => process.exit(0), e => { console.log(e.message); process.exit(1); });
 } else {
   if (!API_KEY || !APP_SECRET || !STATUS_KEY) log('WARNING: API_KEY / APP_SECRET / STATUS_KEY missing in .env');
   server.listen(PORT, '127.0.0.1', () => log('listening on', PORT, '| limit', DAILY_LIMIT, '| live every', LIVE_EVERY_MIN, 'min'));
