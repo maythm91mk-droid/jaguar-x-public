@@ -46,6 +46,7 @@ if [ ! -f "$APP/.env" ]; then
   say "مفتاح API-Football"
   echo "الصق المفتاح من https://dashboard.api-football.com (صفحة Account / My Access) واضغط Enter (ما راح يبين وانت تلصقه):"
   read -rs KEY </dev/tty
+  KEY=$(printf %s "$KEY" | tr -cd "a-zA-Z0-9")
   [ -n "$KEY" ] || { echo "ما لصقت شي"; exit 1; }
   cat > "$APP/.env" <<ENV
 API_KEY=$KEY
