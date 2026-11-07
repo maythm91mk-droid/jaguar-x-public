@@ -61,7 +61,7 @@ function loadNames() {
     leagues = l.filter(x => Number.isInteger(x.id));
     leagueAr = {}; order = {}; leagueLogo = {};
     // «logo» in leagues.json replaces the data source's picture (his ask: the Iraq Stars League showed the old one).
-    leagues.forEach((x, i) => { leagueAr[x.id] = x.ar; order[x.id] = i; if (x.logo) leagueLogo[x.id] = PUBLIC_URL + '/logo/league/' + x.id + '.png'; });
+    leagues.forEach((x, i) => { leagueAr[x.id] = x.ar; order[x.id] = i; if (x.logo) leagueLogo[x.id] = PUBLIC_URL + '/logo/league/' + x.id + '.png?v=' + crypto.createHash('sha1').update(x.logo).digest('hex').slice(0, 8); });
   } catch (e) { log('leagues.json:', e.message); }
   try {
     const n = JSON.parse(fs.readFileSync(path.join(DIR, 'names.json'), 'utf8'));
@@ -402,7 +402,7 @@ function locSide(sd) {
   if (!sd || typeof sd !== 'object') return sd;
   const o = { ...sd, name: teamAr({ id: sd.id, name: sd.en || sd.name }) };
   const src = teamLogo[ar.key(sd.en || '')];
-  if (src && sd.id) { teamLogoId[sd.id] = src; o.logo = PUBLIC_URL + '/logo/team/' + sd.id + '.png'; }
+  if (src && sd.id) { teamLogoId[sd.id] = src; o.logo = PUBLIC_URL + '/logo/team/' + sd.id + '.png?v=' + crypto.createHash('sha1').update(src).digest('hex').slice(0, 8); }
   return o;
 }
 function locMatch(m) {
