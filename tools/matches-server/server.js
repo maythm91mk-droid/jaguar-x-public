@@ -517,7 +517,8 @@ const server = http.createServer(async (req, res) => {
           id: x.player?.id || 0, n: x.player?.name || '', photo: x.player?.photo || '',
           team: side(x.statistics?.[0]?.team || {}, null), goals: x.statistics?.[0]?.goals?.total ?? 0,
           assists: x.statistics?.[0]?.goals?.assists ?? 0, games: x.statistics?.[0]?.games?.appearences ?? 0,
-        }));
+        // A player with no goals isn't a scorer (the Iraqi league sent one «Sami» with 0).
+        })).filter(x => x.goals > 0);
         if (list.length) sc = scorers[lg] = { at: Date.now(), list };
       }
       if (!sc) return send(res, 404, { error: 'none' });
