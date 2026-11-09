@@ -170,25 +170,44 @@ function canSpend(kind) { return left() > (kind === 'live' ? 3 : kind === 'detai
 
 // A kind the plan refuses (e.g. free plan + current season) is not asked again that day.
 const planBlocked = {};
+// When the source fails (down, refuses, sends an error) nothing is kept from that answer, the request is not
+// counted against our own daily number (the source's own counter, sent back with every answer, still is), and
+// we wait before asking again: 1 minute, then 2, 4 ... up to 15. One good answer clears the wait.
+let failN = 0, failUntil = 0;
+function failed(why, pathAndQuery) {
+  failN++;
+  const wait = Math.min(15, 2 ** (failN - 1));
+  failUntil = Date.now() + wait * 60000;
+  log('api failed:', why, pathAndQuery, '- waiting', wait, 'min');
+}
 async function api(pathAndQuery, kind) {
   if (!API_KEY) throw new Error('no API_KEY in .env');
   const today = new Date().toISOString().slice(0, 10);
   if (planBlocked[kind] === today) return null;
+  if (Date.now() < failUntil) return null;
   if (!canSpend(kind)) { log('budget: skipped', kind, pathAndQuery); return null; }
   rollDay();
   budget.used++;
+  const day = budget.day;
+  const refund = () => { if (budget.day === day && budget.used > 0) budget.used--; writeJson('budget.json', budget); };
   budget.log.push(new Date().toISOString().slice(11, 16) + ' ' + kind + ' ' + pathAndQuery);
   if (budget.log.length > 150) budget.log.shift();
-  const r = await fetch(API + pathAndQuery, { headers: { 'x-apisports-key': API_KEY } });
+  let r;
+  try { r = await fetch(API + pathAndQuery, { headers: { 'x-apisports-key': API_KEY }, signal: AbortSignal.timeout(20000) }); }
+  catch (e) { refund(); failed(e.message, pathAndQuery); return null; }
   const rem = r.headers.get('x-ratelimit-requests-remaining');
   if (rem != null && !isNaN(+rem)) budget.remaining = +rem;
   writeJson('budget.json', budget);
-  if (!r.ok) { log('api', r.status, pathAndQuery); return null; }
-  const j = await r.json();
+  if (!r.ok) { refund(); failed('http ' + r.status, pathAndQuery); return null; }
+  let j;
+  try { j = await r.json(); } catch (e) { refund(); failed('bad answer', pathAndQuery); return null; }
   if (j.errors && Object.keys(j.errors).length) {
-    log('api errors', pathAndQuery, JSON.stringify(j.errors));
-    if (j.errors.plan) { planBlocked[kind] = today; log('plan refuses', kind, '- not asked again today'); }
+    // An error answer has an empty "response": keeping it would show a day with no matches.
+    if (j.errors.plan) { planBlocked[kind] = today; log('plan refuses', kind, pathAndQuery, '- not asked again today'); return null; }
+    refund(); failed(JSON.stringify(j.errors).slice(0, 200), pathAndQuery);
+    return null;
   }
+  failN = 0; failUntil = 0;
   return j;
 }
 
@@ -284,7 +303,7 @@ async function fetchFull(ids, kind) {
   for (let i = 0; i < ids.length; i += 20) {
     const part = ids.slice(i, i + 20);
     const j = await api(`/fixtures?ids=${part.join('-')}&timezone=${encodeURIComponent(TZ)}`, kind);
-    if (!j) return;
+    if (!j) return false;
     for (const f of j.response || []) {
       const m = full(f);
       details[m.id] = { at: Date.now(), match: m };
@@ -297,6 +316,7 @@ async function fetchFull(ids, kind) {
   }
   for (const k of Object.keys(details)) if (Date.now() - details[k].at > 8 * 86400000) delete details[k];
   save();
+  return true;
 }
 
 // The season a league is playing now: from a match we keep, else asked once a week.
@@ -316,7 +336,7 @@ async function currentSeason(lg) {
 
 async function fetchStandings(league, season) {
   const j = await api(`/standings?league=${league}&season=${season}`, 'standings');
-  if (!j) return;
+  if (!j) return false;
   const groups = j.response?.[0]?.league?.standings || [];
   // An empty answer (a refusal, or the free plan before Pro) is not kept: it would hide the table for hours.
   if (!groups.length) return;
@@ -366,12 +386,12 @@ async function tick() {
   }
   // 3) Line-ups: about an hour before, and again about 20 minutes before (they are often out by then).
   const soon60 = all.filter(m => m.state === 'pre' && m.start - now < 62 * 60000 && m.start - now > 25 * 60000 && !flags.lineup60[m.id]);
-  if (soon60.length) { await fetchFull(soon60.map(m => m.id), 'lineup'); soon60.forEach(m => (flags.lineup60[m.id] = 1)); saveFlags(); }
+  if (soon60.length && await fetchFull(soon60.map(m => m.id), 'lineup')) { soon60.forEach(m => (flags.lineup60[m.id] = 1)); saveFlags(); }
   const soon20 = all.filter(m => m.state === 'pre' && m.start - now < 22 * 60000 && m.start > now && !flags.lineup20[m.id]);
-  if (soon20.length) { await fetchFull(soon20.map(m => m.id), 'lineup'); soon20.forEach(m => (flags.lineup20[m.id] = 1)); saveFlags(); }
+  if (soon20.length && await fetchFull(soon20.map(m => m.id), 'lineup')) { soon20.forEach(m => (flags.lineup20[m.id] = 1)); saveFlags(); }
   // 4) Statistics once after the end (the live update that saw the end already has most; this one is final).
   const ended = all.filter(m => m.state === 'post' && !flags.stats[m.id] && now - m.start < 12 * 3600000 && now - m.start > 2 * 3600000);
-  if (ended.length) { await fetchFull(ended.map(m => m.id), 'stats'); ended.forEach(m => (flags.stats[m.id] = 1)); saveFlags(); }
+  if (ended.length && await fetchFull(ended.map(m => m.id), 'stats')) { ended.forEach(m => (flags.stats[m.id] = 1)); saveFlags(); }
   // 5) Standings: once a day for leagues that played, after their last match of the day ended.
   const byLeague = {};
   for (const m of days[d0]?.matches || []) (byLeague[m.league] ??= []).push(m);
@@ -379,8 +399,8 @@ async function tick() {
     const key = lg + '@' + d0;
     if (flags.standingsDay[key]) continue;
     if (ms.every(m => m.state === 'post' || m.state === 'off') || !standings[lg]) {
-      await fetchStandings(lg, ms[0].season);
-      flags.standingsDay[key] = 1; saveFlags();
+      // A failed try (the source down) is tried again; an answer, even an empty one, is enough for the day.
+      if (await fetchStandings(lg, ms[0].season) !== false) { flags.standingsDay[key] = 1; saveFlags(); }
     }
   }
   // Old flags go after a few days.

@@ -7,8 +7,10 @@ const ALLOWED = ["languages", "subs_per_page", "type", "tmdb_id", "imdb_id", "fi
 // Only the app may use it: every app version since subtitles came sends this header. Anyone else gets nothing
 // (the address is in the public config.json, and the Subdl plan's daily downloads are ours).
 // Plus a simple limit per address, so even someone copying the header can't empty the plan quickly.
-// (Per Cloudflare server copy; good enough to stop abuse, a real viewer never comes near it.)
-const LIMIT = { search: [40, 60_000], dl: [25, 3_600_000] };   // [requests, per ms]
+// Only requests that really go to Subdl are counted (an answer we already keep costs nothing), and the
+// numbers are wide because in Iraq many homes share one address: hundreds of viewers can come from one.
+// (Per Cloudflare server copy; good enough to stop abuse.)
+const LIMIT = { search: [120, 60_000], dl: [80, 3_600_000] };   // [requests, per ms]
 const seen = new Map();
 function tooMany(ip, kind) {
   const [max, per] = LIMIT[kind];
@@ -25,11 +27,11 @@ export default {
     if (request.method !== "GET") return new Response("no", { status: 405 });
     if (url.pathname !== "/search" && url.pathname !== "/dl" && !url.pathname.startsWith("/dl/")) return new Response("Jaguar X", { status: 200 });
     if (request.headers.get("X-App") !== "jaguarx") return new Response("app only", { status: 403 });
-    const ip = request.headers.get("CF-Connecting-IP") || "?";
-    if (tooMany(ip, url.pathname === "/search" ? "search" : "dl")) return new Response("slow down", { status: 429 });
     const cache = caches.default;
     const hit = await cache.match(request);
     if (hit) return hit;
+    const ip = request.headers.get("CF-Connecting-IP") || "?";
+    if (tooMany(ip, url.pathname === "/search" ? "search" : "dl")) return new Response("slow down", { status: 429 });
     let res;
     if (url.pathname === "/search") {
       const q = new URLSearchParams();
