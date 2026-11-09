@@ -146,6 +146,24 @@ function left() {
   const mine = DAILY_LIMIT - budget.used;
   return budget.remaining == null ? mine : Math.min(mine, budget.remaining);
 }
+// Asked for by a viewer (not by the planned loop): a day nobody looked at yet, a match we know nothing about.
+// Each has its own small daily allowance, so someone who pulled the app's secret out can't spend the whole plan.
+const ASKED_MAX = { day: 15, match: 30 };
+let asked = { day: '', day_n: 0, match_n: 0 };
+function mayAsk(kind) {
+  if (asked.day !== today()) asked = { day: today(), day_n: 0, match_n: 0 };
+  if (asked[kind + '_n'] >= ASKED_MAX[kind]) { log('asked: daily allowance used', kind); return false; }
+  asked[kind + '_n']++;
+  return true;
+}
+/** A date the calendar can sensibly ask for: up to 60 days back or ahead of today (Baghdad). */
+function nearDate(d) {
+  const t = Date.parse(d + 'T00:00:00Z'), now = Date.parse(baghdadDate(0) + 'T00:00:00Z');
+  return !isNaN(t) && Math.abs(t - now) <= 60 * 86400000;
+}
+/** Only the leagues in leagues.json (the app's leagues page shows only those). */
+function ourLeague(id) { return order[id] != null; }
+
 // kind: live may use the last requests; the day lists stop 10 before the end.
 // What viewers open by hand (a match page, head to head) stops early, so the live scores never run out.
 function canSpend(kind) { return left() > (kind === 'live' ? 3 : kind === 'detail' || kind === 'h2h' ? 40 : 10); }
@@ -466,7 +484,7 @@ const server = http.createServer(async (req, res) => {
       if (!/^\d{4}-\d{2}-\d{2}$/.test(d)) return send(res, 400, { error: 'd' });
       let day = days[d];
       // Another day than today / tomorrow: fetched once when someone asks, then kept.
-      if (!day && canSpend('day')) { await fetchDay(d); day = days[d]; }
+      if (!day && nearDate(d) && canSpend('day') && mayAsk('day')) { await fetchDay(d); day = days[d]; }
       if (!day) return send(res, 503, { error: 'not ready', limit: left() <= 10 });
       return send(res, 200, { date: d, at: day.at, leagues: leagues.map(l => ({ id: l.id, name: l.ar })), matches: day.matches.map(locMatch) });
     }
@@ -478,7 +496,7 @@ const server = http.createServer(async (req, res) => {
       // Nothing kept yet (e.g. a match days away): one request, kept 6 hours.
       // A match more than 70 minutes away has nothing more than the day list (line-ups come at T-60 by themselves).
       const early = known && known.state === 'pre' && known.start - Date.now() > 70 * 60000;
-      if (!early && (!d || (Date.now() - d.at > 6 * 3600000 && known?.state !== 'post')) && canSpend('detail')) { await fetchFull([id], 'detail'); d = details[id]; }
+      if (!early && (!d || (Date.now() - d.at > 6 * 3600000 && known?.state !== 'post')) && canSpend('detail') && (known || d || mayAsk('match'))) { await fetchFull([id], 'detail'); d = details[id]; }
       const m = d?.match || known;
       if (!m) return send(res, 404, { error: 'none' });
       // Head to head: only on demand, kept a week.
@@ -493,7 +511,7 @@ const server = http.createServer(async (req, res) => {
     // A league's page: its next and last matches, and its top scorers.
     if (url.pathname === '/v1/leaguegames') {
       const lg = +url.searchParams.get('league');
-      if (!lg) return send(res, 400, { error: 'league' });
+      if (!lg || !ourLeague(lg)) return send(res, 400, { error: 'league' });
       let g = leagueGames[lg];
       if ((!g || Date.now() - g.at > 30 * 60000) && canSpend('detail')) {
         const season = await currentSeason(lg);
@@ -508,7 +526,7 @@ const server = http.createServer(async (req, res) => {
     }
     if (url.pathname === '/v1/scorers') {
       const lg = +url.searchParams.get('league');
-      if (!lg) return send(res, 400, { error: 'league' });
+      if (!lg || !ourLeague(lg)) return send(res, 400, { error: 'league' });
       let sc = scorers[lg];
       if ((!sc || Date.now() - sc.at > 6 * 3600000) && canSpend('detail')) {
         const season = await currentSeason(lg);
@@ -526,7 +544,7 @@ const server = http.createServer(async (req, res) => {
     }
     if (url.pathname === '/v1/standings') {
       const lg = +url.searchParams.get('league');
-      if (!lg) return send(res, 400, { error: 'league' });
+      if (!lg || !ourLeague(lg)) return send(res, 400, { error: 'league' });
       let s = standings[lg];
       // Any league from the leagues page: fetched when asked, kept 6 hours (the daily loop refreshes those that played).
       if ((!s || !s.groups?.length || Date.now() - s.at > 6 * 3600000) && canSpend('detail')) {
