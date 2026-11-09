@@ -44,8 +44,8 @@
   "agents": "https://t.me/jaguarx_dev",
   "downloaderCode": "2312093",
   "beta": {
-    "versionCode": 100206,
-    "versionName": "تجربة 206",
+    "versionCode": 100208,
+    "versionName": "تجربة 208",
     "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX-beta.apk"
   },
   "subsUrl": "https://jaguar-subs.maythm91-mk.workers.dev",
@@ -1814,5 +1814,10 @@
         ]
       }
     ]
+  },
+  "live": {
+    "format": {
+      "amlive.cc": "ts"
+    }
   }
 }
