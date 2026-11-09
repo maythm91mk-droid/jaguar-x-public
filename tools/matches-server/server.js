@@ -394,6 +394,32 @@ async function loop() {
   try { await tick(); } catch (e) { log('tick:', e.message); } finally { running = false; }
 }
 
+// ---------- a second home for the app's config.json ----------
+// The app reads config.json from GitHub. If GitHub is ever down or the account is closed, it asks here
+// (https://api.jaguarxiq.com/config.json). A copy is fetched every 5 minutes and kept on disk; only a copy that
+// reads well (has servers) replaces the kept one. To take over by hand (GitHub gone or not trusted): put a file
+// named config.override.json beside server.js - it is served instead, within 5 minutes.
+const CONFIG_SRC = process.env.CONFIG_SRC || 'https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/config.json';
+let configText = null;
+function goodConfig(t) { try { const o = JSON.parse(t); return Array.isArray(o.servers) && o.servers.length > 0; } catch { return false; } }
+function readConfigCopy() {
+  for (const f of [path.join(DIR, 'config.override.json'), path.join(DATA, 'config.json')]) {
+    try { const t = fs.readFileSync(f, 'utf8'); if (goodConfig(t)) return t; } catch {}
+  }
+  return null;
+}
+async function syncConfig() {
+  try {
+    const r = await fetch(CONFIG_SRC + '?t=' + Date.now(), { signal: AbortSignal.timeout(15000) });
+    if (r.ok) {
+      const t = await r.text();
+      if (goodConfig(t)) { const f = path.join(DATA, 'config.json'); fs.writeFileSync(f + '.tmp', t); fs.renameSync(f + '.tmp', f); }
+      else log('config copy: the file did not read well, kept the old one');
+    } else log('config copy:', r.status);
+  } catch (e) { log('config copy:', e.message); }
+  configText = readConfigCopy();
+}
+
 // ---------- the app's door ----------
 function signed(req, url) {
   if (!APP_SECRET) return false;
@@ -461,6 +487,12 @@ const server = http.createServer(async (req, res) => {
       rollDay();
       return send(res, 200, { day: budget.day, used: budget.used, left: left(), limit: DAILY_LIMIT, liveEveryMin: LIVE_EVERY_MIN,
         days: Object.fromEntries(Object.entries(days).map(([k, v]) => [k, v.matches.length])), leagues: seen, requests: budget.log });
+    }
+    // The kept copy of config.json (public, like the one on GitHub). Before the per-address limit: many homes share one address.
+    if (url.pathname === '/config.json') {
+      if (!configText) { res.writeHead(404); return res.end(); }
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
+      return res.end(configText);
     }
     if (tooMany(ip)) return send(res, 429, { error: 'slow down' });
     // Our own copy of a league picture set by hand in leagues.json «logo» (fetched once with a proper name, kept on disk).
@@ -590,4 +622,7 @@ if (process.argv.includes('--coverage')) {
   server.listen(PORT, '127.0.0.1', () => log('listening on', PORT, '| limit', DAILY_LIMIT, '| live every', LIVE_EVERY_MIN, 'min'));
   loop();
   setInterval(loop, 60000);
+  configText = readConfigCopy();
+  syncConfig();
+  setInterval(syncConfig, 5 * 60000);
 }
