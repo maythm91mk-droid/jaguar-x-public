@@ -17,7 +17,7 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
   const TEMP_MS = 24 * 3600000;        // a temporary device is removed by itself after a day
   const PLAY_MS = 50000;               // no sign of life for this long = not playing any more (the app says "still playing" every 20 s)
   const HOLD_MS = 5 * 60000;           // a device the main put out of playback can't start again for this long
-  const GRACE_MS = 14 * 86400000;      // devices that were already logged in before the feature join by themselves for this long
+  const GRACE_MS = 3 * 86400000;       // devices that were already logged in before the feature join by themselves for this long (his choice: 3 days)
   const FILE = 'devices.json';
 
   let subs = readJson(FILE, {});
