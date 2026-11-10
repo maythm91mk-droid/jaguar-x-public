@@ -303,6 +303,8 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
         if (h > t && !w.main) return { ok: false, why: 'held', min: Math.ceil((h - t) / 60000) };
         if (other) {
           if (!w.main) return { ok: false, why: 'busy', by: name, byMain: other.did === w.s.main };
+          // The main device is asked first: put the other one out, or let it go on (his wish, 10 Nov 2026).
+          if (!b.force) return { ok: false, why: 'ask', by: name };
           out.set(w.sub + '|' + other.did, 'main');
         }
         out.delete(k);
