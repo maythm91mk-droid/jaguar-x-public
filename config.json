@@ -1,5 +1,6 @@
 {
-  "serial": 2,
+  "serial": 3,
+  "devicesBeta": { "on": true, "api": "https://api.jaguarxiq.com" },
   "servers": [
     {
       "name": "سيرفر 1",
