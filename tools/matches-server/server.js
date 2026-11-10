@@ -440,6 +440,12 @@ async function syncConfig() {
   configText = readConfigCopy();
 }
 
+// ---------- devices of a subscription (main device, joining by a code, one viewer at a time) ----------
+let devices = null;
+try { devices = require('./devices')({ secret: APP_SECRET, statusKey: STATUS_KEY, readJson, writeJson, log }); }
+catch (e) { log('devices: not loaded:', e.message); }
+for (const sig of ['SIGTERM', 'SIGINT']) process.on(sig, () => { try { devices && devices.flush(); } catch {} process.exit(0); });
+
 // ---------- the app's door ----------
 function signed(req, url) {
   if (!APP_SECRET) return false;
@@ -513,6 +519,12 @@ const server = http.createServer(async (req, res) => {
       if (!configText) { res.writeHead(404); return res.end(); }
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
       return res.end(configText);
+    }
+    // Devices of a subscription (devices.js): its own limits and signature. Many homes share one address.
+    if (url.pathname.startsWith('/v1/dev/')) {
+      if (!devices) return send(res, 404, { error: 'path' });
+      const [code, obj] = await devices.handle(req, url, ip);
+      return send(res, code, obj);
     }
     if (tooMany(ip)) return send(res, 429, { error: 'slow down' });
     // Our own copy of a league picture set by hand in leagues.json «logo» (fetched once with a proper name, kept on disk).
