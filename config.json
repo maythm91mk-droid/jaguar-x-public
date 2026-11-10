@@ -1,5 +1,5 @@
 {
-  "serial": 5,
+  "serial": 6,
   "devicesBeta": { "on": true, "api": "https://api.jaguarxiq.com" },
   "servers": [
     {
@@ -34,7 +34,7 @@
     }
   ],
   "support": "07851700800",
-  "message": "⚠️ أكو مشكلة هسه بالسيرفر على شبكة سوبر سيل. المشكلة مو من جهازك، دا نشتغل على حلها.",
+  "message": "",
   "latest": {
     "versionCode": 45,
     "versionName": "1.9.8",
