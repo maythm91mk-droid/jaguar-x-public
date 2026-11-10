@@ -293,8 +293,10 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
       const name = other ? w.s.devices[other.did].name : '';
       if (b.action === 'stop') {
         if (p && p.did === w.did) playing.delete(w.sub);
+        // Put out a moment ago (the stream was cut before the next beat): say why, so the device can tell the viewer.
+        const o = out.get(k);
         out.delete(k);
-        return { ok: true };
+        return o ? { ok: true, why: o } : { ok: true };
       }
       if (b.action === 'start') {
         const h = holds.get(k) || 0;
