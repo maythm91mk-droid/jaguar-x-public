@@ -60,6 +60,7 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
     for (const [did, d] of Object.entries(s.devices)) {
       if (d.until && d.until < t) {
         delete s.devices[did];
+        (s.gone ||= {})[did] = t;
         if (playing.get(sub)?.did === did) playing.delete(sub);
         save();
       }
@@ -71,6 +72,7 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
   function add(s, did, b, extra) {
     const type = TYPES.includes(b.type) ? b.type : 'phone';
     const model = clean(b.model, 60);
+    if (s.gone) delete s.gone[did];   // let in again (by the main device): it is welcome back
     s.devices[did] = { name: clean(extra?.name || model || 'جهاز', 30), type, model, tok: rnd(24), added: now(), seen: now(), ...(extra?.until ? { until: extra.until } : {}) };
     save();
     return s.devices[did];
@@ -141,7 +143,8 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
       if (s.devices[b.did]) delete s.devices[b.did];   // same device, lost its token: it joins again like a new one
       const full = count(s) >= MAX;
       // Nobody chose a main device yet, or a device that was logged in before the feature came (for two weeks).
-      if (!s.main || (b.existing && now() - s.at < GRACE_MS)) {
+      // A device the main one removed (or whose temporary day ended) never comes back by itself: only by barcode.
+      if (!s.main || (b.existing && now() - s.at < GRACE_MS && !s.gone?.[b.did])) {
         if (full) return { in: false, why: 'full', max: MAX };
         add(s, b.did, b);
         return state(b.sub, s, b.did);
@@ -184,7 +187,8 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
       if (!w) return outside(b);
       if (!w.main) return { ok: false, why: 'main' };
       if (!isDid(b.target) || b.target === w.did || !w.s.devices[b.target]) return { ok: false, why: 'target' };
-      delete w.s.devices[b.target]; save();
+      delete w.s.devices[b.target];
+      (w.s.gone ||= {})[b.target] = now(); save();
       if (playing.get(w.sub)?.did === b.target) playing.delete(w.sub);
       return { ok: true, devices: list(w.sub, w.s, w.did) };
     },
