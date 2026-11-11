@@ -284,7 +284,18 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
     },
 
     // One viewer at a time: "start" when play is pressed, "beat" every 20 s while playing, "stop" on leaving.
+    // Each call is written to the service log (device name + answer only) while this is being tested.
     play(b) {
+      const r = playInner(b);
+      try {
+        const w = who(b);
+        const dn = w ? (w.s.devices[w.did]?.name || '?') : '-';
+        console.log(`play ${String(b.action)}${b.force ? ' force' : ''} ${dn} -> ${JSON.stringify(r)}`);
+      } catch {}
+      return r;
+    },
+  };
+  function playInner(b) {
       const w = who(b);
       if (!w) return outside(b);
       const k = w.sub + '|' + w.did, t = now();
@@ -320,8 +331,7 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
       }
       playing.set(w.sub, { did: w.did, at: t });
       return { ok: true };
-    },
-  };
+  }
 
   function signed(req, pathname, body) {
     if (!secret) return false;
