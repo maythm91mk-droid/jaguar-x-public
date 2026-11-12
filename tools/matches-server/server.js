@@ -418,6 +418,20 @@ async function tick() {
   if (Object.keys(flags.stats).length > 3000) { flags.lineup60 = {}; flags.lineup20 = {}; flags.stats = {}; saveFlags(); }
 }
 
+// The channel of each of today's matches, read from yallashoot (tv.js), on its own so a slow site never holds the live updates.
+const tvr = require('./tv').create({ log, readJson, writeJson, today: () => baghdadDate(0) });
+let tvBusy = false;
+async function tvLoop() {
+  if (tvBusy) return;
+  tvBusy = true;
+  try { await tvr.tick((days[baghdadDate(0)]?.matches || []).map(locMatch)); } catch (e) { log('tv:', e.message); } finally { tvBusy = false; }
+}
+function withTv(m) {
+  const o = locMatch(m);
+  if (o && typeof o === 'object') { const t = tvr.of(o); if (t) { o.tv = t; o.tvAr = tvr.arOf(o); } }
+  return o;
+}
+
 let running = false;
 async function loop() {
   if (running) return;
@@ -523,7 +537,7 @@ const server = http.createServer(async (req, res) => {
       if (url.pathname === '/missing') return send(res, 200, missing);
       rollDay();
       return send(res, 200, { day: budget.day, used: budget.used, left: left(), limit: DAILY_LIMIT, liveEveryMin: LIVE_EVERY_MIN,
-        days: Object.fromEntries(Object.entries(days).map(([k, v]) => [k, v.matches.length])), leagues: seen, requests: budget.log });
+        days: Object.fromEntries(Object.entries(days).map(([k, v]) => [k, v.matches.length])), leagues: seen, tv: tvr.status(), requests: budget.log });
     }
     // The kept copy of config.json (public, like the one on GitHub). Before the per-address limit: many homes share one address.
     if (url.pathname === '/config.json') {
@@ -561,7 +575,7 @@ const server = http.createServer(async (req, res) => {
       // Another day than today / tomorrow: fetched once when someone asks, then kept.
       if (!day && nearDate(d) && canSpend('day') && mayAsk('day')) { await fetchDay(d); day = days[d]; }
       if (!day) return send(res, 503, { error: 'not ready', limit: left() <= 10 });
-      return send(res, 200, { date: d, at: day.at, leagues: leagues.map(l => ({ id: l.id, name: l.ar })), matches: day.matches.map(locMatch) });
+      return send(res, 200, { date: d, at: day.at, leagues: leagues.map(l => ({ id: l.id, name: l.ar })), matches: day.matches.map(withTv) });
     }
     if (url.pathname === '/v1/match') {
       const id = +url.searchParams.get('id');
@@ -665,6 +679,8 @@ if (process.argv.includes('--coverage')) {
   server.listen(PORT, '127.0.0.1', () => log('listening on', PORT, '| limit', DAILY_LIMIT, '| live every', LIVE_EVERY_MIN, 'min'));
   loop();
   setInterval(loop, 60000);
+  setTimeout(tvLoop, 20000);
+  setInterval(tvLoop, 5 * 60000);
   configText = readConfigCopy();
   syncConfig();
   setInterval(syncConfig, 5 * 60000);
