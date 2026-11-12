@@ -374,6 +374,12 @@ async function tick() {
   rollDay();
   const d0 = baghdadDate(0), d1 = baghdadDate(1);
   const h = baghdadHour();
+  // A league added to leagues.json shows the same day (12 Nov: the AFCON qualifiers waited for the next 06:00 list).
+  const sig = Object.keys(order).sort().join(',');
+  if (flags.leaguesSig !== sig) {
+    for (const d of [d0, d1]) if (days[d]) days[d].slot = -1;
+    flags.leaguesSig = sig; saveFlags();
+  }
   // 1) The day lists: today + tomorrow at start, then again at 06:00 and 15:00 Baghdad.
   for (const d of [d0, d1]) {
     const have = days[d];
