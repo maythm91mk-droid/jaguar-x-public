@@ -22,7 +22,7 @@ function channelEn(a) {
   const tail = n ? ' ' + n : '';
   if (/بي ?إن|بين سبورت|beIN/i.test(s)) {
     if (/بريميوم|premium/i.test(s)) return 'beIN SPORTS PREMIUM' + tail;
-    if (/إكسترا|اكسترا|xtra|extra/i.test(s)) return 'beIN SPORTS XTRA' + tail;
+    if (/إكسترا|اكسترا|xtra|extra/i.test(s)) return 'beIN SPORTS XTRA' + tail + '|beIN XTRA' + tail;
     if (/ماكس|max/i.test(s)) return 'beIN SPORTS MAX' + tail;
     if (/الإخبارية|الاخبارية|news/i.test(s)) return 'beIN SPORTS NEWS';
     return 'beIN SPORTS' + tail;
@@ -35,7 +35,9 @@ function channelEn(a) {
   if (/العراقية/i.test(s)) return 'العراقية الرياضية|Iraqia Sport|Al Iraqiya Sport';
   if (/أون تايم|اون تايم|on ?time/i.test(s)) return 'ON Time Sports' + tail;
   if (/ثمانية|thmanyah/i.test(s)) return 'Thmanyah' + tail;
-  return s;
+  // «MBC شاهد | رياضة» (12 Nov): a bare «رياضة» would match every sports channel.
+  if (/mbc|شاهد/i.test(s)) return 'Shahid Sport|MBC Sport|MBC Action';
+  return s.replace(/\|/g, ' ');
 }
 
 function create({ log, readJson, writeJson, today }) {
