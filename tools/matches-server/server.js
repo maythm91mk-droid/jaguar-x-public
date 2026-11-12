@@ -127,6 +127,11 @@ function teamAr(t) {
   if (!t) return '';
   const hand = handName(t);
   if (hand) return hand;
+  // «Scotland U21» / «Iraq U-23» / «England Women»: the country by hand + an Arabic tag («سكوتلاند أو» before).
+  const age = /^(.+?)\s+(?:U-?|Under[- ]?)(\d{2})$/i.exec(t.name || '');
+  const wom = /^(.+?)\s+(?:Women|W)$/i.exec(t.name || '');
+  if (age) return teamAr({ name: age[1] }) + ' تحت ' + age[2];
+  if (wom) return teamAr({ name: wom[1] }) + ' سيدات';
   if (t.name && !missing[t.id]) { missing[t.id] = t.name; writeJson('missing.json', missing); }
   return ar.team(t.name || '');
 }
