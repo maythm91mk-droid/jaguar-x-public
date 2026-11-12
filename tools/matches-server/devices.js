@@ -14,6 +14,7 @@ const crypto = require('crypto');
 module.exports = function make({ secret, statusKey, readJson, writeJson, log }) {
   const MAX = 5;                       // devices per subscription, the main one included
   const LINK_MS = 2 * 60000;           // a joining code lives two minutes
+  const SEEN_MS = 12000;               // the waiting device asks every 3 s; quiet longer = it left the barcode page
   const TEMP_MS = 24 * 3600000;        // a temporary device is removed by itself after a day
   const PLAY_MS = 50000;               // no sign of life for this long = not playing any more (the app says "still playing" every 20 s)
   const HOLD_MS = 5 * 60000;           // a device the main put out of playback can't start again for this long
@@ -157,7 +158,7 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
       const w = who(b);
       if (!w) return outside(b);
       const pending = [];
-      if (w.main) for (const [code, l] of links) if (l.sub === w.sub && l.state === 'wait' && l.exp > now()) pending.push({ code, model: l.model, type: l.type });
+      if (w.main) for (const [code, l] of links) if (l.sub === w.sub && l.state === 'wait' && l.exp > now() && now() - (l.seen || 0) < SEEN_MS) pending.push({ code, model: l.model, type: l.type });
       return { ...state(w.sub, w.s, w.did), devices: list(w.sub, w.s, w.did), pending };
     },
 
@@ -227,7 +228,7 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
       if (!code) return { error: 'slow' };
       const lt = rnd(16);
       links.set(code, { lt, did: b.did, model: clean(b.model, 60), type: TYPES.includes(b.type) ? b.type : 'phone', pub,
-        sub: isSub(b.sub) && subs[b.sub] ? b.sub : null, exp: now() + LINK_MS, state: 'wait' });
+        sub: isSub(b.sub) && subs[b.sub] ? b.sub : null, exp: now() + LINK_MS, seen: now(), state: 'wait' });
       return { code, lt, ms: LINK_MS };
     },
 
@@ -238,6 +239,7 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
       if (l.state === 'ok') { links.delete(String(b.code)); return { state: 'ok', ...l.result }; }
       if (l.state === 'refused') { links.delete(String(b.code)); return { state: 'refused', why: l.why || '' }; }
       if (l.exp < now()) return { state: 'expired' };
+      l.seen = now();
       return { state: 'wait', ms: l.exp - now() };
     },
 
