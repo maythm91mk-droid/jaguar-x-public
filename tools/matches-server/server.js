@@ -426,9 +426,25 @@ async function tvLoop() {
   tvBusy = true;
   try { await tvr.tick((days[baghdadDate(0)]?.matches || []).map(locMatch)); } catch (e) { log('tv:', e.message); } finally { tvBusy = false; }
 }
+// Viewers' answers to «هاي المباراة الصحيحة؟» (12 Nov 2026): AM's copies of one channel (F / NM / SA) show different
+// matches, so the copy viewers said yes to is sent as tvCh (the exact channel name) and opened first.
+let tvVotes = readJson('tvvotes.json', {});          // match id -> { channel name: yes minus no }
+const voted = new Map();                             // match id + ip + channel -> time (one answer each)
+let votesDirty = false;
+setInterval(() => { if (votesDirty) { votesDirty = false; writeJson('tvvotes.json', tvVotes); } }, 30000);
+function tvPick(id) {
+  const v = tvVotes[id];
+  if (!v) return '';
+  let best = '', n = 0;
+  for (const [c, k] of Object.entries(v)) if (k > n) { n = k; best = c; }
+  return best;
+}
 function withTv(m) {
   const o = locMatch(m);
-  if (o && typeof o === 'object') { const t = tvr.of(o); if (t) { o.tv = t; o.tvAr = tvr.arOf(o); } }
+  if (o && typeof o === 'object') {
+    const t = tvr.of(o); if (t) { o.tv = t; o.tvAr = tvr.arOf(o); }
+    const c = tvPick(o.id); if (c) o.tvCh = c;
+  }
   return o;
 }
 
@@ -576,6 +592,25 @@ const server = http.createServer(async (req, res) => {
       if (!day && nearDate(d) && canSpend('day') && mayAsk('day')) { await fetchDay(d); day = days[d]; }
       if (!day) return send(res, 503, { error: 'not ready', limit: left() <= 10 });
       return send(res, 200, { date: d, at: day.at, leagues: leagues.map(l => ({ id: l.id, name: l.ar })), matches: day.matches.map(withTv) });
+    }
+    if (url.pathname === '/v1/tvvote') {
+      const id = +url.searchParams.get('id');
+      const ch = (url.searchParams.get('ch') || '').trim().slice(0, 120);
+      const ok = url.searchParams.get('ok') === '1';
+      const known = Object.values(days).some(d => d.matches.some(m => m.id === id));
+      if (!id || !ch || !known) return send(res, 400, { error: 'id' });
+      const k = id + '|' + ip + '|' + ch;
+      if (!voted.has(k)) {
+        voted.set(k, Date.now());
+        if (voted.size > 20000) voted.clear();
+        const v = (tvVotes[id] ??= {});
+        v[ch] = (v[ch] || 0) + (ok ? 1 : -1);
+        votesDirty = true;
+        // Only this week's matches are kept.
+        for (const x of Object.keys(tvVotes)) if (!Object.values(days).some(d => d.matches.some(m => String(m.id) === x))) delete tvVotes[x];
+        log('tv vote', id, ok ? 'yes' : 'no', ch);
+      }
+      return send(res, 200, { ok: true, tvCh: tvPick(id) });
     }
     if (url.pathname === '/v1/match') {
       const id = +url.searchParams.get('id');
