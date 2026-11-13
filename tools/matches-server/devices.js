@@ -353,18 +353,40 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
     });
   }
 
-  // For Maytham (support): /v1/dev/admin?key=STATUS_KEY&user=<username>&do=list | reset (the devices choose a main again) | wipe
-  function admin(url) {
-    if (!statusKey || url.searchParams.get('key') !== statusKey) return [403, { error: 'key' }];
+  // For Maytham (support page /support, or by hand): /v1/dev/admin?key=STATUS_KEY&user=<username>&do=list | reset (the devices
+  // choose a main again) | wipe (the subscription starts fresh) | remove&did=<device> (that device leaves and never rejoins by itself).
+  // A wrong key 10 times in an hour from one address locks that address out for the hour.
+  const bad = new Map();
+  function admin(url, ip) {
+    const b = bad.get(ip);
+    if (b && b.n >= 10 && now() - b.t < 3600000) return [429, { error: 'wait' }];
+    if (!statusKey || url.searchParams.get('key') !== statusKey) {
+      const x = b && now() - b.t < 3600000 ? b : { n: 0, t: now() };
+      x.n++; bad.set(ip, x); log('dev: admin wrong key', ip, x.n);
+      return [403, { error: 'key' }];
+    }
+    bad.delete(ip);
     const user = (url.searchParams.get('user') || '').trim().toLowerCase();
     const todo = url.searchParams.get('do') || 'list';
     if (!user) return [200, { subscriptions: Object.keys(subs).length, links: links.size, playing: playing.size }];
     const found = Object.entries(subs).filter(([, s]) => (s.label || '').toLowerCase().split('@')[0] === user);
     const res = found.map(([sub, s]) => {
-      if (todo === 'reset') { s.main = null; s.at = now(); save(); }
-      if (todo === 'wipe') { delete subs[sub]; playing.delete(sub); save(); }
-      return { label: s.label, main: s.main ? s.devices[s.main]?.name : null, done: todo,
-        devices: Object.values(s.devices).map(d => ({ name: d.name, type: d.type, model: d.model, temp: !!d.until, seen: new Date(d.seen || 0).toISOString() })) };
+      let done = todo;
+      if (todo === 'reset') { s.main = null; s.at = now(); save(); log('dev: admin reset', s.label); }
+      if (todo === 'wipe') { delete subs[sub]; playing.delete(sub); save(); log('dev: admin wipe', s.label); }
+      if (todo === 'remove') {
+        const did = url.searchParams.get('did') || '';
+        if (s.devices[did]) {
+          delete s.devices[did];
+          (s.gone ||= {})[did] = now();
+          if (s.main === did) s.main = null;
+          if (playing.get(sub)?.did === did) playing.delete(sub);
+          save(); log('dev: admin remove', s.label);
+        } else done = 'list';
+      }
+      return { label: s.label, main: s.main ? s.devices[s.main]?.name : null, done, gone: todo === 'wipe',
+        devices: Object.entries(s.devices).map(([did, d]) => ({ did, name: d.name, type: d.type, model: d.model, main: s.main === did,
+          temp: !!d.until, until: d.until || 0, watching: isPlaying(sub, did), seen: new Date(d.seen || 0).toISOString() })) };
     });
     return [200, { found: res.length, result: res }];
   }
@@ -372,7 +394,7 @@ module.exports = function make({ secret, statusKey, readJson, writeJson, log }) 
   /** Answers /v1/dev/... requests. Returns [code, object]. */
   async function handle(req, url, ip) {
     const name = url.pathname.slice('/v1/dev/'.length);
-    if (name === 'admin') return admin(url);
+    if (name === 'admin') return admin(url, ip);
     if (req.method !== 'POST' || !Object.prototype.hasOwnProperty.call(acts, name)) return [404, { error: 'path' }];
     if (busy(ip, 900)) return [429, { error: 'slow' }];
     let body;

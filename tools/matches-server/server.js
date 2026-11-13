@@ -563,6 +563,15 @@ const server = http.createServer(async (req, res) => {
       return send(res, 200, { day: budget.day, used: budget.used, left: left(), limit: DAILY_LIMIT, liveEveryMin: LIVE_EVERY_MIN,
         days: Object.fromEntries(Object.entries(days).map(([k, v]) => [k, v.matches.length])), leagues: seen, tv: tvr.status(), fill: fill.status(), requests: budget.log });
     }
+    // The support page (devices of a subscriber: reset the main one, remove a device). The page holds no key: Maytham types it.
+    if (url.pathname === '/support') {
+      let page = '';
+      try { page = fs.readFileSync(path.join(__dirname, 'support.html'), 'utf8'); } catch (e) {}
+      if (!page) { res.writeHead(404); return res.end(); }
+      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex',
+        'X-Frame-Options': 'DENY', 'Referrer-Policy': 'no-referrer' });
+      return res.end(page);
+    }
     // The kept copy of config.json (public, like the one on GitHub). Before the per-address limit: many homes share one address.
     if (url.pathname === '/config.json') {
       if (!configText) { res.writeHead(404); return res.end(); }

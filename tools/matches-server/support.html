@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>دعم Jaguar X</title>
+<style>
+  :root { --bg:#0E0F12; --panel:#15171C; --card:#1B1E24; --sel:#2A2410; --y:#FFC20E; --t:#F5F5F5; --s:#A9ADB8; --red:#FF8A80; --green:#7BD88F; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--t); font-family: system-ui, "Segoe UI", Tahoma, sans-serif; font-size:16px; }
+  main { max-width:620px; margin:0 auto; padding:20px 16px 40px; }
+  h1 { font-size:22px; margin:4px 0 18px; } h1 b { color:var(--y); }
+  .box { background:var(--panel); border-radius:16px; padding:16px; margin-bottom:14px; }
+  label { display:block; color:var(--s); font-size:14px; margin-bottom:6px; }
+  input { width:100%; background:var(--card); color:var(--t); border:1.5px solid transparent; border-radius:12px; padding:13px 14px; font-size:17px; outline:none; direction:ltr; text-align:left; }
+  input:focus { border-color:var(--y); }
+  .row { display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; }
+  button { flex:1; min-width:140px; background:var(--card); color:var(--t); border:1.5px solid transparent; border-radius:12px; padding:13px 14px; font-size:16px; font-weight:700; cursor:pointer; }
+  button:focus-visible, button:hover { border-color:var(--y); }
+  button.warn { color:var(--red); } button.sure { border-color:var(--red); }
+  button:disabled { opacity:.5; }
+  .small { flex:none; min-width:0; padding:8px 12px; font-size:14px; }
+  .msg { margin-top:10px; font-size:15px; } .ok { color:var(--green); } .err { color:var(--red); }
+  .dev { background:var(--card); border-radius:12px; padding:12px 14px; margin-top:10px; display:flex; align-items:center; gap:10px; }
+  .dev .n { font-weight:700; } .dev .d { color:var(--s); font-size:13px; margin-top:3px; }
+  .tag { display:inline-block; background:var(--sel); color:var(--y); font-size:12px; font-weight:700; border-radius:8px; padding:2px 8px; margin-inline-start:6px; }
+  .grow { flex:1; min-width:0; }
+  .help { color:var(--s); font-size:14px; line-height:1.7; }
+  .hide { display:none; }
+</style>
+</head>
+<body>
+<main>
+  <h1>دعم Jaguar <b>X</b>: أجهزة المشتركين</h1>
+
+  <div class="box" id="keyBox">
+    <label for="key">المفتاح السري (يتحفظ بهذا المتصفح)</label>
+    <input id="key" type="password" autocomplete="off">
+    <div class="row"><button id="saveKey">حفظ</button></div>
+  </div>
+
+  <div class="box" id="findBox">
+    <label for="user">اسم مستخدم المشترك</label>
+    <input id="user" autocomplete="off" autocapitalize="none" spellcheck="false">
+    <div class="row">
+      <button id="find">بحث</button>
+      <button id="forget" class="small">تغيير المفتاح</button>
+    </div>
+    <div id="msg" class="msg"></div>
+  </div>
+
+  <div id="out"></div>
+
+  <div class="box help">
+    • <b>صفّر الجهاز الرئيسي</b>: إذا ضاع أو عطل جهازه الرئيسي. أجهزته تبقى، والمشترك يدخل من أي جهاز ويروح «الإعدادات ← أجهزتي» ويدوس «خلي هذا الجهاز الرئيسي».<br>
+    • <b>احذف</b> جنب جهاز: يطلع ذاك الجهاز وما يرجع وحده.<br>
+    • <b>امسح كل أجهزته</b>: الاشتراك يرجع جديد، وأول جهاز يدخل يصير الرئيسي.<br>
+    • إذا الجهاز انسرق: غيّر باسورده بالبانل هم.
+  </div>
+</main>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = 'jxSupportKey';
+  function getKey() { try { return localStorage.getItem(KEY) || ''; } catch (e) { return ''; } }
+  function setKey(v) { try { v ? localStorage.setItem(KEY, v) : localStorage.removeItem(KEY); } catch (e) {} }
+  function showKey(ask) { $('keyBox').classList.toggle('hide', !ask); $('findBox').classList.toggle('hide', ask); }
+  function say(t, ok) { $('msg').textContent = t; $('msg').className = 'msg ' + (ok ? 'ok' : 'err'); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]; }); }
+  function ago(iso) {
+    var t = Date.parse(iso); if (!t) return 'ما معروف';
+    var m = Math.round((Date.now() - t) / 60000);
+    if (m < 2) return 'هسه'; if (m < 60) return 'قبل ' + m + ' دقيقة';
+    var h = Math.round(m / 60); if (h < 24) return 'قبل ' + h + ' ساعة';
+    return 'قبل ' + Math.round(h / 24) + ' يوم';
+  }
+  function kind(t) { return { tv: 'تلفزيون', box: 'بوكس', phone: 'موبايل', tablet: 'تابلت' }[t] || 'جهاز'; }
+
+  async function call(todo, did) {
+    var user = $('user').value.trim();
+    if (!user) { say('اكتب اسم المستخدم.'); return; }
+    var q = new URLSearchParams({ key: getKey(), user: user, do: todo });
+    if (did) q.set('did', did);
+    say('لحظة…', true);
+    var r;
+    try { r = await fetch('/v1/dev/admin?' + q.toString(), { cache: 'no-store' }); }
+    catch (e) { say('ما كدرت أوصل للسيرفر.'); return; }
+    if (r.status === 403) { say('المفتاح غلط.'); setKey(''); showKey(true); return; }
+    if (r.status === 429) { say('هواي محاولات غلط. جرّب بعد ساعة.'); return; }
+    var j = await r.json().catch(function () { return null; });
+    if (!j || !j.result) { say('صار خطأ بالسيرفر.'); return; }
+    draw(j, todo);
+  }
+
+  function draw(j, todo) {
+    var out = $('out'); out.innerHTML = '';
+    if (!j.found) { say('ماكو اشتراك بهذا الاسم عدنا (يمكن بعده ما فتح التطبيق الجديد).'); return; }
+    var done = { reset: 'تم التصفير ✓ هسه يختار جهاز رئيسي جديد.', wipe: 'انمسحت كل أجهزته ✓ أول جهاز يدخل يصير الرئيسي.', remove: 'انحذف الجهاز ✓' };
+    j.result.forEach(function (s) {
+      if (s.gone) { say(done.wipe, true); return; }
+      say(done[s.done] || ('لگيته ✓ ' + s.devices.length + ' أجهزة'), true);
+      var box = document.createElement('div'); box.className = 'box';
+      var h = '<div class="help">الاشتراك: <b>' + esc(s.label) + '</b><br>الجهاز الرئيسي: <b>' + (s.main ? esc(s.main) : 'ماكو (يختارون)') + '</b></div>';
+      s.devices.forEach(function (d) {
+        var tags = (d.main ? '<span class="tag">الرئيسي</span>' : '') + (d.temp ? '<span class="tag">مؤقت</span>' : '') + (d.watching ? '<span class="tag">يشاهد هسه</span>' : '');
+        h += '<div class="dev"><div class="grow"><div class="n">' + esc(d.name || 'بلا اسم') + tags + '</div>' +
+             '<div class="d">' + kind(d.type) + (d.model ? ' • ' + esc(d.model) : '') + ' • آخر مرة: ' + ago(d.seen) + '</div></div>' +
+             '<button class="small warn" data-did="' + esc(d.did) + '">احذف</button></div>';
+      });
+      if (!s.devices.length) h += '<div class="help" style="margin-top:10px">ماكو أجهزة.</div>';
+      h += '<div class="row"><button id="reset">صفّر الجهاز الرئيسي</button><button id="wipe" class="warn">امسح كل أجهزته</button></div>';
+      box.innerHTML = h; out.appendChild(box);
+    });
+    // Each change asks once more on the same button, so a stray tap does nothing.
+    out.querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (!b.classList.contains('sure')) {
+          out.querySelectorAll('button.sure').forEach(function (x) { x.classList.remove('sure'); x.textContent = x.dataset.t; });
+          b.dataset.t = b.textContent; b.classList.add('sure'); b.textContent = 'متأكد؟ دوس مرة ثانية'; return;
+        }
+        b.disabled = true;
+        if (b.id === 'reset') call('reset'); else if (b.id === 'wipe') call('wipe'); else call('remove', b.dataset.did);
+      });
+    });
+  }
+
+  $('saveKey').onclick = function () { var v = $('key').value.trim(); if (!v) return; setKey(v); $('key').value = ''; showKey(false); $('user').focus(); };
+  $('key').onkeydown = function (e) { if (e.key === 'Enter') $('saveKey').click(); };
+  $('find').onclick = function () { call('list'); };
+  $('user').onkeydown = function (e) { if (e.key === 'Enter') call('list'); };
+  $('forget').onclick = function () { setKey(''); $('out').innerHTML = ''; say(''); showKey(true); };
+  showKey(!getKey());
+})();
+</script>
+</body>
+</html>
