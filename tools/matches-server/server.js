@@ -420,11 +420,17 @@ async function tick() {
 
 // The channel of each of today's matches, read from yallashoot (tv.js), on its own so a slow site never holds the live updates.
 const tvr = require('./tv').create({ log, readJson, writeJson, today: () => baghdadDate(0) });
+// Matches API-Football doesn't carry (13 Nov 2026: Iraq × Lebanon, Basra tournament): ESPN for chosen teams + hand-added ones.
+const fill = require('./fill').create({ log, teamAr: t => teamAr(t),
+  readConfig: () => { try { return JSON.parse(configText || readConfigCopy() || 'null'); } catch { return null; } } });
+const allOf = d => { const l = days[d]?.matches || []; return [...l, ...fill.of(d, l)]; };
+async function fillLoop() { try { await fill.tick([baghdadDate(0), baghdadDate(1)]); } catch (e) { log('fill:', e.message); } }
 let tvBusy = false;
 async function tvLoop() {
   if (tvBusy) return;
   tvBusy = true;
-  try { await tvr.tick((days[baghdadDate(0)]?.matches || []).map(locMatch)); } catch (e) { log('tv:', e.message); } finally { tvBusy = false; }
+  const today = days[baghdadDate(0)]?.matches || [];
+  try { await tvr.tick([...today, ...fill.of(baghdadDate(0), today)].map(locMatch)); } catch (e) { log('tv:', e.message); } finally { tvBusy = false; }
 }
 // Viewers' answers to «هاي المباراة الصحيحة؟» (12 Nov 2026): AM's copies of one channel (F / NM / SA) show different
 // matches, so the copy viewers said yes to is sent as tvCh (the exact channel name) and opened first.
@@ -443,6 +449,7 @@ function withTv(m) {
   const o = locMatch(m);
   if (o && typeof o === 'object') {
     const t = tvr.of(o); if (t) { o.tv = t; o.tvAr = tvr.arOf(o); }
+    if (m.handTv) { o.tv = m.handTv; delete o.handTv; }
     const c = tvPick(o.id); if (c) o.tvCh = c;
   }
   return o;
@@ -511,7 +518,8 @@ function tooMany(ip) {
 // Names are put in Arabic when sent (not only when kept), so a fix in names.json shows at once on kept days too.
 function locSide(sd) {
   if (!sd || typeof sd !== 'object') return sd;
-  const o = { ...sd, name: teamAr({ id: sd.id, name: sd.en || sd.name }) };
+  // A match added by hand (fill.js) already has its Arabic name and no English one.
+  const o = { ...sd, name: !sd.en && /[\u0600-\u06FF]/.test(sd.name || '') ? sd.name : teamAr({ id: sd.id, name: sd.en || sd.name }) };
   const src = teamLogo[ar.key(sd.en || '')];
   if (src && sd.id) { teamLogoId[sd.id] = src; o.logo = PUBLIC_URL + '/logo/team/' + sd.id + '.png?v=' + crypto.createHash('sha1').update(src).digest('hex').slice(0, 8); }
   return o;
@@ -553,7 +561,7 @@ const server = http.createServer(async (req, res) => {
       if (url.pathname === '/missing') return send(res, 200, missing);
       rollDay();
       return send(res, 200, { day: budget.day, used: budget.used, left: left(), limit: DAILY_LIMIT, liveEveryMin: LIVE_EVERY_MIN,
-        days: Object.fromEntries(Object.entries(days).map(([k, v]) => [k, v.matches.length])), leagues: seen, tv: tvr.status(), requests: budget.log });
+        days: Object.fromEntries(Object.entries(days).map(([k, v]) => [k, v.matches.length])), leagues: seen, tv: tvr.status(), fill: fill.status(), requests: budget.log });
     }
     // The kept copy of config.json (public, like the one on GitHub). Before the per-address limit: many homes share one address.
     if (url.pathname === '/config.json') {
@@ -591,13 +599,13 @@ const server = http.createServer(async (req, res) => {
       // Another day than today / tomorrow: fetched once when someone asks, then kept.
       if (!day && nearDate(d) && canSpend('day') && mayAsk('day')) { await fetchDay(d); day = days[d]; }
       if (!day) return send(res, 503, { error: 'not ready', limit: left() <= 10 });
-      return send(res, 200, { date: d, at: day.at, leagues: leagues.map(l => ({ id: l.id, name: l.ar })), matches: day.matches.map(withTv) });
+      return send(res, 200, { date: d, at: day.at, leagues: leagues.map(l => ({ id: l.id, name: l.ar })), matches: allOf(d).map(withTv) });
     }
     if (url.pathname === '/v1/tvvote') {
       const id = +url.searchParams.get('id');
       const ch = (url.searchParams.get('ch') || '').trim().slice(0, 120);
       const ok = url.searchParams.get('ok') === '1';
-      const known = Object.values(days).some(d => d.matches.some(m => m.id === id));
+      const known = Object.keys(days).some(d => allOf(d).some(m => m.id === id));
       if (!id || !ch || !known) return send(res, 400, { error: 'id' });
       const k = id + '|' + ip + '|' + ch;
       if (!voted.has(k)) {
@@ -607,7 +615,7 @@ const server = http.createServer(async (req, res) => {
         v[ch] = (v[ch] || 0) + (ok ? 1 : -1);
         votesDirty = true;
         // Only this week's matches are kept.
-        for (const x of Object.keys(tvVotes)) if (!Object.values(days).some(d => d.matches.some(m => String(m.id) === x))) delete tvVotes[x];
+        for (const x of Object.keys(tvVotes)) if (!Object.keys(days).some(d => allOf(d).some(m => String(m.id) === x))) delete tvVotes[x];
         log('tv vote', id, ok ? 'yes' : 'no', ch);
       }
       return send(res, 200, { ok: true, tvCh: tvPick(id) });
@@ -615,6 +623,8 @@ const server = http.createServer(async (req, res) => {
     if (url.pathname === '/v1/match') {
       const id = +url.searchParams.get('id');
       if (!id) return send(res, 400, { error: 'id' });
+      // ESPN / hand-added matches (fill.js) have nothing more than the day list, and API-Football doesn't know them.
+      if (id >= 8e9) { const f = Object.keys(days).flatMap(allOf).find(m => m.id === id); return f ? send(res, 200, { match: locMatch(f) }) : send(res, 404, { error: 'none' }); }
       let d = details[id];
       const known = Object.values(days).flatMap(x => x.matches).find(m => m.id === id);
       // Nothing kept yet (e.g. a match days away): one request, kept 6 hours.
@@ -715,6 +725,8 @@ if (process.argv.includes('--coverage')) {
   loop();
   setInterval(loop, 60000);
   setTimeout(tvLoop, 20000);
+  setTimeout(fillLoop, 10000);
+  setInterval(fillLoop, 60000);
   setInterval(tvLoop, 5 * 60000);
   configText = readConfigCopy();
   syncConfig();

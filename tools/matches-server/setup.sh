@@ -38,7 +38,7 @@ fi
 say "ملفات الخدمة"
 id jaguar >/dev/null 2>&1 || useradd --system --home "$APP" --shell /usr/sbin/nologin jaguar
 mkdir -p "$APP/data"
-for f in server.js arabic.js devices.js tv.js leagues.json names.json; do curl -fsSL "$RAW/$f" -o "$APP/$f"; done
+for f in server.js arabic.js devices.js tv.js fill.js leagues.json names.json; do curl -fsSL "$RAW/$f" -o "$APP/$f"; done
 # names.json is downloaded only the first time (later you may add names on the server).
 [ -f "$APP/names.json" ] || curl -fsSL "$RAW/names.json" -o "$APP/names.json"
 
