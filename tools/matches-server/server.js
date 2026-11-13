@@ -220,8 +220,8 @@ async function api(pathAndQuery, kind) {
 const LIVE = new Set(['1H', 'HT', '2H', 'ET', 'BT', 'P', 'SUSP', 'INT', 'LIVE']);
 const DONE = new Set(['FT', 'AET', 'PEN', 'AWD', 'WO']);
 const OFF = new Set(['PST', 'CANC', 'ABD']);
-const statusAr = { NS: '', TBD: 'الوكت مو محدد', HT: 'استراحة', FT: 'انتهت', AET: 'انتهت (أشواط إضافية)', PEN: 'انتهت (ترجيح)',
-  PST: 'تأجلت', CANC: 'ألغيت', ABD: 'توقفت', SUSP: 'متوقفة', INT: 'متوقفة', BT: 'استراحة', P: 'ركلات ترجيح', ET: 'أشواط إضافية' };
+const statusAr = { NS: '', TBD: 'الوكت مو محدد', HT: 'استراحة بين الشوطين', FT: 'انتهت', AET: 'انتهت (أشواط إضافية)', PEN: 'انتهت (ترجيح)',
+  PST: 'تأجلت', CANC: 'ألغيت', ABD: 'توقفت', SUSP: 'متوقفة', INT: 'متوقفة', BT: 'استراحة قبل الأشواط الإضافية', P: 'ركلات ترجيح', ET: 'أشواط إضافية' };
 
 function state(short) { return LIVE.has(short) ? 'in' : DONE.has(short) ? 'post' : OFF.has(short) ? 'off' : 'pre'; }
 
