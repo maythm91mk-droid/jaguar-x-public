@@ -1,5 +1,5 @@
 {
-  "serial": 20,
+  "serial": 21,
   "devicesBeta": {
     "on": true,
     "api": "https://api.jaguarxiq.com"
@@ -39,8 +39,8 @@
   "support": "07851700800",
   "message": "",
   "latest": {
-    "versionCode": 47,
-    "versionName": "1.9.10",
+    "versionCode": 48,
+    "versionName": "1.9.11",
     "notes": "",
     "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX.apk",
     "minVersionCode": 0
@@ -1712,7 +1712,7 @@
   },
   "whatsNew": {
     "versionCode": 46,
-    "title": "تحديث 1.9.10",
+    "title": "تحديث 1.9.11",
     "items": [
       {
         "icon": "devices",
