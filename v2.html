@@ -58,14 +58,14 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
 @media (hover:hover){.bar nav a:hover{color:var(--y)}}
 
 /* Hero (v2): centered headline over the product, TV straightens on scroll, counting stats */
-.hero{position:relative;padding:clamp(40px,7vw,104px) var(--m) 0;text-align:center;isolation:isolate}
+.hero{position:relative;padding:clamp(24px,3.2vw,48px) var(--m) 0;text-align:center;isolation:isolate}
 .hero::before{content:"";position:absolute;inset:auto 0 -10% 0;height:80%;z-index:-1;pointer-events:none;
   background:radial-gradient(60% 55% at 50% 60%,rgba(255,197,0,.22),rgba(255,197,0,0) 70%);animation:breathe 9s ease-in-out infinite alternate}
 @keyframes breathe{from{opacity:.55;transform:scale(.96)}to{opacity:1;transform:scale(1.04)}}
-.card{display:flex;flex-direction:column;align-items:center;gap:22px;max-width:980px;margin-inline:auto}
+.card{display:flex;flex-direction:column;align-items:center;gap:18px;max-width:1240px;margin-inline:auto}
 .pill{display:inline-flex;align-items:center;gap:10px;padding:6px 16px 6px 8px;border-radius:99px;background:var(--step);font-size:var(--s-s);color:var(--muted)}
 .pill i{font-style:normal;background:var(--y);color:var(--on-y);font-weight:700;border-radius:99px;padding:2px 10px}
-.card h1{font-size:clamp(40px,6.4vw,100px);line-height:1.15;letter-spacing:-.01em}
+.card h1{font-size:clamp(38px,4.8vw,76px);line-height:1.15;letter-spacing:-.01em}
 .card h1 em{font-style:normal;color:var(--y)}
 .card>p{font-size:clamp(18px,1.5vw,22px);max-width:36em;color:var(--muted)}
 .acts{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 26px}
@@ -81,9 +81,9 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
 .hph{position:absolute;inset-inline-start:max(2%,calc(50% - 640px));bottom:-6%;width:clamp(110px,15vw,210px);aspect-ratio:9/19.5;border-radius:28px;overflow:hidden;border:7px solid #1b1d22;background:#000;
   box-shadow:0 30px 80px rgba(0,0,0,.7);transform:translateY(var(--py,40px))}
 .hph img{width:100%;height:100%;object-fit:cover;object-position:50% 0}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);max-width:1240px;margin:clamp(64px,7vw,112px) auto 0}
-.stats div{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;min-height:clamp(150px,13vw,200px);background:var(--step);border-radius:var(--r);padding:clamp(20px,2.4vw,36px) 12px}
-.stats b{display:block;font-size:clamp(34px,3.6vw,58px);font-weight:700;line-height:1;direction:ltr;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);max-width:1240px;margin:6px auto 4px;width:100%}
+.stats div{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;min-height:clamp(112px,9vw,140px);background:var(--step);border-radius:var(--r);padding:clamp(16px,1.6vw,24px) 12px}
+.stats b{display:block;font-size:clamp(32px,3.2vw,52px);font-weight:700;line-height:1;direction:ltr;font-variant-numeric:tabular-nums;white-space:nowrap}
 .stats span{color:var(--muted);font-size:clamp(15px,1.25vw,18px)}
 .stats .price-card{box-shadow:inset 0 0 0 var(--ring) var(--y)}
 .stats .price-card b{color:var(--y)}
@@ -328,7 +328,7 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
   .card h1{font-size:clamp(34px,10vw,44px);line-height:1.3}
   .hph{width:28%;bottom:-10%;border-width:5px;border-radius:18px}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .stats div{min-height:128px}
+  .stats div{min-height:104px}
   .stats b{font-size:clamp(28px,8.6vw,36px)}
   .pick h2{margin-block-end:14px}
   .names button{font-size:18px;padding:8px 14px}
@@ -390,10 +390,13 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
   <div class="card">
     <span class="pill rv"><i>جديد</i> اشتراك شهر بـ <bdi>5,000</bdi> دينار</span>
     <h1 class="rv">كل قنواتك وأفلامك<br><em>بتطبيق واحد</em></h1>
-    <p class="rv" style="--d:80ms"><bdi>Jaguar X</bdi> يجمعلك البث المباشر والأفلام والمسلسلات والراديو على التلفزيون والموبايل، والاشتراك يبدي من <bdi>5,000</bdi> دينار بالشهر.</p>
-    <ul class="chips rv" style="--d:120ms" aria-label="أهم المميزات">
-      <li>بث مباشر</li><li>أفلام</li><li>مسلسلات</li><li>راديو</li>
-    </ul>
+    <p class="rv" style="--d:80ms"><bdi>Jaguar X</bdi> يجمعلك البث المباشر والأفلام والمسلسلات والراديو على التلفزيون والموبايل.</p>
+    <div class="stats" id="stats">
+    <div class="rv"><b data-n="25000" data-sep data-plus>+25,000</b><span>قناة</span></div>
+    <div class="rv" style="--d:70ms"><b data-n="50000" data-sep data-plus>+50,000</b><span>فلم</span></div>
+    <div class="rv" style="--d:140ms"><b data-n="100000" data-sep data-plus>+100,000</b><span>مسلسل</span></div>
+    <div class="rv price-card" style="--d:210ms"><b data-n="5000" data-sep>5,000</b><span>دينار يبدي الاشتراك</span></div>
+  </div>
     <div class="dlpick rv" style="--d:160ms">
       <a href="#dl-phone"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><rect x="10" y="4.3" width="4" height="1.6" rx=".8" fill="currentColor" stroke="none"/></svg><span><strong>تنزيل للموبايل</strong><small>رابط مباشر</small></span></a>
       <a href="#dl-tv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M5 17l-1 3M19 17l1 3"/></svg><span><strong>تنزيل للتلفزيون</strong><small>شاشة أو تي في بوكس</small></span></a>
@@ -412,12 +415,6 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
     <img src="img/tv-02-series.jpg" width="1600" height="900" alt="صفحة المسلسلات على التلفزيون" loading="lazy">
   </figure>
   <div class="hph" id="hph"><img src="img/ph-01-home.jpg" alt="Jaguar X على الموبايل"></div>
-  </div>
-  <div class="stats" id="stats">
-    <div class="rv"><b data-n="25000" data-sep data-plus>+25,000</b><span>قناة</span></div>
-    <div class="rv" style="--d:70ms"><b data-n="50000" data-sep data-plus>+50,000</b><span>فلم</span></div>
-    <div class="rv" style="--d:140ms"><b data-n="100000" data-sep data-plus>+100,000</b><span>مسلسل</span></div>
-    <div class="rv price-card" style="--d:210ms"><b data-n="5000" data-sep>5,000</b><span>دينار يبدي الاشتراك</span></div>
   </div>
 </section>
 
