@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Jaguar X</title>
 <meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jaguar X">
+<meta property="og:title" content="Jaguar X: كل قنواتك وأفلامك بتطبيق واحد">
+<meta property="og:description" content="بث مباشر، أفلام، مسلسلات ويوتيوب على التلفزيون والموبايل. الاشتراك يبدي من 5,000 دينار.">
+<meta property="og:url" content="https://jaguarxiq.com/">
+<meta property="og:image" content="https://jaguarxiq.com/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ar_IQ">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="Jaguar X تطبيق للمشتركين على التلفزيون والتي في بوكس والموبايل: بث مباشر، أفلام، مسلسلات وراديو. الاشتراك يبدي من 5,000 دينار بالشهر.">
 <meta name="theme-color" content="#0E0F12">
 <link rel="icon" href="img/logo.png">
@@ -145,6 +155,23 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
 .ppimgs img{display:block;width:100%;height:auto;border-radius:14px}
 .ppimgs figcaption{text-align:center;font-size:14px;color:var(--muted);margin-block-start:6px}
 .pptv{display:block;width:100%;max-width:560px;height:auto;margin:16px auto 0;border-radius:12px}
+
+/* v2: what's new in the app */
+.news{padding-inline:var(--m)}
+.news-head{max-width:1240px;margin:0 auto clamp(24px,3vw,40px)}
+.newsgrid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(12px,1.4vw,20px);max-width:1240px;margin-inline:auto}
+.nc{position:relative;display:flex;flex-direction:column;gap:10px;background:var(--step);border-radius:var(--r);padding:clamp(20px,2.2vw,32px) clamp(20px,2.2vw,32px) 0;overflow:hidden;min-height:clamp(460px,40vw,580px)}
+.nc.main{box-shadow:inset 0 0 0 var(--ring) var(--y);background:radial-gradient(80% 60% at 50% 100%,rgba(255,197,0,.16),rgba(255,197,0,0) 70%),var(--step)}
+.nc .ntag{align-self:flex-start;background:var(--y);color:var(--on-y);font-size:13px;font-weight:700;border-radius:99px;padding:3px 12px}
+.nc h3{font-size:clamp(22px,1.9vw,30px);font-weight:700}
+.nc p{color:var(--muted);font-size:17px;line-height:1.55;max-width:28em}
+.nc .where{font-size:var(--s-s);color:var(--y)}
+.nc .shot2{width:min(68%,250px);aspect-ratio:600/1244;margin:auto auto 0;transform:translateY(18%);border-radius:28px 28px 0 0;border:7px solid #1b1d22;border-bottom:0;overflow:hidden;background:#000;box-shadow:0 -20px 60px rgba(0,0,0,.45);transition:transform 500ms var(--ease-out)}
+.nc .shot2 img{width:100%;height:auto;display:block}
+@media (hover:hover){.nc:hover .shot2{transform:translateY(12%)}}
+.more{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:1240px;margin:clamp(16px,2vw,24px) auto 0}
+.more li{background:var(--step2);border-radius:99px;padding:6px 16px;font-size:16px;color:var(--muted)}
+.more li b{color:var(--ink);font-weight:600}
 
 /* Remote showcase */
 .show{display:flex;flex-direction:column;align-items:center;gap:clamp(20px,3vw,36px);text-align:center}
@@ -328,6 +355,9 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
   .card h1{font-size:clamp(34px,10vw,44px);line-height:1.3}
   .hph{width:28%;bottom:-10%;border-width:5px;border-radius:18px}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .newsgrid{grid-template-columns:minmax(0,1fr)}
+  .nc{min-height:0}
+  .nc .shot2{width:min(62%,230px);margin-block-start:14px}
   .stats div{min-height:104px}
   .stats b{font-size:clamp(28px,8.6vw,36px)}
   .pick h2{margin-block-end:14px}
@@ -375,6 +405,7 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
 <header class="bar">
   <a class="mark" href="#main" aria-label="Jaguar X"><img src="img/logo.png" width="46" height="46" alt=""><span>Jaguar <b>X</b></span></a>
   <nav aria-label="أقسام الصفحة">
+    <a href="#new">الجديد</a>
     <a href="#try">التطبيق</a>
     <a href="#features">المميزات</a>
     <a href="#subs">الترجمة</a>
@@ -416,6 +447,40 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
   </figure>
   <div class="hph" id="hph"><img src="img/ph-01-home.jpg" alt="Jaguar X على الموبايل"></div>
   </div>
+</section>
+
+<section class="sec news" id="new">
+  <div class="news-head">
+    <span class="eye rv">جديد بالتطبيق</span>
+    <h2 class="rv">آخر تحديث جاب هاي الميزات</h2>
+  </div>
+  <div class="newsgrid">
+    <article class="nc main rv">
+      <span class="ntag">حماية</span>
+      <h3>اشتراكك محمي، ومحد يدخل بيه بدون إذنك</h3>
+      <p>جهازك الرئيسي هو اللي يقرر. أي جهاز جديد يطلعله باركود، وأنت توافق عليه أو ترفضه. ويشتغل جهاز واحد بالوقت، فإذا أحد ثاني دا يشاهد، أنت تقرر تفصله لو تخليه يكمل.</p>
+      <span class="where">الإعدادات ← أجهزتي</span>
+      <div class="shot2"><img src="img/new-devices.jpg" width="600" height="1244" loading="lazy" alt="صفحة أجهزتي: الجهاز الرئيسي والأجهزة المربوطة بالاشتراك"></div>
+    </article>
+    <article class="nc rv" style="--d:80ms">
+      <span class="ntag">مباشر هسه</span>
+      <h3>المباراة بضغطة وحدة</h3>
+      <p>كارت بالواجهة يبين المباريات اللي دتنلعب هسه ونتيجتها. دوس عليها والتطبيق يفتحلك القناة الناقلة بنفسه.</p>
+      <span class="where">الواجهة الرئيسية ← مباشر هسه</span>
+      <div class="shot2"><img src="img/new-home.jpg" width="600" height="1244" loading="lazy" alt="الواجهة الرئيسية وبيها كارت مباشر هسه وزر يوتيوب"></div>
+    </article>
+    <article class="nc rv" style="--d:160ms">
+      <span class="ntag">يوتيوب</span>
+      <h3>يوتيوب كامل داخل التطبيق</h3>
+      <p>ابحث وشوف أي فيديو بدون ما تطلع من التطبيق، على الموبايل والتلفزيون.</p>
+      <span class="where">الواجهة الرئيسية ← يوتيوب</span>
+      <div class="shot2"><img src="img/new-youtube.jpg" width="600" height="1244" loading="lazy" alt="يوتيوب مفتوح داخل تطبيق Jaguar X"></div>
+    </article>
+  </div>
+  <ul class="more rv">
+    <li><b>مزامنة الصوت</b> بالاتجاهين: قدّم وأخّر</li>
+    <li><b>الترجمة</b> تنحفظ لكل فلم ومسلسل لحاله</li>
+  </ul>
 </section>
 
 <section class="sec show" id="try">
