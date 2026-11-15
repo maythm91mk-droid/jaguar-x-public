@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /index-old.html
+Disallow: /v2.html
+
+Sitemap: https://jaguarxiq.com/sitemap.xml
