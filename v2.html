@@ -168,9 +168,12 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
 .nc .shot2{width:min(80%,220px);aspect-ratio:600/1244;margin:auto auto 0;margin-block-start:18px;border-radius:30px;border:7px solid #1b1d22;overflow:hidden;background:#000;box-shadow:0 24px 60px rgba(0,0,0,.45);transition:transform 400ms var(--ease-out)}
 .nc .shot2 img{width:100%;height:100%;object-fit:cover;object-position:50% 0;display:block}
 @media (hover:hover){.nc:hover .shot2{transform:translateY(-6px)}}
-.more{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:1240px;margin:clamp(16px,2vw,24px) auto 0}
-.more li{background:var(--step2);border-radius:99px;padding:6px 16px;font-size:16px;color:var(--muted)}
-.more li b{color:var(--ink);font-weight:600}
+.more{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.4vw,20px);max-width:1240px;margin:clamp(12px,1.4vw,20px) auto 0}
+.mc{display:flex;align-items:center;gap:clamp(14px,1.6vw,22px);background:var(--step);border-radius:var(--r);padding:clamp(18px,2vw,28px)}
+.mi{flex:none;display:grid;place-items:center;width:clamp(52px,4.4vw,64px);aspect-ratio:1;border-radius:16px;background:rgba(255,197,0,.12);color:var(--y)}
+.mi svg{width:55%;height:55%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mc h3{font-size:clamp(19px,1.6vw,24px);font-weight:700;margin-block-end:4px}
+.mc p{color:var(--muted);font-size:16px;line-height:1.55}
 
 /* v2: sticky subscribe bar on phones */
 .dock{display:none}
@@ -381,6 +384,8 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
   .hph{border-width:4px;border-radius:16px}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .newsgrid{grid-template-columns:minmax(0,1fr)}
+  .more{grid-template-columns:minmax(0,1fr)}
+  .mc{align-items:flex-start}
   .actpanel{grid-template-columns:minmax(0,1fr);gap:10px}
   .actmain{grid-column:auto}
   .dlc{min-height:104px}
@@ -514,10 +519,16 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
       <div class="shot2"><img src="img/new-youtube.jpg" width="600" height="1244" loading="lazy" alt="يوتيوب مفتوح داخل تطبيق Jaguar X"></div>
     </article>
   </div>
-  <ul class="more rv">
-    <li><b>مزامنة الصوت</b> بالاتجاهين: قدّم وأخّر</li>
-    <li><b>الترجمة</b> تنحفظ لكل فلم ومسلسل لحاله</li>
-  </ul>
+  <div class="more">
+    <article class="mc rv">
+      <span class="mi" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h2M7 8v8M11 5v14M15 8v8M19 11v2"/><path d="M17 4l3 3-3 3M7 14l-3 3 3 3"/></svg></span>
+      <div><h3>مزامنة الصوت بالاتجاهين</h3><p>إذا الصوت سابق الصورة أو متأخر عنها، تقدّمه أو تأخّره من داخل المشغّل لحد ما يركب.</p></div>
+    </article>
+    <article class="mc rv" style="--d:80ms">
+      <span class="mi" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M7 14h4M13 14h4M7 10.5h10"/></svg></span>
+      <div><h3>الترجمة تنحفظ لكل فلم</h3><p>تشغّل الترجمة بفلم أو مسلسل، تنحفظ إله لحاله، وما تطلعلك ترجمتين فوك بعض.</p></div>
+    </article>
+  </div>
 </section>
 
 <section class="sec show" id="try">
