@@ -37,15 +37,24 @@ async function report(env) {
   const srcAll = {};
   for (const d of days) for (const s in (rows[d].view || {})) srcAll[s] = (srcAll[s] || 0) + rows[d].view[s];
   const card = (l, v) => `<div class="c"><div class="n">${v}</div><div>${l}</div></div>`;
+  const line = (l, v) => `<div class="r"><span>${l}</span><b>${v}</b></div>`;
+  const srcRows = Object.keys(srcAll).sort((a, b) => srcAll[b] - srcAll[a]).map(s => line(SOURCES[s] || s, srcAll[s])).join("") || line("ماكو زيارات بعد", 0);
+  const dayBlocks = days.map(d => {
+    const items = evs.filter(e => tot(d, e) > 0).map(e => line(EVENTS[e], tot(d, e))).join("");
+    return `<section class="day"><h4>${d}</h4>${items || line("ماكو شي", 0)}</section>`;
+  }).join("") || `<section class="day">${line("ماكو زيارات بعد", 0)}</section>`;
   const html = `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>زوار jaguarxiq.com</title>
-<style>body{font-family:system-ui;background:#111;color:#eee;padding:16px;direction:rtl}table{border-collapse:collapse;width:100%;margin-bottom:24px}td,th{border:1px solid #333;padding:6px 10px;text-align:center}th{background:#222}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0 24px}.c{background:#1c1c1c;border-radius:10px;padding:12px;text-align:center}.n{font-size:32px;color:#f5b301;font-weight:700}</style>
+<style>*{box-sizing:border-box}body{font-family:system-ui;background:#111;color:#eee;padding:16px;margin:0 auto;max-width:720px;direction:rtl}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0 24px}.c{background:#1c1c1c;border-radius:12px;padding:14px;text-align:center}.n{font-size:32px;color:#f5b301;font-weight:700}
+h3{margin:24px 0 10px}.box,.day{background:#1c1c1c;border-radius:12px;padding:6px 14px;margin-bottom:10px}
+.day h4{margin:10px 0 4px;color:#f5b301;direction:ltr;text-align:right}
+.r{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #2a2a2a}.r:last-child{border-bottom:0}.r b{font-variant-numeric:tabular-nums}</style>
 <h2>زوار jaguarxiq.com</h2>
 <div class="cards">${card("زيارات اليوم", tot(day(), "view"))}${card("كل الزيارات", all("view"))}${card("ضغطات اشترك واتساب", all("wa") + all("dock-wa"))}${card("ضغطات التنزيل", all("dl-phone") + all("dl-tv") + all("dock-dl"))}</div>
 <h3>الزوار جايين من وين (كل الأيام)</h3>
-<table><tr>${Object.keys(srcAll).map(s => `<th>${SOURCES[s] || s}</th>`).join("")}</tr><tr>${Object.keys(srcAll).map(s => `<td>${srcAll[s]}</td>`).join("")}</tr></table>
+<div class="box">${srcRows}</div>
 <h3>حسب اليوم</h3>
-<table><tr><th>اليوم</th>${evs.map(e => `<th>${EVENTS[e]}</th>`).join("")}</tr>
-${days.map(d => `<tr><td>${d}</td>${evs.map(e => `<td>${tot(d, e)}</td>`).join("")}</tr>`).join("")}</table>`;
+${dayBlocks}`;
   return new Response(html, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
 }
 
