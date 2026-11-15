@@ -1,0 +1,8 @@
+name = "jaguar-dl-count"
+main = "worker.js"
+compatibility_date = "2026-11-02"
+workers_dev = true
+
+[[kv_namespaces]]
+binding = "COUNTS"
+id = "de409ee3bed84f6c8b8706d0bc2d06bc"
