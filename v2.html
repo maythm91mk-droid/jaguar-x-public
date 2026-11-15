@@ -185,11 +185,18 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
   .foot{padding-block-end:96px}
 }
 
-/* v2: live download counter */
-.dlc{display:inline-flex;align-items:center;gap:10px;font-size:clamp(16px,1.3vw,19px);color:var(--muted);margin:0}
-.dlc b{color:var(--ink);font-size:1.25em;font-weight:700;direction:ltr;font-variant-numeric:tabular-nums}
-.dlc i{width:10px;height:10px;border-radius:50%;background:var(--y);box-shadow:0 0 0 0 rgba(255,197,0,.6);animation:ping 1.8s ease-out infinite}
-@keyframes ping{to{box-shadow:0 0 0 12px rgba(255,197,0,0)}}
+/* v2: one action panel: live download counter + download buttons */
+.actpanel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:clamp(12px,1.4vw,20px);width:100%;margin-block-start:4px;padding:clamp(12px,1.4vw,20px);background:var(--step);border-radius:calc(var(--r) + 8px);text-align:center}
+.dlc{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:var(--ground);border-radius:var(--r);padding:18px 12px}
+.dlc-top{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--y)}
+.dlc-top i{width:9px;height:9px;border-radius:50%;background:var(--y);box-shadow:0 0 0 0 rgba(255,197,0,.6);animation:ping 1.8s ease-out infinite}
+@keyframes ping{to{box-shadow:0 0 0 10px rgba(255,197,0,0)}}
+.dlc b{font-size:clamp(40px,4vw,60px);font-weight:700;line-height:1;direction:ltr;font-variant-numeric:tabular-nums}
+.dlc-lbl{font-size:16px;color:var(--muted)}
+.actmain{display:flex;flex-direction:column;justify-content:center;gap:14px}
+.actpanel .dlpick{width:100%}
+.actpanel .sub-acts{justify-content:center;gap:10px 22px}
+.actpanel .sub-acts small{color:var(--muted);font-size:var(--s-s)}
 
 /* Remote showcase */
 .show{display:flex;flex-direction:column;align-items:center;gap:clamp(20px,3vw,36px);text-align:center}
@@ -374,6 +381,9 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
   .hph{width:28%;bottom:-10%;border-width:5px;border-radius:18px}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .newsgrid{grid-template-columns:minmax(0,1fr)}
+  .actpanel{grid-template-columns:minmax(0,1fr);padding:10px}
+  .dlc{padding:14px 10px}
+  .actpanel .sub-acts small{flex-basis:100%}
   .nc .shot2{width:min(62%,230px)}
   .stats div{min-height:104px}
   .stats b{font-size:clamp(28px,8.6vw,36px)}
@@ -445,16 +455,24 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
     <div class="rv" style="--d:140ms"><b data-n="100000" data-sep data-plus>+100,000</b><span>مسلسل</span></div>
     <div class="rv price-card" style="--d:210ms"><b data-n="5000" data-sep>5,000</b><span>دينار يبدي الاشتراك</span></div>
   </div>
-    <div class="dlpick rv" style="--d:160ms">
-      <a href="#dl-phone"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><rect x="10" y="4.3" width="4" height="1.6" rx=".8" fill="currentColor" stroke="none"/></svg><span><strong>تنزيل للموبايل</strong><small>رابط مباشر</small></span></a>
-      <a href="#dl-tv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M5 17l-1 3M19 17l1 3"/></svg><span><strong>تنزيل للتلفزيون</strong><small>شاشة أو تي في بوكس</small></span></a>
+    <div class="actpanel rv" style="--d:160ms">
+      <div class="dlc" id="dlc">
+        <span class="dlc-top"><i aria-hidden="true"></i>مباشر</span>
+        <b id="dlcn">436</b>
+        <span class="dlc-lbl">تحميل للتطبيق لحد هسه</span>
+      </div>
+      <div class="actmain">
+        <div class="dlpick">
+          <a href="#dl-phone"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><rect x="10" y="4.3" width="4" height="1.6" rx=".8" fill="currentColor" stroke="none"/></svg><span><strong>تنزيل للموبايل</strong><small>رابط مباشر</small></span></a>
+          <a href="#dl-tv"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M5 17l-1 3M19 17l1 3"/></svg><span><strong>تنزيل للتلفزيون</strong><small>شاشة أو تي في بوكس</small></span></a>
+        </div>
+        <div class="sub-acts">
+          <a class="btn small" href="https://wa.me/9647851700800?text=%D9%87%D9%84%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A3%D8%B4%D8%AA%D8%B1%D9%83%20%D8%A8%D9%80%20Jaguar%20X">اشترك عبر واتساب</a>
+          <a class="lnk" href="#prices">شوف الأسعار</a>
+          <small>يشتغل على أندرويد <bdi>8</bdi> فما فوق</small>
+        </div>
+      </div>
     </div>
-    <p class="dlc rv" id="dlc" hidden><i aria-hidden="true"></i><b id="dlcn">0</b> تحميل للتطبيق لحد هسه</p>
-    <div class="sub-acts rv" style="--d:200ms">
-      <a class="btn small" href="https://wa.me/9647851700800?text=%D9%87%D9%84%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A3%D8%B4%D8%AA%D8%B1%D9%83%20%D8%A8%D9%80%20Jaguar%20X">اشترك عبر واتساب</a>
-      <a class="lnk" href="#prices">شوف الأسعار</a>
-    </div>
-    <small class="rv" style="--d:220ms">يشتغل على أندرويد <bdi>8</bdi> فما فوق.</small>
   </div>
   <div class="rig" id="rig">
   <figure class="stage framed" id="stage">
@@ -773,11 +791,11 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
   addEventListener('scroll',function(){requestAnimationFrame(dk)},{passive:true});dk();
 
   // v2: download counter from the read-only jaguar-dl-count worker; refreshes every 30 s while the page is open
-  var dlc=document.getElementById('dlc'),dlcn=document.getElementById('dlcn'),dlShown=0;
+  var dlcn=document.getElementById('dlcn'),dlShown=0;
   function dlTo(n){var from=dlShown,t0=performance.now();dlShown=n;if(reduce){dlcn.textContent=n.toLocaleString('en-US');return}
     (function f(t){var k=Math.min(1,(t-t0)/900),v=Math.round(from+(n-from)*(1-Math.pow(1-k,3)));dlcn.textContent=v.toLocaleString('en-US');if(k<1)requestAnimationFrame(f)})(t0)}
   function dlGet(){fetch('https://jaguar-dl-count.maythm91-mk.workers.dev/').then(function(r){return r.json()}).then(function(j){
-    if(typeof j.total==='number'&&j.total>0){dlc.hidden=false;if(j.total!==dlShown)dlTo(j.total)}}).catch(function(){})}
+    if(typeof j.total==='number'&&j.total>0&&j.total!==dlShown)dlTo(j.total)}).catch(function(){})}
   dlGet();var dlTimer=setInterval(dlGet,30000);
   document.addEventListener('visibilitychange',function(){clearInterval(dlTimer);if(!document.hidden){dlGet();dlTimer=setInterval(dlGet,30000)}});
 
