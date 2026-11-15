@@ -37,24 +37,22 @@ async function report(env) {
   const srcAll = {};
   for (const d of days) for (const s in (rows[d].view || {})) srcAll[s] = (srcAll[s] || 0) + rows[d].view[s];
   const card = (l, v) => `<div class="c"><div class="n">${v}</div><div>${l}</div></div>`;
-  const line = (l, v) => `<div class="r"><span>${l}</span><b>${v}</b></div>`;
-  const srcRows = Object.keys(srcAll).sort((a, b) => srcAll[b] - srcAll[a]).map(s => line(SOURCES[s] || s, srcAll[s])).join("") || line("ماكو زيارات بعد", 0);
-  const dayBlocks = days.map(d => {
-    const items = evs.filter(e => tot(d, e) > 0).map(e => line(EVENTS[e], tot(d, e))).join("");
-    return `<section class="day"><h4>${d}</h4>${items || line("ماكو شي", 0)}</section>`;
-  }).join("") || `<section class="day">${line("ماكو زيارات بعد", 0)}</section>`;
+  // Columns grouped so the daily table fits a phone: one column per kind of button.
+  const COLS = [["زيارات", ["view"]], ["واتساب", ["wa", "dock-wa"]], ["تنزيل", ["dl-phone", "dl-tv", "dock-dl"]], ["باقات", ["price"]], ["تلگرام", ["tg"]], ["وكلاء", ["agent-tg", "agent-wa"]]];
+  const col = (d, list) => list.reduce((a, e) => a + tot(d, e), 0);
+  const srcSorted = Object.keys(srcAll).sort((a, b) => srcAll[b] - srcAll[a]);
   const html = `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>زوار jaguarxiq.com</title>
-<style>*{box-sizing:border-box}body{font-family:system-ui;background:#111;color:#eee;padding:16px;margin:0 auto;max-width:720px;direction:rtl}
-.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0 24px}.c{background:#1c1c1c;border-radius:12px;padding:14px;text-align:center}.n{font-size:32px;color:#f5b301;font-weight:700}
-h3{margin:24px 0 10px}.box,.day{background:#1c1c1c;border-radius:12px;padding:6px 14px;margin-bottom:10px}
-.day h4{margin:10px 0 4px;color:#f5b301;direction:ltr;text-align:right}
-.r{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #2a2a2a}.r:last-child{border-bottom:0}.r b{font-variant-numeric:tabular-nums}</style>
+<style>body{font-family:system-ui;background:#111;color:#eee;padding:16px;direction:rtl}table{border-collapse:collapse;width:100%;margin-bottom:24px}td,th{border:1px solid #333;padding:6px 8px;text-align:center}th{background:#222}td:first-child{white-space:nowrap}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0 24px}.c{background:#1c1c1c;border-radius:10px;padding:12px;text-align:center}.n{font-size:32px;color:#f5b301;font-weight:700}@media(max-width:480px){body{padding:12px}td,th{padding:6px 4px;font-size:14px}}</style>
 <h2>زوار jaguarxiq.com</h2>
 <div class="cards">${card("زيارات اليوم", tot(day(), "view"))}${card("كل الزيارات", all("view"))}${card("ضغطات اشترك واتساب", all("wa") + all("dock-wa"))}${card("ضغطات التنزيل", all("dl-phone") + all("dl-tv") + all("dock-dl"))}</div>
-<h3>الزوار جايين من وين (كل الأيام)</h3>
-<div class="box">${srcRows}</div>
+<h3>الزوار جايين من وين</h3>
+<table><tr><th>المصدر</th><th>الزيارات</th></tr>
+${srcSorted.map(s => `<tr><td>${SOURCES[s] || s}</td><td>${srcAll[s]}</td></tr>`).join("") || `<tr><td colspan="2">ماكو زيارات بعد</td></tr>`}
+<tr><th>المجموع</th><th>${all("view")}</th></tr></table>
 <h3>حسب اليوم</h3>
-${dayBlocks}`;
+<table><tr><th>اليوم</th>${COLS.map(c => `<th>${c[0]}</th>`).join("")}</tr>
+${days.map(d => `<tr><td>${d.slice(5)}</td>${COLS.map(c => `<td>${col(d, c[1])}</td>`).join("")}</tr>`).join("")}
+<tr><th>الكل</th>${COLS.map(c => `<th>${days.reduce((a, d) => a + col(d, c[1]), 0)}</th>`).join("")}</tr></table>`;
   return new Response(html, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
 }
 
