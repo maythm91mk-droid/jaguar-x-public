@@ -1,0 +1,8 @@
+name = "jaguar-site-stats"
+main = "worker.js"
+compatibility_date = "2026-11-02"
+workers_dev = true
+
+[[kv_namespaces]]
+binding = "SITE"
+id = "8df8a8a6af64485eb3d7a2dfef081d41"

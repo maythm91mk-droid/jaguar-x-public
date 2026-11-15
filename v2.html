@@ -201,6 +201,43 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
 .actpanel .sub-acts{justify-content:center;gap:10px 22px}
 .actpanel .sub-acts small{color:var(--muted);font-size:var(--s-s)}
 
+/* v2: Telegram strip */
+.tgband{display:flex;align-items:center;gap:clamp(14px,1.8vw,24px);max-width:1240px;margin:clamp(12px,1.4vw,20px) auto 0;background:var(--step);border-radius:var(--r);padding:clamp(16px,1.8vw,24px) clamp(18px,2vw,28px)}
+.tgband .mi{background:rgba(42,171,238,.14);color:#2AABEE}
+.tgband div{flex:1;min-width:0}
+.tgband h3{font-size:clamp(19px,1.6vw,24px);font-weight:700;margin-block-end:2px}
+.tgband p{color:var(--muted);font-size:16px}
+.btn.tg svg,.ag-acts svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+
+/* v2: the app in motion */
+.demo{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,88px);align-items:center;max-width:1240px;margin-inline:auto;padding-inline:var(--m)}
+.demo h2{margin-block-end:16px}
+.demo .lead2{color:var(--muted);font-size:clamp(18px,1.4vw,21px);max-width:30em;margin-block-end:20px}
+.demo ul{display:grid;gap:10px}
+.demo li{display:flex;align-items:center;gap:12px;font-size:18px}
+.demo li::before{content:"";flex:none;width:10px;height:10px;border-radius:3px;background:var(--y)}
+.vphone{justify-self:center;width:min(100%,330px);aspect-ratio:9/16;border-radius:38px;border:9px solid #1b1d22;overflow:hidden;background:#000;box-shadow:0 40px 100px rgba(0,0,0,.6);position:relative}
+.vphone video{width:100%;height:100%;object-fit:cover;display:block}
+.vsound{position:absolute;inset-inline-end:12px;bottom:12px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center;cursor:pointer}
+.vsound svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* v2: agents */
+.agents{max-width:1240px;margin-inline:auto;padding-inline:var(--m)}
+.agents .lead2{color:var(--muted);font-size:clamp(18px,1.4vw,21px);max-width:36em;margin-block:12px clamp(24px,3vw,40px)}
+.aggrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.4vw,20px)}
+.ag{background:var(--step);border-radius:var(--r);padding:clamp(20px,2.2vw,30px);display:flex;flex-direction:column;gap:10px}
+.ag .mi{margin-block-end:4px}
+.ag h3{font-size:clamp(20px,1.7vw,26px);font-weight:700}
+.ag p{color:var(--muted);font-size:17px;line-height:1.55}
+.ag-acts{display:flex;flex-wrap:wrap;gap:12px;margin-block-start:clamp(20px,2.4vw,32px)}
+.ag-acts .btn{gap:10px}
+.btn.solid{background:var(--y);color:var(--on-y)}
+
+/* v2: four devices */
+#devices{grid-template-columns:repeat(4,minmax(0,1fr))}
+#devices .tile.w{grid-column:auto}
+.wall .tile:nth-of-type(3),.wall .tile:nth-of-type(5){background:var(--step2)}
+
 /* Remote showcase */
 .show{display:flex;flex-direction:column;align-items:center;gap:clamp(20px,3vw,36px);text-align:center}
 .show .pick{width:100%;max-width:1000px}
@@ -291,7 +328,6 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
 .wall{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;padding-inline:var(--m)}
 .wall .tile.w{grid-column:span 2;aspect-ratio:4/3}
 .wall .tile.n{grid-column:span 3;aspect-ratio:2.2/1}
-.wall .tile:nth-of-type(3){background:var(--step2)}
 .wall h2{grid-column:1/-1;margin-block-end:clamp(24px,3vw,40px)}
 .tile{aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px;background:var(--step);border-radius:var(--r);padding:14px;overflow:hidden;position:relative;transition:transform 240ms var(--ease-out)}
 @media (hover:hover){.tile:hover{transform:translateY(-4px)}}
@@ -384,6 +420,13 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
   .hph{border-width:4px;border-radius:16px}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .newsgrid{grid-template-columns:minmax(0,1fr)}
+  .demo{grid-template-columns:minmax(0,1fr)}
+  .vphone{width:min(78%,300px)}
+  .aggrid{grid-template-columns:minmax(0,1fr)}
+  .ag-acts .btn{flex:1 1 100%}
+  .tgband{flex-wrap:wrap}
+  .tgband .btn{flex:1 1 100%}
+  #devices{grid-template-columns:repeat(2,minmax(0,1fr))}
   .more{grid-template-columns:minmax(0,1fr)}
   .mc{align-items:flex-start}
   .actpanel{grid-template-columns:minmax(0,1fr);gap:10px}
@@ -445,6 +488,7 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
     <a href="#prices">الأسعار</a>
     <a href="#install">التنزيل</a>
     <a href="#faq">الأسئلة</a>
+    <a href="#agents">الوكلاء</a>
   </nav>
   <a class="btn small" href="https://wa.me/9647851700800?text=%D9%87%D9%84%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A3%D8%B4%D8%AA%D8%B1%D9%83%20%D8%A8%D9%80%20Jaguar%20X">اشترك</a>
 </header>
@@ -529,6 +573,29 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
       <div><h3>الترجمة تنحفظ لكل فلم</h3><p>تشغّل الترجمة بفلم أو مسلسل، تنحفظ إله لحاله، وما تطلعلك ترجمتين فوك بعض.</p></div>
     </article>
   </div>
+  <div class="tgband rv">
+    <span class="mi" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.2 2.9 11.4c-1 .4-1 1.8.1 2.1l4.6 1.4 1.8 5.6c.3.9 1.4 1.1 2 .4l2.6-2.6 4.7 3.5c.8.6 1.9.1 2.1-.9l3.1-14.6c.2-1.2-.9-2.1-1.9-1.7Z"/><path d="m7.6 14.9 9.6-6.6-7.4 7.9"/></svg></span>
+    <div><h3>التحديثات والعروض توصلك أول بأول</h3><p>بقناتنا على تلگرام: أخبار السيرفرات، والتحديثات الجديدة، والعروض.</p></div>
+    <a class="btn tg" href="https://t.me/jaguarx_iq"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.2 2.9 11.4c-1 .4-1 1.8.1 2.1l4.6 1.4 1.8 5.6c.3.9 1.4 1.1 2 .4l2.6-2.6 4.7 3.5c.8.6 1.9.1 2.1-.9l3.1-14.6c.2-1.2-.9-2.1-1.9-1.7Z"/><path d="m7.6 14.9 9.6-6.6-7.4 7.9"/></svg>تابع القناة</a>
+  </div>
+</section>
+
+<section class="sec" id="demo">
+  <div class="demo">
+    <div>
+      <span class="eye rv">شوفه شغال</span>
+      <h2 class="rv">التطبيق بنص دقيقة</h2>
+      <p class="lead2 rv">من أول ما تفتحه لحد ما تشغّل قناتك أو فلمك، بدون تعقيد.</p>
+      <ul class="rv">
+        <li>قنوات مباشرة، أفلام ومسلسلات بمكان واحد</li>
+        <li>على الموبايل والتلفزيون بنفس الاشتراك</li>
+        <li>يبدي من <bdi>5,000</bdi> دينار</li>
+      </ul>
+    </div>
+    <div class="vphone rv">
+      <video id="reel" src="media/jaguarx-reel.mp4" poster="media/jaguarx-reel.jpg" muted loop playsinline preload="none" aria-label="فيديو قصير يعرض تطبيق Jaguar X"></video>
+    </div>
+  </div>
 </section>
 
 <section class="sec show" id="try">
@@ -610,6 +677,7 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
   <div class="tile w rv"><strong>تلفزيون</strong></div>
   <div class="tile w rv" style="--d:60ms"><strong>تي في بوكس</strong></div>
   <div class="tile w rv" style="--d:120ms"><strong>موبايل</strong></div>
+  <div class="tile w rv" style="--d:180ms"><strong>شاشة السيارة</strong></div>
 </section>
 
 <section class="sec" id="prices" style="padding-inline:0">
@@ -723,9 +791,40 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
       <details style="--i:1;--c:var(--step2)"><summary>شلون أشترك؟</summary><p>راسلنا واتساب على <bdi>07851700800</bdi> واختار المدة، وتستلم اسم المستخدم وكلمة المرور.</p></details>
       <details style="--i:2;--c:var(--step)"><summary>شلون أجدد أو أطلب دعم؟</summary><p>على نفس رقم الواتساب <bdi>07851700800</bdi>، وهو مكتوب هم بالشاشة الرئيسية داخل التطبيق.</p></details>
       <details style="--i:3;--c:var(--step2)"><summary>أكدر أشوف بدون إنترنت؟</summary><p>إي بالموبايل: نزّل الفلم أو الحلقة وشوفها بدون نت. البث المباشر يحتاج نت.</p></details>
+      <details style="--i:6;--c:var(--step2)"><summary>كم جهاز أكدر أربط بالاشتراك؟</summary><p>لحد <bdi>5</bdi> أجهزة، ويشاهد واحد منها بالوقت (الراديو ما ينحسب). تضيفها وتشيلها من جهازك الرئيسي: الإعدادات ← أجهزتي.</p></details>
+      <details style="--i:7;--c:var(--step)"><summary>إذا ضاع جهازي الرئيسي أو بدّلته، شسوي؟</summary><p>راسلنا واتساب على <bdi>07851700800</bdi>، ونخلي جهازك الجديد هو الرئيسي.</p></details>
+      <details style="--i:8;--c:var(--step2)"><summary>يوتيوب يحتاج حساب؟</summary><p>لا. تفتح يوتيوب من الواجهة، تبحث وتشوف أي فيديو مباشرة.</p></details>
+      <details style="--i:9;--c:var(--step)"><summary>يشتغل على شاشة السيارة؟</summary><p>إي، على شاشات السيارات اللي بيها أندرويد <bdi>8</bdi> فما فوق، مثل الموبايل.</p></details>
       <details style="--i:5;--c:var(--step2)"><summary>طلعلي تحذير حماية وأنا أثبّت، شسوي؟</summary><p>هذا طبيعي لأن التطبيق مو من المتجر. اضغط "مزيد من التفاصيل"، وبعدها "التثبيت بدون فحص" أو "التثبيت على أي حال". لا تضغط "عدم تثبيت التطبيق".</p></details>
-      <details style="--i:4;--c:var(--step)"><summary>أريد أصير وكيل، وين أتواصل؟</summary><p>راسلنا على تلگرام <a class="lnk" href="https://t.me/jaguarx_dev"><bdi>@jaguarx_dev</bdi></a>.</p></details>
+      <details style="--i:4;--c:var(--step)"><summary>أريد أصير وكيل، وين أتواصل؟</summary><p>شوف قسم <a class="lnk" href="#agents">صير وكيل</a>، أو راسلنا على تلگرام <a class="lnk" href="https://t.me/jaguarx_dev"><bdi>@jaguarx_dev</bdi></a>.</p></details>
     </div>
+  </div>
+</section>
+
+<section class="sec agents" id="agents">
+  <span class="eye rv">للوكلاء</span>
+  <h2 class="rv">صير وكيل لـ <bdi>Jaguar <span style="color:var(--y)">X</span></bdi></h2>
+  <p class="lead2 rv">عندك محل أو زباين؟ بيع اشتراكات <bdi>Jaguar X</bdi> وخلي الربح إلك، وإحنا وياك بكل خطوة.</p>
+  <div class="aggrid">
+    <article class="ag rv">
+      <span class="mi" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><path d="M16 11h5M18.5 8.5v5"/></svg></span>
+      <h3>تبيع لزباينك بنفسك</h3>
+      <p>تبيع الاشتراكات لزباينك وتتابعهم، وإحنا نعلمك كلشي من البداية.</p>
+    </article>
+    <article class="ag rv" style="--d:80ms">
+      <span class="mi" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M10 6h4M9.5 15.5l2.5-5 2.5 5M10.3 14h3.4"/></svg></span>
+      <h3>تطبيق خاص باسمك</h3>
+      <p>إذا تريد تطبيق بشعارك واسمك تبيعه لزباينك، نسويه إلك.</p>
+    </article>
+    <article class="ag rv" style="--d:160ms">
+      <span class="mi" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 1 16 0v4a2 2 0 0 1-2 2h-1v-6h3M4 12v4a2 2 0 0 0 2 2h1v-6H4"/></svg></span>
+      <h3>دعم مباشر ويانا</h3>
+      <p>أي سؤال أو مشكلة عند زبونك، نحلها وياك على طول.</p>
+    </article>
+  </div>
+  <div class="ag-acts rv">
+    <a class="btn solid" href="https://t.me/jaguarx_dev"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 4.2 2.9 11.4c-1 .4-1 1.8.1 2.1l4.6 1.4 1.8 5.6c.3.9 1.4 1.1 2 .4l2.6-2.6 4.7 3.5c.8.6 1.9.1 2.1-.9l3.1-14.6c.2-1.2-.9-2.1-1.9-1.7Z"/><path d="m7.6 14.9 9.6-6.6-7.4 7.9"/></svg>راسلنا على تلگرام</a>
+    <a class="btn" href="https://wa.me/9647851700800?text=%D9%87%D9%84%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A3%D8%B5%D9%8A%D8%B1%20%D9%88%D9%83%D9%8A%D9%84%20%D9%84%D9%80%20Jaguar%20X">راسلنا واتساب</a>
   </div>
 </section>
 
@@ -810,6 +909,45 @@ h3{font-size:var(--s-m);font-weight:600;line-height:1.3}
     if(typeof j.total==='number'&&j.total>0&&j.total!==dlShown)dlTo(j.total)}).catch(function(){})}
   dlGet();var dlTimer=setInterval(dlGet,30000);
   document.addEventListener('visibilitychange',function(){clearInterval(dlTimer);if(!document.hidden){dlGet();dlTimer=setInterval(dlGet,30000)}});
+
+  // v2: the reel plays (muted) only while it is on screen
+  var reel=document.getElementById('reel');
+  if(reel&&!reduce&&'IntersectionObserver' in window){
+    window.reelIO=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){reel.preload='auto';var p=reel.play();if(p&&p.catch)p.catch(function(){})}else reel.pause()})},{threshold:.4});
+    window.reelIO.observe(reel);
+  }else if(reel){reel.controls=true}
+
+  // v2: anonymous counts (page view + button presses) to jaguar-site-stats; no cookies, nothing personal
+  var ST='https://jaguar-site-stats.maythm91-mk.workers.dev/e';
+  var src=(function(){
+    var q=(new URLSearchParams(location.search).get('src')||'').toLowerCase();
+    var map={ig:'instagram',instagram:'instagram',tt:'tiktok',tiktok:'tiktok',fb:'facebook',facebook:'facebook',wa:'whatsapp',whatsapp:'whatsapp',tg:'telegram',telegram:'telegram'};
+    if(map[q])return map[q];
+    var ua=navigator.userAgent,r=document.referrer.toLowerCase();
+    if(/Instagram/i.test(ua)||r.indexOf('instagram.')>-1)return'instagram';
+    if(/musical_ly|TikTok|Bytedance/i.test(ua)||r.indexOf('tiktok.')>-1)return'tiktok';
+    if(/FBAN|FBAV|FB_IAB/i.test(ua)||r.indexOf('facebook.')>-1||r.indexOf('fb.')>-1)return'facebook';
+    if(r.indexOf('t.me')>-1||r.indexOf('telegram')>-1)return'telegram';
+    if(r.indexOf('whatsapp')>-1||r.indexOf('wa.me')>-1)return'whatsapp';
+    if(r.indexOf('google.')>-1)return'google';
+    if(r.indexOf('jaguarxiq.com')>-1)return'site';
+    return'direct';
+  })();
+  function hit(e){try{var b=new Blob([JSON.stringify({e:e,s:src})],{type:'text/plain'});if(!(navigator.sendBeacon&&navigator.sendBeacon(ST,b)))fetch(ST,{method:'POST',body:b,keepalive:true,mode:'no-cors'})}catch(x){}}
+  hit('view');
+  document.addEventListener('click',function(ev){
+    var a=ev.target.closest&&ev.target.closest('a');if(!a)return;
+    var h=a.getAttribute('href')||'',e=null;
+    if(a.closest('.dock'))e=h.indexOf('wa.me')>-1?'dock-wa':'dock-dl';
+    else if(h==='#dl-phone')e='dl-phone';
+    else if(h==='#dl-tv')e='dl-tv';
+    else if(a.closest('#agents'))e=h.indexOf('wa.me')>-1?'agent-wa':(h.indexOf('t.me')>-1?'agent-tg':null);
+    else if(a.closest('.plan'))e='price';
+    else if(h.indexOf('wa.me')>-1)e='wa';
+    else if(h.indexOf('t.me/jaguarx_iq')>-1)e='tg';
+    else if(h.indexOf('t.me/jaguarx_dev')>-1)e='agent-tg';
+    if(e)hit(e);
+  },true);
 
   // The remote
   var names=document.getElementById('names'),btns=[].slice.call(names.querySelectorAll('button')),ring=document.getElementById('ring');
