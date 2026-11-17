@@ -1,5 +1,5 @@
 {
-  "serial": 23,
+  "serial": 24,
   "devicesBeta": {
     "on": true,
     "api": "https://api.jaguarxiq.com"
@@ -49,9 +49,9 @@
   "agents": "https://t.me/jaguarx_dev",
   "downloaderCode": "2312093",
   "beta": {
-    "versionCode": 100281,
-    "versionName": "تجربة 281",
-    "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/9ef09d2f35041d0334b6ec599c83a6083fa6249b/JaguarX-beta.apk"
+    "versionCode": 100287,
+    "versionName": "تجربة 287",
+    "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/0ec73a9048eb6e068651dce38ada485653a08545/JaguarX-beta.apk"
   },
   "subsUrl": "https://jaguar-subs.maythm91-mk.workers.dev",
   "radio": [
@@ -1709,6 +1709,25 @@
     },
     "fixed": {},
     "api": "https://api.jaguarxiq.com"
+  },
+  "whatsNewBeta": {
+    "versionCode": 100287,
+    "title": "تجربة 287",
+    "items": [
+      {
+        "icon": "live",
+        "title": "عدد القنوات والأفلام والمسلسلات",
+        "text": "يم قسم «الكل» صار يطلع العدد: شكد قناة بالبث المباشر، وشكد فلم ومسلسل موجود.",
+        "where": "البث المباشر، الأفلام، المسلسلات ← الكل"
+      },
+      {
+        "icon": "star",
+        "title": "واجهة ترحيب قبل تسجيل الدخول",
+        "text": "أول ما ينفتح التطبيق تطلع واجهة تعرّف بيه، وبيها تجربة مجانية 24 ساعة عن طريق واتساب، وملاحظة إن التطبيق يحتاج إنترنت الكيبل الضوئي (FTTH).\nحتى تشوفها بهاي النسخة: سجّل خروج، وتطلعلك مرة وحدة.",
+        "textTv": "أول ما ينفتح التطبيق تطلع واجهة تعرّف بيه، وبيها باركود ورقم واتساب لطلب تجربة مجانية 24 ساعة، وملاحظة إن التطبيق يحتاج إنترنت الكيبل الضوئي (FTTH).\nحتى تشوفها بهاي النسخة: سجّل خروج، وتطلعلك مرة وحدة.",
+        "where": "الواجهة الرئيسية ← خروج"
+      }
+    ]
   },
   "whatsNew": {
     "versionCode": 46,
