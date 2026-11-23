@@ -1,5 +1,17 @@
 {
-  "serial": 25,
+  "serial": 26,
+  "speedtestBeta": {
+    "on": true,
+    "servers": [
+      { "name": "ألمانيا", "url": "enc:Ih2j+wZjlrv0YdoGLWeWifazIm+TOVG/ah11bmA71hOxXNPj1JH31gpPRAGXewdbZs1VAJObplgp", "local": false }
+    ],
+    "dlSec": 7,
+    "ulSec": 6,
+    "liveSec": 5,
+    "vodSec": 6,
+    "quality": { "sd": 3, "hd": 6, "fhd": 10, "uhd": 25 },
+    "lineSupport": "07719999428"
+  },
   "devicesBeta": {
     "on": true,
     "api": "https://api.jaguarxiq.com"
