@@ -492,6 +492,9 @@ async function syncConfig() {
 let devices = null;
 try { devices = require('./devices')({ secret: APP_SECRET, statusKey: STATUS_KEY, readJson, writeJson, log }); }
 catch (e) { log('devices: not loaded:', e.message); }
+// «فحص الانترنت» in the app (speed.js): download / upload / latency, LibreSpeed protocol.
+let speed = null;
+try { speed = require('./speed')({ log }); } catch (e) { log('speed: not loaded:', e.message); }
 for (const sig of ['SIGTERM', 'SIGINT']) process.on(sig, () => { try { devices && devices.flush(); } catch {} process.exit(0); });
 
 // ---------- the app's door ----------
@@ -561,7 +564,7 @@ const server = http.createServer(async (req, res) => {
       if (url.pathname === '/missing') return send(res, 200, missing);
       rollDay();
       return send(res, 200, { day: budget.day, used: budget.used, left: left(), limit: DAILY_LIMIT, liveEveryMin: LIVE_EVERY_MIN,
-        days: Object.fromEntries(Object.entries(days).map(([k, v]) => [k, v.matches.length])), leagues: seen, tv: tvr.status(), fill: fill.status(), requests: budget.log });
+        days: Object.fromEntries(Object.entries(days).map(([k, v]) => [k, v.matches.length])), leagues: seen, tv: tvr.status(), fill: fill.status(), speed: speed ? speed.status() : null, requests: budget.log });
     }
     // The support page (devices of a subscriber: reset the main one, remove a device). The page holds no key: Maytham types it.
     if (url.pathname === '/support') {
@@ -578,6 +581,8 @@ const server = http.createServer(async (req, res) => {
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
       return res.end(configText);
     }
+    // The app's speed test (speed.js): its own limits (a test makes dozens of requests, more than the limit below).
+    if (speed && url.pathname.startsWith('/st/') && speed.handle(req, res, url, ip)) return;
     // Devices of a subscription (devices.js): its own limits and signature. Many homes share one address.
     if (url.pathname.startsWith('/v1/dev/')) {
       if (!devices) return send(res, 404, { error: 'path' });
