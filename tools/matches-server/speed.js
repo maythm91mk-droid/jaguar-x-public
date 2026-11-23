@@ -6,8 +6,8 @@
 //   GET  /st/empty.php              empty answer (latency test)
 //   GET  /st/getIP.php              the caller's address as the server sees it (shown to nobody, kept nowhere)
 //
-// Open to anyone (people who are not subscribers can test their line too), so it guards itself: at most 12 open
-// transfers per address and 8 GB a day per address. Nothing is written to disk and no address is kept past the day.
+// Open to anyone (people who are not subscribers can test their line too), so it guards itself: at most 48 open
+// transfers per address and 100 GB a day per address (many homes share one address behind the provider). Nothing is written to disk and no address is kept past the day.
 
 'use strict';
 const crypto = require('crypto');
@@ -16,8 +16,8 @@ module.exports = function create({ log }) {
   const CHUNK = crypto.randomBytes(1024 * 1024);   // one random megabyte, sent again and again (it can't be compressed)
   const MAX_CHUNKS = 100;
   const MAX_UP = 64 * 1024 * 1024;
-  const MAX_OPEN = 12;
-  const DAY_BYTES = 8 * 1024 * 1024 * 1024;
+  const MAX_OPEN = 48;              // many homes share one address (CGNAT)
+  const DAY_BYTES = 100 * 1024 * 1024 * 1024;
 
   const open = new Map();     // address -> open transfers
   let day = '';
