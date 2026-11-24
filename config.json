@@ -1,5 +1,5 @@
 {
-  "serial": 35,
+  "serial": 36,
   "speedtestBeta": {
     "on": true,
     "servers": [
@@ -70,9 +70,9 @@
   "agents": "https://t.me/jaguarx_dev",
   "downloaderCode": "2312093",
   "beta": {
-    "versionCode": 100318,
-    "versionName": "تجربة 318",
-    "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/41103f33d4f6f90778ac98fe051237228c6eebf1/JaguarX-beta.apk"
+    "versionCode": 100322,
+    "versionName": "تجربة 322",
+    "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/cf909ee02727d8425db74659292ad97cb12c92db/JaguarX-beta.apk"
   },
   "subsUrl": "https://jaguar-subs.maythm91-mk.workers.dev",
   "radio": [
