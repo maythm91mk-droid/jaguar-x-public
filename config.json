@@ -1,15 +1,24 @@
 {
-  "serial": 34,
+  "serial": 35,
   "speedtestBeta": {
     "on": true,
     "servers": [
-      { "name": "ألمانيا", "url": "enc:Ih2j+wZjlrv0YdoGLWeWifazIm+TOVG/ah11bmA71hOxXNPj1JH31gpPRAGXewdbZs1VAJObplgp", "local": false }
+      {
+        "name": "ألمانيا",
+        "url": "enc:Ih2j+wZjlrv0YdoGLWeWifazIm+TOVG/ah11bmA71hOxXNPj1JH31gpPRAGXewdbZs1VAJObplgp",
+        "local": false
+      }
     ],
     "dlSec": 7,
     "ulSec": 6,
     "liveSec": 5,
     "vodSec": 6,
-    "quality": { "sd": 3, "hd": 6, "fhd": 10, "uhd": 25 },
+    "quality": {
+      "sd": 3,
+      "hd": 6,
+      "fhd": 10,
+      "uhd": 25
+    },
     "lineSupport": "07719999428"
   },
   "devicesBeta": {
@@ -51,8 +60,8 @@
   "support": "07851700800",
   "message": "",
   "latest": {
-    "versionCode": 50,
-    "versionName": "1.9.13",
+    "versionCode": 51,
+    "versionName": "1.9.14",
     "notes": "",
     "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX.apk",
     "minVersionCode": 0
@@ -1723,21 +1732,32 @@
     "api": "https://api.jaguarxiq.com"
   },
   "whatsNew": {
-    "versionCode": 50,
-    "title": "تحديث 1.9.13",
+    "versionCode": 51,
+    "title": "تحديث 1.9.14",
     "items": [
       {
-        "icon": "live",
-        "title": "عدد القنوات والأفلام والمسلسلات",
-        "text": "يم قسم «الكل» صار يطلع العدد: شكد قناة بالبث المباشر، وشكد فلم ومسلسل موجود.",
-        "where": "البث المباشر، الأفلام، المسلسلات ← الكل"
+        "icon": "speed",
+        "title": "فحص الانترنت",
+        "text": "افحص خطك والوايفاي مالتك، ويكلك إذا الخط يمشّي HD أو 4K بدون تقطيع. ومن تخلص تكدر تدز النتيجة للدعم بضغطة وحدة.",
+        "where": "الواجهة الرئيسية ← فحص النت"
       },
       {
-        "icon": "star",
-        "title": "واجهة ترحيب وتجربة مجانية للجدد",
-        "text": "أي واحد يثبّت التطبيق أول مرة تستقبله واجهة ترحيب تعرّفه بالتطبيق، ومنها يطلب تجربة مجانية 24 ساعة عن طريق واتساب.\nعندك صديق يريد يجرب؟ خليه يثبّت التطبيق ويطلب التجربة.",
-        "textTv": "أي واحد يثبّت التطبيق أول مرة تستقبله واجهة ترحيب تعرّفه بالتطبيق، وبيها باركود ورقم واتساب لطلب تجربة مجانية 24 ساعة.\nعندك صديق يريد يجرب؟ خليه يثبّت التطبيق ويطلب التجربة.",
-        "where": ""
+        "icon": "account",
+        "title": "حسابي",
+        "text": "اضغط على «باقي … يوم» تشوف اسم المستخدم وكلمة السر ويوم ينتهي اشتراكك، بدون ما تطلع من الحساب. ومنه تجدد اشتراكك على طول.",
+        "where": "الواجهة الرئيسية ← باقي … يوم"
+      },
+      {
+        "icon": "weather",
+        "title": "الطقس كامل",
+        "text": "اضغط على الطقس تطلعلك الحرارة ساعة بساعة، وجو الأسبوع كله، والرطوبة والريح.",
+        "where": "الواجهة الرئيسية ← الطقس"
+      },
+      {
+        "icon": "cloud",
+        "title": "الواجهة تمشي ويا الجو",
+        "text": "إذا تمطر بمحافظتك تشوف المطر بالواجهة، وإذا مغيمة تشوف الغيوم. بالنهار تطلع الشمس، وبالليل يطلع الكمر وشكله حسب أيام الشهر. وإذا ما تحبها تكدر تطفيها.",
+        "where": "الإعدادات ← حركة الطقس"
       }
     ]
   },
@@ -2900,5 +2920,26 @@
         ]
       }
     ]
+  },
+  "speedtest": {
+    "on": true,
+    "servers": [
+      {
+        "name": "ألمانيا",
+        "url": "enc:Ih2j+wZjlrv0YdoGLWeWifazIm+TOVG/ah11bmA71hOxXNPj1JH31gpPRAGXewdbZs1VAJObplgp",
+        "local": false
+      }
+    ],
+    "dlSec": 7,
+    "ulSec": 6,
+    "liveSec": 5,
+    "vodSec": 6,
+    "quality": {
+      "sd": 3,
+      "hd": 6,
+      "fhd": 10,
+      "uhd": 25
+    },
+    "lineSupport": "07719999428"
   }
 }
