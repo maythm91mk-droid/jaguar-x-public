@@ -1,5 +1,5 @@
 {
-  "serial": 44,
+  "serial": 45,
   "speedtestBeta": {
     "on": true,
     "servers": [
@@ -416,6 +416,18 @@
       "g": "قرآن",
       "u": "https://qurango.net/radio/saud_alshuraim",
       "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_shuraim.png?v=3"
+    },
+    {
+      "n": "علي عبدالرحمن الحذيفي",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/ali_alhuthaifi",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_hudhaifi.png?v=1"
+    },
+    {
+      "n": "عبدالله الجهني",
+      "g": "قرآن",
+      "u": "https://qurango.net/radio/abdullah_aljohany",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_juhani.png?v=1"
     },
     {
       "n": "سعد الغامدي",
