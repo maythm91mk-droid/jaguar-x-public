@@ -1,0 +1,6 @@
+c_amer1 https://media.way2quran.com/imgs/amer-al-kazemi.jpg
+c_amer2 https://i1.sndcdn.com/artworks-t1VLj8dijhXU0VUl-S1E1fQ-t500x500.jpg
+c_nema1 https://pbs.twimg.com/profile_images/1296933114606948355/LHvxEGEi_400x400.jpg
+c_nema2 https://media.way2quran.com/imgs/namah-alhassan.jpg
+c_nema3 https://i1.sndcdn.com/artworks-000035100585-1ygddc-t500x500.jpg
+c_nema4 https://play-lh.googleusercontent.com/MIoBSVpUZqbqYAnzRrJCJd_zejID-qlUQx8k5S-f2HRBDPQhfmM260JHSUQ1MG_5BEYI2YPmypYgfIsccawk
