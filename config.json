@@ -1,5 +1,5 @@
 {
-  "serial": 42,
+  "serial": 43,
   "speedtestBeta": {
     "on": true,
     "servers": [
@@ -100,8 +100,8 @@
   "support": "07851700800",
   "message": "",
   "latest": {
-    "versionCode": 52,
-    "versionName": "1.9.15",
+    "versionCode": 53,
+    "versionName": "1.9.16",
     "notes": "",
     "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/download/JaguarX.apk",
     "minVersionCode": 0
