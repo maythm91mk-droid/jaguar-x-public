@@ -1,5 +1,5 @@
 {
-  "serial": 41,
+  "serial": 42,
   "speedtestBeta": {
     "on": true,
     "servers": [
@@ -55,6 +55,10 @@
       "name": "سيرفر 6",
       "admin": "enc:kZ0JBopZ8L14XaCXhM9hbsJtdLu3/AeCjkZ9Vry5LY4=",
       "url": "enc:3yVSZA+1rVvSu+PaomkB0FRBeEbxidrogkA4LefQ2a5Eodjf1jNWC4rJahHJqffz1BBd5QEWiw=="
+    },
+    {
+      "name": "سيرفر 7",
+      "url": "enc:Aaym7xb3hJZUxduXVNhRe16rpYkDEVA3cNfLPC4AnLWwZ5w9EKVRUauG3c2JwWOZgEDRJg=="
     }
   ],
   "serversBeta": [
