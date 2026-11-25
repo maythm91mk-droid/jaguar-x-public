@@ -1,5 +1,5 @@
 {
-  "serial": 43,
+  "serial": 44,
   "speedtestBeta": {
     "on": true,
     "servers": [
@@ -460,6 +460,20 @@
       "u": "https://qurango.net/radio/mustafa_raad_alazawy",
       "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_azzawi.png?v=3",
       "f": "العراق"
+    },
+    {
+      "n": "نعمة الحسان",
+      "g": "قرآن",
+      "u": "list:https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/radio/neama-hassan.json",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_hassan.png?v=1",
+      "f": "العراق · تلاوات متواصلة"
+    },
+    {
+      "n": "عامر الكاظمي",
+      "g": "قرآن",
+      "u": "list:https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/radio/amer-kadhimi.json",
+      "l": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/main/branding/radio/logos/q_kadhimi.png?v=1",
+      "f": "العراق · تلاوات متواصلة"
     },
     {
       "n": "إسلام صبحي",
