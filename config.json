@@ -1,5 +1,5 @@
 {
-  "serial": 40,
+  "serial": 41,
   "speedtestBeta": {
     "on": true,
     "servers": [
@@ -57,6 +57,42 @@
       "url": "enc:3yVSZA+1rVvSu+PaomkB0FRBeEbxidrogkA4LefQ2a5Eodjf1jNWC4rJahHJqffz1BBd5QEWiw=="
     }
   ],
+  "serversBeta": [
+    {
+      "name": "سيرفر 1",
+      "admin": "enc:YsJGnqgEAfDHnaNo/8rEbD6ySdpSwj1myuUF8uij",
+      "url": "enc:tU+tzAm2B4IqxF6nccMxh+6q0Bc7u/gTkJLyfubv3PJpmbI+pIxmvnIIs9+xRGE="
+    },
+    {
+      "name": "سيرفر 2",
+      "admin": "enc:+Gy4UhPsoefCXopHa7yaZ7j16//Dq2BWvLQe8ky8Dmk=",
+      "url": "enc:F6BW8TWfqdhq/VxPmRZmydjGbahMTpUKsuXW+aQy7eOZKZeqkCWWPLVvEUh3WT/ifPuzFOjJ"
+    },
+    {
+      "name": "سيرفر 3",
+      "admin": "enc:7ogyLQDrlP6NRSraKVKCMPHYISkAGLU03TdcSDzm6RA68A==",
+      "url": "enc:dccw02Zvgmvn9zrs8+xqpChl9FMmsk2afPuOpyWh0K7bJCPGB24S2b4E12ZTPfEhYfnWeAHHv9w="
+    },
+    {
+      "name": "سيرفر 4",
+      "admin": "enc:v5aS4N4rTTszwiEGGpbArJQBGw9pUSwAQkiU0AAMXA==",
+      "url": "enc:3n1sf77rACtvZr58UBVplyKrLpJDOGOiWb60SIK9Oig+U3DvmxQ2gNB5pw7sMtR5rvCyOIIZlLxE0GtV"
+    },
+    {
+      "name": "سيرفر 5",
+      "admin": "enc:a4qPyjC12rDFmXMlQBtOk0ganOQzWt9a+8X2F1R1IZcpPA==",
+      "url": "enc:ozKp28ldoJsr6BPTXgPL7E9h6MI8z2lNiG0pogYpCuo5VCEaJ3p7nTeF/mFK8/ay16j56YQt3cFe/VKlJ4ll7jXFM5kY"
+    },
+    {
+      "name": "سيرفر 6",
+      "admin": "enc:kZ0JBopZ8L14XaCXhM9hbsJtdLu3/AeCjkZ9Vry5LY4=",
+      "url": "enc:3yVSZA+1rVvSu+PaomkB0FRBeEbxidrogkA4LefQ2a5Eodjf1jNWC4rJahHJqffz1BBd5QEWiw=="
+    },
+    {
+      "name": "سيرفر 7",
+      "url": "enc:Aaym7xb3hJZUxduXVNhRe16rpYkDEVA3cNfLPC4AnLWwZ5w9EKVRUauG3c2JwWOZgEDRJg=="
+    }
+  ],
   "support": "07851700800",
   "message": "",
   "latest": {
@@ -70,9 +106,9 @@
   "agents": "https://t.me/jaguarx_dev",
   "downloaderCode": "2312093",
   "beta": {
-    "versionCode": 100327,
-    "versionName": "تجربة 327",
-    "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/00100eb342655e7807aa85655fbbf39db63448f1/JaguarX-beta.apk"
+    "versionCode": 100328,
+    "versionName": "تجربة 328",
+    "apk": "https://raw.githubusercontent.com/maythm91mk-droid/jaguar-x-public/9f1206a2bbd4d5dfe8a22205be22487422cf0a14/JaguarX-beta.apk"
   },
   "subsUrl": "https://jaguar-subs.maythm91-mk.workers.dev",
   "radio": [
