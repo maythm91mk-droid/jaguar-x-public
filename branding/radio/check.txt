@@ -1,6 +1,5 @@
-https://cdn.mp3quran.net/audio/neama-hassan/r1/001.mp3
-https://cdn.mp3quran.net/audio/neama-hassan/r1/114.mp3
-https://media.way2quran.com/amer-al-kazemi/hafs-an-asim/001.mp3
-https://media.way2quran.com/amer-al-kazemi/hafs-an-asim/057.mp3
-https://media.way2quran.com/amer-al-kazemi/hafs-an-asim/114.mp3
-https://qurango.net/radio/neamah_alhassan
+https://qurango.net/radio/abdullah_aljohany
+https://qurango.net/radio/ali_alhuthaifi
+https://backup.qurango.net/radio/abdullah_aljohany
+https://backup.qurango.net/radio/ali_alhuthaifi
+https://qurango.net/radio/mishary_alafasi

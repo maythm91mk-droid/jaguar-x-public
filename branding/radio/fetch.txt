@@ -1,6 +1,7 @@
-c_amer1 https://media.way2quran.com/imgs/amer-al-kazemi.jpg
-c_amer2 https://i1.sndcdn.com/artworks-t1VLj8dijhXU0VUl-S1E1fQ-t500x500.jpg
-c_nema1 https://pbs.twimg.com/profile_images/1296933114606948355/LHvxEGEi_400x400.jpg
-c_nema2 https://media.way2quran.com/imgs/namah-alhassan.jpg
-c_nema3 https://i1.sndcdn.com/artworks-000035100585-1ygddc-t500x500.jpg
-c_nema4 https://play-lh.googleusercontent.com/MIoBSVpUZqbqYAnzRrJCJd_zejID-qlUQx8k5S-f2HRBDPQhfmM260JHSUQ1MG_5BEYI2YPmypYgfIsccawk
+c_hud1 https://i.scdn.co/image/ab67616d0000b273d9d0568edb45b2196f134a3c
+c_hud2 https://i.ytimg.com/vi/1fpX8YzuYWQ/maxresdefault.jpg
+c_hud3 https://media.way2quran.com/imgs/ali-al-hudhaify.jpg
+c_hud4 https://i.ytimg.com/vi/GeOzf4QyVaQ/maxresdefault.jpg
+c_juh1 https://media.way2quran.com/imgs/abdullah-al-juhani.jpg
+c_juh2 https://i.scdn.co/image/ab67616d0000b273785a59d50170a49b13acbab4
+c_juh3 https://i1.sndcdn.com/artworks-Pd18Zl9yYluzMmoU-k001jg-t500x500.jpg
